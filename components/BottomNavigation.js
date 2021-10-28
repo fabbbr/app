@@ -1,7 +1,7 @@
 import React from "react"
 import { StyleSheet, View } from "react-native"
 import BottomNavigationItem from "./BottomNavigationItem"
-import pagesDictionnary from "../dictionary/pagesDictionnary"
+import pagesDictionnary from "../dictionaries/pagesDictionnary"
 
 export default function BottomNavigation({ navigate }) {
     return (

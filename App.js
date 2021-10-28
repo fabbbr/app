@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import BottomNavigation from './components/BottomNavigation';
-import pagesDictionnary from './dictionary/pagesDictionnary';
+import pagesDictionnary from './dictionaries/pagesDictionnary';
 
 export default function App() {
   const [page, navigate] = useState(pagesDictionnary.HOME)
