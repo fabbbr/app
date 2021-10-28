@@ -1,10 +1,15 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react'
+import { StyleSheet, View } from 'react-native'
+import BottomNavigation from './components/BottomNavigation';
+import pagesDictionnary from './dictionary/pagesDictionnary';
 
 export default function App() {
+  const [page, navigate] = useState(pagesDictionnary.HOME)
+
   return (
     <View style={styles.container}>
-      <Text>Init !</Text>
+      <page.Component />   
+      <BottomNavigation navigate={navigate} />
     </View>
   );
 }
@@ -15,5 +20,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    fontFamily: 'Roboto'
   },
 });
