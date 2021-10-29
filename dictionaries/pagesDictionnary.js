@@ -7,27 +7,27 @@ import ProfilPage from '../pages/ProfilPage'
 const pagesDictionnary = {
     HOME: {
         Component: HomePage,
-        icon: 'Component-icon',
+        icon: 'house-icon',
         title: 'Accueil'
     },
     SEARCH: {
         Component: SearchPage,
-        icon: 'Component-icon',
+        icon: 'search-icon',
         title: 'Recherche'
     },
     SELL: {
         Component: SellPage,
-        icon: 'Cc-icon',
+        icon: 'sell-icon',
         title: 'Vendre'
     },
     MESSAGE: {
         Component: MessagePage,
-        icon: 'Cc-icon',
+        icon: 'letter-icon',
         title: 'Messages'
     },
     PROFIL: {
         Component: ProfilPage,
-        icon: 'Cccount-icon',
+        icon: 'account-icon',
         title: 'Profil'
     }
 }

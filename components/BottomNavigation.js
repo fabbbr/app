@@ -18,8 +18,6 @@ export default function BottomNavigation({ navigate }) {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#ddd',
-        position: 'fixed',
-        bottom: '0',
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-around',

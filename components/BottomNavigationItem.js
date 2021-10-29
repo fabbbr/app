@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet, View, Text } from "react-native"
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native"
 
 export default function BottomNavigationItem({item, navigate}) {
     function onPress() {
@@ -7,20 +7,20 @@ export default function BottomNavigationItem({item, navigate}) {
     }
 
     return (
-        <View 
-            style={styles.container}
-            onPress={onPress}
-            onClick={onPress}
-        >
-            <Text>{item.title}</Text>
+        <View>
+            <TouchableOpacity 
+                onPress={onPress}
+                style={styles.button}
+            >
+                <Text>{item.title}</Text>
+            </TouchableOpacity>
         </View>
     )
-
 }
 
 const styles = StyleSheet.create({
-    container: {
+    button: {
         backgroundColor: 'red',
-        padding: '10px',
+        padding: 10
     }
 })
