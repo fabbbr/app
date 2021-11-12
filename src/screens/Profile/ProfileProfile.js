@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { Text, View } from 'react-native'
 
-export default function Signin() {
+export default function ProfileProfile() {
     return(
         <View>
-            <Text>inscription coucou</Text>
+            <Text>profile coucou</Text>
         </View>
     )
 }

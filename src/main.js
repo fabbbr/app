@@ -1,14 +1,13 @@
 import { registerRootComponent } from 'expo'
 import * as React from 'react'
-import MainNavigation from './components/MainNavigation'
 import BottomNavigation from './components/BottomNavigation'
+import { NavigationContainer } from '@react-navigation/native'
 
 function App() {
     return (
-        <>
-            <MainNavigation />
+        <NavigationContainer>
             <BottomNavigation />
-        </>
+        </NavigationContainer>
     )
 }
 

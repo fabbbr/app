@@ -13,9 +13,8 @@ const Tab = createBottomTabNavigator();
 
 export default function BottomNavigation() {
     return (
-        <NavigationContainer>
-            <Tab.Navigator
-            screenOptions= {
+        <Tab.Navigator
+            screenOptions = {
                 ({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
                         switch (route.name) {
@@ -30,19 +29,18 @@ export default function BottomNavigation() {
                             case 'Profile':
                                 return <AntDesign name='user' size={size} color={color} />
                         }
-                    },
+                        },
                     tabBarActiveTintColor: '#9132a8',
                     tabBarInactiveTintColor: 'gray',
                     headerShown: false
                 })
             }
-            >
-                <Tab.Screen name="Home" component={HomeScreen} />
-                <Tab.Screen name="Search" component={SearchScreen} />
-                <Tab.Screen name="Sell" component={SellScreen} />
-                <Tab.Screen name="Message" component={MessageScreen} />
-                <Tab.Screen name="Profile" component={ProfileScreen} />
-            </Tab.Navigator>
-        </NavigationContainer>
+        >
+            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Search" component={SearchScreen} />
+            <Tab.Screen name="Sell" component={SellScreen} />
+            <Tab.Screen name="Message" component={MessageScreen} />
+            <Tab.Screen name="Profile" component={ProfileScreen} />
+        </Tab.Navigator>
     );
 }

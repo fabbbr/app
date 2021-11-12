@@ -1,18 +1,20 @@
 import * as React from 'react'
-import { Text, View } from 'react-native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+import HomeProfile from './Profile/HomeProfile'
+import ProfileProfile from './Profile/ProfileProfile'
+import LoginProfile from './Profile/LoginProfile'
+import SigninProfile from './Profile/SigninProfile'
+
+const Stack = createNativeStackNavigator()
 
 export default function ProfileScreen() {
     return (
-        <View style={styles.container}>
-            <Text>Profile!</Text>
-        </View>
+        <Stack.Navigator>
+            <Stack.Screen name='HomeProfile' component={HomeProfile} />
+            <Stack.Screen name='ProfileProfile' component={ProfileProfile} />
+            <Stack.Screen name='LoginProfile' component={LoginProfile} />
+            <Stack.Screen name='SigninProfile' component={SigninProfile} />
+        </Stack.Navigator>
     );
-}
-
-const styles = {
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center' 
-    }
 }
