@@ -3,36 +3,37 @@ import { Text, TextInput, View } from 'react-native'
 import AppButton from '../../components/AppButton'
 import * as Verifier from '../../utils/Verifier'
 import * as Api from '../../utils/Api'
+import AppInput from '../../components/AppInput'
 
 export default function LoginProfile() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     function connection() {
-        if(!Verifier.email(email)) {
-            alert('Email non valide')
-        } else {
-            // todo verify password
-            Api.post('auth/login', {
-                email,
-                password
-            }).then(data => {
-                alert(data)
-            })
-        }
+        // if(!Verifier.email(email)) {
+        //     alert('Email non valide')
+        // } else {
+        //     // todo verify password
+        //     Api.post('auth/login', {
+        //         email,
+        //         password
+        //     }).then(data => {
+        //         alert(data)
+        //     })
+        // }
     }
 
     return(
         <View style={styles.container}>
-            <View style={styles.box}>
-                <Text style={styles.label}>Email : </Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setEmail}
-                    placeholder='example@mail.com'
-                />
-            </View>
-            <View style={styles.box}>
+            <AppInput
+                value={email}
+                setValue={setEmail}
+                label="Email :"
+                type="email"
+                placeholder="john.doe@mail.com"
+                required
+            />
+            {/* <View style={styles.box}>
                 <Text style={styles.label}>Mot de passe : </Text>
                 <TextInput
                     style={styles.input}
@@ -40,7 +41,7 @@ export default function LoginProfile() {
                     placeholder='*****'
                     secureTextEntry={true}
                 />
-            </View>
+            </View> */}
             <View style={styles.connection}>
                 <AppButton 
                     title='Connexion'
