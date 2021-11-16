@@ -1,37 +1,39 @@
-import React, { useState } from 'react'
-import { Text, TextInput, View } from 'react-native'
-import EmailInput from './inputs/EmailInput'
+import React from 'react'
+import { Text, View } from 'react-native'
+import { Controller } from "react-hook-form"
 
-export default function AppInput({ type, value, label, setValue, placeholder, required, verify }) {
+import TextInput from './inputs/TextInput'
+import PasswordInput from './inputs/PasswordInput'
+import NumberInput from './inputs/NumberInput'
+import DateInput from './inputs/DateInput'
+
+export default function AppInput({ control, name, type, label, placeholder, error }) {
     let Type
     switch(type) {
-        case 'email':
-            Type = EmailInput
+        case 'text':
+            Type = TextInput
             break
         case 'password':
-            break
-        case'text':
+            Type = PasswordInput 
             break
         case 'number':
+            Type = NumberInput
             break
         case 'date':
+            Type = DateInput
             break
-        case 'phone':
-            break
-
     }
 
 
     return(
         <View style={styles.box}>
             <Text style={styles.label}>{label}</Text>
-            <Type 
-                value={value} 
-                setValue={setValue} 
-                placeholder={placeholder} 
-                required={required} 
-                verify={verify}
+            <Controller
+                control={control} 
+                render={({ field }) => (<Type {...field} placeholder={placeholder} />)}
+                name={name}
             />
+            <Text>{error}</Text>
         </View>
     )
 }
@@ -42,11 +44,5 @@ const styles = {
     },
     label: {
         marginBottom: 5
-    },
-    input: {
-        height: 40,
-        borderWidth: 1,
-        padding: 10,
-        borderRadius: 5
     }
 }
