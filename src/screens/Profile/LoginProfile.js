@@ -2,12 +2,15 @@ import React, { useState } from "react"
 import { View, Button } from "react-native"
 import { useForm } from "react-hook-form"
 import AppInput from "../../components/AppInput"
+import Api from "../../utils/Api"
+// import 
 
 export default function LoginProfile() {
   const { control, handleSubmit } = useForm()
   const { errors, setErrors} = useState()
   const onSubmit = data => {
-      alert(JSON.stringify(data))
+      console.log(JSON.stringify(data))
+      Api.post('auth/login', data)
   }
 
   return (
@@ -25,11 +28,5 @@ const styles = {
     },
     label: {
         marginBottom: 5
-    },
-    input: {
-        height: 40,
-        borderWidth: 1,
-        padding: 10,
-        borderRadius: 5
     }
 }

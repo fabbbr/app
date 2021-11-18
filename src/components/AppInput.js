@@ -29,9 +29,9 @@ export default function AppInput({ control, name, type, label, placeholder, erro
         <View style={styles.box}>
             <Text style={styles.label}>{label}</Text>
             <Controller
-                control={control} 
                 render={({ field }) => (<Type {...field} placeholder={placeholder} />)}
                 name={name}
+                control={control}
             />
             <Text>{error}</Text>
         </View>
