@@ -24,6 +24,9 @@ export default function AppInput({ control, name, type, label, placeholder, erro
             break
     }
 
+    let errorStr
+    if(error) errorStr = <Text>{error}</Text>
+
 
     return(
         <View style={styles.box}>
@@ -33,7 +36,7 @@ export default function AppInput({ control, name, type, label, placeholder, erro
                 name={name}
                 control={control}
             />
-            <Text>{error}</Text>
+            {errorStr}
         </View>
     )
 }

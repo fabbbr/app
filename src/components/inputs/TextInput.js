@@ -15,12 +15,6 @@ export default function TextInput2({ onChange, onBlur, value, placeholder }) {
 }
 
 const styles = {
-    box: {
-        marginVertical: 12
-    },
-    label: {
-        marginBottom: 5
-    },
     input: {
         height: 40,
         borderWidth: 1,
