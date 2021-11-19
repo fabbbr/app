@@ -2,6 +2,8 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { Controller } from "react-hook-form"
 
+import FormStyle from '../styles/FormStyle'
+
 import TextInput from './inputs/TextInput'
 import PasswordInput from './inputs/PasswordInput'
 import NumberInput from './inputs/NumberInput'
@@ -29,8 +31,8 @@ export default function AppInput({ control, name, type, label, placeholder, erro
 
 
     return(
-        <View style={styles.box}>
-            <Text style={styles.label}>{label}</Text>
+        <View style={FormStyle.box}>
+            <Text style={FormStyle.label}>{label}</Text>
             <Controller
                 render={({ field }) => (<Type {...field} placeholder={placeholder} />)}
                 name={name}
@@ -39,13 +41,4 @@ export default function AppInput({ control, name, type, label, placeholder, erro
             {errorStr}
         </View>
     )
-}
-
-const styles = {
-    box: {
-        marginVertical: 12
-    },
-    label: {
-        marginBottom: 5
-    }
 }

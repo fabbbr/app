@@ -40,12 +40,3 @@ export default function LoginProfile() {
     </View>
   );
 }
-
-const styles = {
-    box: {
-        marginVertical: 12
-    },
-    label: {
-        marginBottom: 5
-    }
-}

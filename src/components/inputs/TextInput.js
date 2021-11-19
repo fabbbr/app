@@ -1,24 +1,16 @@
 import React from 'react'
-import { TextInput, View } from 'react-native'
+import { TextInput } from 'react-native'
+import FormStyle from '../../styles/FormStyle'
 
 export default function TextInput2({ onChange, onBlur, value, placeholder }) {
 
     return(
         <TextInput
-            style={styles.input}
+            style={FormStyle.input}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
             placeholder={placeholder}
           />
     )
-}
-
-const styles = {
-    input: {
-        height: 40,
-        borderWidth: 1,
-        padding: 10,
-        borderRadius: 5
-    }
 }
