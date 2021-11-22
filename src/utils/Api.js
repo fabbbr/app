@@ -2,7 +2,7 @@ const requestOptions = {
     method: 'POST',
     headers: { 'Content-type': 'application/json' }
 }
-const api_url = 'https://20.199.101.242:8000/'
+const api_url = 'http://20.199.101.242:8000/'
 
 function getOptions(params) {
     return JSON.stringify({
@@ -20,13 +20,10 @@ export async function get(path, params = {}) {
 }
 
 export async function post(path, data = {}, params = {}) {
-    fetch(api_url+path, getOptions({data, params}))
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-        })
+    return fetch(api_url+path, getOptions({data, params}))
+        // .then(response => response.json())
         .catch(error => {
-            console.log(error)
+            alert(error)
         })
 
     // const response = await fetch(
