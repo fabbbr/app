@@ -1,11 +1,12 @@
 import React from 'react'
-import { TextInput, View } from 'react-native'
+import { TextInput } from 'react-native'
+import FormStyle from '../../styles/FormStyle'
 
 export default function PasswordInput({ onChange, onBlur, value, placeholder }) {
 
     return(
         <TextInput
-            style={styles.input}
+            style={FormStyle.input}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
@@ -13,19 +14,4 @@ export default function PasswordInput({ onChange, onBlur, value, placeholder }) 
             secureTextEntry={true} 
           />
     )
-}
-
-const styles = {
-    box: {
-        marginVertical: 12
-    },
-    label: {
-        marginBottom: 5
-    },
-    input: {
-        height: 40,
-        borderWidth: 1,
-        padding: 10,
-        borderRadius: 5
-    }
 }

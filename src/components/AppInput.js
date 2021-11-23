@@ -9,7 +9,7 @@ import PasswordInput from './inputs/PasswordInput'
 import NumberInput from './inputs/NumberInput'
 import DateInput from './inputs/DateInput'
 
-export default function AppInput({ control, name, type, label, placeholder, error }) {
+export default function AppInput({ control, name, type, label, placeholder, required, error }) {
     let Type
     switch(type) {
         case 'text':
@@ -28,7 +28,7 @@ export default function AppInput({ control, name, type, label, placeholder, erro
 
     let errorStr
     if(error) errorStr = <Text>{error}</Text>
-
+    if(required) label += ' *'
 
     return(
         <View style={FormStyle.box}>

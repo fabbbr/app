@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@ant-design/icons-react-native": "^2.3.2",
+    "@react-native-community/datetimepicker": "^4.0.0",
     "@react-navigation/bottom-tabs": "^6.0.9",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
