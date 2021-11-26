@@ -17,21 +17,30 @@ function getOptions(data, params) {
     }
 }
 
+function errorHandler(code = 400, message = '') {
+    if(typeof message == 'object') message = JSON.stringify(message);
+    if(message.length) alert(message)
+    else alert('Une erreur imprévu est survenu')
+}
+
 export async function get(path, params = {}) {
-    const response = await fetch(
-        api_url+path,
-        getOptions(params)
-    )
-    return await response.json()
+    return fetch(api_url+path, getOptions({}, params))
+        .then(response => response.json())
+        .then(data => {
+            if(data.code) errorHandler(data.code, data.message ? data.message : '')
+            else return data
+        })
+        .catch(error => { errorHandler(400, error) })
 }
 
 export async function post(path, data = {}, params = {}) {
-    console.log(api_url+path);
-    console.log(getOptions(data, params));
     console.log('-----');
     return fetch(api_url+path, getOptions(data, params))
         .then(response => response.json())
-        .catch(error => {
-            alert(error)
+        .then(data => {
+            console.log('here1', data);
+            if(data.code) errorHandler(data.code, data.message ? data.message : '')
+            else return data
         })
+        .catch(error => { console.log('here2');errorHandler(400, error) })
 }
