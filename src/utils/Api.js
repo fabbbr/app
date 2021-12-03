@@ -34,13 +34,11 @@ export async function get(path, params = {}) {
 }
 
 export async function post(path, data = {}, params = {}) {
-    console.log('-----');
     return fetch(api_url+path, getOptions(data, params))
         .then(response => response.json())
         .then(data => {
-            console.log('here1', data);
             if(data.code) errorHandler(data.code, data.message ? data.message : '')
             else return data
         })
-        .catch(error => { console.log('here2');errorHandler(400, error) })
+        .catch(error => { errorHandler(400, error) })
 }

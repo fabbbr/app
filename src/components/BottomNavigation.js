@@ -2,6 +2,7 @@ import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { AntDesign } from '@expo/vector-icons'
+import GlobalStyle from '../styles/GlobalStyle'
 
 import HomeScreen from '../screens/HomeScreen'
 import SearchScreen from '../screens/SearchScreen'
@@ -30,8 +31,8 @@ export default function BottomNavigation() {
                                 return <AntDesign name='user' size={size} color={color} />
                         }
                         },
-                    tabBarActiveTintColor: '#9132a8',
-                    tabBarInactiveTintColor: 'gray',
+                    tabBarActiveTintColor: GlobalStyle.color.primary,
+                    tabBarInactiveTintColor: GlobalStyle.color.text2,
                     headerShown: false
                 })
             }

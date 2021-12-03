@@ -12,7 +12,7 @@ export default function HomeScreen() {
 const styles = {
     container: {
         flex: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         alignItems: 'center' 
     }
 }

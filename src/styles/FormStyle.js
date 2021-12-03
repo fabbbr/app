@@ -1,18 +1,21 @@
 import { StyleSheet } from "react-native"
-import AppStyle from "./AppStyle"
+import GlobalStyle from "./GlobalStyle"
 
 export default StyleSheet.create({
     box: {
-        marginVertical: 12
+        marginVertical: 8,
+        borderWidth: 1,
+        borderRadius: 8,
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        backgroundColor: GlobalStyle.color.light,
+        borderColor: GlobalStyle.color.darklight
     },
     label: {
-        marginBottom: 5
+        color: GlobalStyle.color.darklight
     },
     input: {
-        height: 40,
-        borderWidth: 1,
-        padding: 10,
-        borderRadius: 5
+        color: GlobalStyle.color.dark
     }
 })
 
