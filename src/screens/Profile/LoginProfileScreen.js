@@ -12,7 +12,7 @@ import TextLine from "../../components/TextLine"
 import * as Api from "../../utils/Api"
 import * as Tools from '../../utils/Tools'
 
-export default function LoginProfile() {
+export default function LoginProfileScreen() {
     const { control, handleSubmit } = useForm()
     const [ errors, setErrors ] = useState({})
     const onSubmit = data => {
@@ -49,14 +49,14 @@ export default function LoginProfile() {
       </View>
 
       <View style={{marginTop: 10}}>
-        <Pressable style={ButtonStyle.google} onPress={handleSubmit(onSubmit)}>
+        <Pressable style={ButtonStyle.google}>
           <Text style={ButtonStyle.google_text}>Connexion avec Gologolo</Text>
         </Pressable>
       </View>
 
       <View style={{marginTop: 40, alignItems: 'center'}}>
         <Text style={{color: GlobalStyle.color.darklight, marginBottom: 5}}>Vous n'avez pas de compte ?</Text>
-        <Link style={styles.link} to={{ screen: 'SigninProfile', params: { id: 'jane' } }}>
+        <Link style={styles.link} to={{ screen: 'SigninProfileScreen'}}>
           Créer un compte
         </Link>
       </View>

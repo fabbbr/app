@@ -7,7 +7,7 @@ import * as Api from "../../utils/Api"
 import * as Verifier from '../../utils/Verifier'
 import * as Tools from '../../utils/Tools'
 
-export default function LoginProfile() {
+export default function SigninProfileScreen() {
     const { control, handleSubmit } = useForm()
     const [ errors, setErrors ] = useState({})
     const onSubmit = data => {

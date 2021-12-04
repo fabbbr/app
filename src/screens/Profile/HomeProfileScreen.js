@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Text, View } from 'react-native'
 import AppButton from '../../components/AppButton'
 
-export default function HomeProfile({ navigation }) {
+export default function HomeProfileScreen({ navigation }) {
     return(
         <View style={styles.container}>
             <View style={{marginBottom: 20}}>
