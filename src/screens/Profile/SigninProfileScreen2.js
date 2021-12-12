@@ -12,6 +12,7 @@ import * as Verifier from '../../utils/Verifier'
 
 export default function SigninProfileScreen({ route }) {
     const { email } = route.params
+    console.log(email)
     const { control, handleSubmit } = useForm()
     const [ errors, setErrors ] = useState({})
     const onSubmit = data => {
@@ -32,9 +33,6 @@ export default function SigninProfileScreen({ route }) {
         if(Tools.objSize(err) === 0) {
             console.log('registered')
             // Api.post('register', data)
-            // .then(data => {
-            //     alert(JSON.stringify(data))
-            // })
         }
     }
 
@@ -43,7 +41,7 @@ export default function SigninProfileScreen({ route }) {
         <ScrollView contentContainerStyle={ProfileStyle.container}>
             <Text style={ProfileStyle.title}>Inscription</Text>
 
-            <AppInput control={control} name="email" type="text" label="Email" placeholder="john.doe@mail.com" required error={errors.email} />
+            <AppInput control={control} name="email" type="text" label="Email" placeholder="john.doe@mail.com" required error={errors.email} defaultValue={email} />
             <AppInput control={control} name="username" type="text" label="Nom d'utilisateur" placeholder="john.doe" required error={errors.username} />
             <AppInput control={control} name="password" type="password" label="Mot de passe" placeholder="********" required error={errors.password} />
             <AppInput control={control} name="password2" type="password" label="Confirmation mot de passe" placeholder="********" required error={errors.password2} />

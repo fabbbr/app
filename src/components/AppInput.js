@@ -9,7 +9,7 @@ import PasswordInput from './inputs/PasswordInput'
 import NumberInput from './inputs/NumberInput'
 import DateInput from './inputs/DateInput'
 
-export default function AppInput({ control, name, type, label, placeholder, required, error }) {
+export default function AppInput({ control, name, type, label, placeholder, required, error, defaultValue }) {
     let Type
     switch(type) {
         case 'text':
@@ -34,7 +34,7 @@ export default function AppInput({ control, name, type, label, placeholder, requ
         <View style={FormStyle.box}>
             <Text style={FormStyle.label}>{label}</Text>
             <Controller
-                render={({ field }) => (<Type {...field} ref={null} placeholder={placeholder} />)}
+                render={({ field }) => (<Type {...field} ref={null} placeholder={placeholder} value={defaultValue} />)}
                 name={name}
                 control={control}
             />
