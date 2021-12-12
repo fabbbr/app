@@ -1,5 +1,5 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -8,11 +8,22 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@ant-design/icons-react-native": "^2.3.2",
+    "@react-native-community/datetimepicker": "^4.0.0",
+    "@react-navigation/bottom-tabs": "^6.0.9",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
+    "antd": "^4.16.13",
     "expo": "~43.0.0",
+    "expo-secure-store": "~11.0.3",
     "expo-status-bar": "~1.1.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-hook-form": "^7.19.5",
     "react-native": "0.64.2",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-safe-area-view": "^1.1.1",
+    "react-native-screens": "~3.8.0",
     "react-native-web": "0.17.1"
   },
   "devDependencies": {
