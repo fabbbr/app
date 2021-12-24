@@ -3,15 +3,15 @@ import { ScrollView, View, Pressable, Text } from "react-native"
 import { useForm } from "react-hook-form"
 import { Link } from "@react-navigation/native"
 
-import GlobalStyle from "../../styles/GlobalStyle"
-import ButtonStyle from "../../styles/ButtonStyle"
-import ProfileStyle from "../../styles/ProfileStyle"
+import GlobalStyle from "@styles/GlobalStyle"
+import ButtonStyle from "@styles/ButtonStyle"
+import ProfileStyle from "@styles/ProfileStyle"
 
-import AppInput from "../../components/AppInput"
-import TextLine from "../../components/TextLine"
+import AppInput from "@components/AppInput"
+import TextLine from "@components/TextLine"
 
-import * as Api from "../../utils/Api"
-import * as Tools from '../../utils/Tools'
+import * as Api from '@utils/Api'
+import * as Tools from '@utils/Tools'
 
 export default function LoginProfileScreen() {
     const { control, handleSubmit } = useForm()

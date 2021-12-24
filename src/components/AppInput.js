@@ -2,12 +2,12 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { Controller } from "react-hook-form"
 
-import FormStyle from '../styles/FormStyle'
+import FormStyle from '@styles/FormStyle'
 
-import TextInput from './inputs/TextInput'
-import PasswordInput from './inputs/PasswordInput'
-import NumberInput from './inputs/NumberInput'
-import DateInput from './inputs/DateInput'
+import TextInput from '@components/inputs/TextInput'
+import PasswordInput from '@components/inputs/PasswordInput'
+import NumberInput from '@components/inputs/NumberInput'
+import DateInput from '@components/inputs/DateInput'
 
 export default function AppInput({ control, name, type, label, placeholder, required, error, defaultValue }) {
     let Type

@@ -1,10 +1,11 @@
 import { registerRootComponent } from 'expo'
 import * as React from 'react'
-import BottomNavigation from './components/BottomNavigation'
 import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StyleSheet } from 'react-native'
-import GlobalStyle from './styles/GlobalStyle'
+
+import BottomNavigation from '@components/BottomNavigation'
+import GlobalStyle from '@styles/GlobalStyle'
 
 function App() {
     return (

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import HomeProfileScreen from './Profile/HomeProfileScreen'
-import LoginProfileScreen from './Profile/LoginProfileScreen'
-import SigninProfileScreen1 from './Profile/SigninProfileScreen1'
-import SigninProfileScreen2 from './Profile/SigninProfileScreen2'
+import HomeProfileScreen from '@screens/Profile/HomeProfileScreen'
+import LoginProfileScreen from '@screens/Profile/LoginProfileScreen'
+import SigninProfileScreen1 from '@screens/Profile/SigninProfileScreen1'
+import SigninProfileScreen2 from '@screens/Profile/SigninProfileScreen2'
 
 const Stack = createNativeStackNavigator()
 

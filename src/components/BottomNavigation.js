@@ -2,13 +2,13 @@ import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { AntDesign } from '@expo/vector-icons'
-import GlobalStyle from '../styles/GlobalStyle'
 
-import HomeScreen from '../screens/HomeScreen'
-import SearchScreen from '../screens/SearchScreen'
-import SellScreen from '../screens/SellScreen'
-import MessageScreen from '../screens/MessageScreen'
-import ProfileScreen from '../screens/ProfileScreen'
+import GlobalStyle from '@styles/GlobalStyle'
+import HomeScreen from '@screens/HomeScreen'
+import SearchScreen from '@screens/SearchScreen'
+import SellScreen from '@screens/SellScreen'
+import MessageScreen from '@screens/MessageScreen'
+import ProfileScreen from '@screens/ProfileScreen'
 
 const Tab = createBottomTabNavigator();
 
