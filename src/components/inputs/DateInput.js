@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, TextInput, TouchableWithoutFeedback } from 'react-native'
-import FormStyle from '../../styles/FormStyle'
 import DateTimePicker from '@react-native-community/datetimepicker'
+import FormStyle from '@styles/FormStyle'
 
 export default function DateInput({ onChange, onBlur, value, placeholder }) {
     const [date, setDate] = useState(new Date(1598051730000));

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native"
-import GlobalStyle from "./GlobalStyle"
+import GlobalStyle from "@styles/GlobalStyle"
 
 export default StyleSheet.create({
     box: {

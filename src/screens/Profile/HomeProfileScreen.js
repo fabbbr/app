@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Text, View } from 'react-native'
-import AppButton from '../../components/AppButton'
+import AppButton from '@components/AppButton'
 
 export default function HomeProfileScreen({ navigation }) {
     return(

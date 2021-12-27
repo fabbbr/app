@@ -1,4 +1,4 @@
-import * as Tools from '../utils/Tools'
+import * as Tools from '@utils/Tools'
 
 const requestOptions = {
     method: 'POST',
