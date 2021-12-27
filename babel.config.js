@@ -12,9 +12,10 @@ module.exports = function(api) {
             "@components": "./src/components",
             "@screens": "./src/screens",
             "@utils": "./src/utils",
+            "@styles": "./src/styles",
             "@assets": "./src/assets",
             "@icons": "./src/assets/icons",
-            "@styles": "./src/styles"
+            "@img": "./src/assets/img"
           }
         }
       ]
