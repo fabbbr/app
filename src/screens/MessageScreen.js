@@ -1,10 +1,13 @@
 import * as React from 'react'
 import { Text, View } from 'react-native'
+import { useTranslation } from 'react-i18next'
 
 export default function MessageScreen() {
+    const { t } = useTranslation()
+
     return (
         <View style={styles.container}>
-            <Text>Message!</Text>
+            <Text>{t('message')}!</Text>
         </View>
     );
 }

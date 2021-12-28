@@ -1,0 +1,24 @@
+{
+    "home": "Home",
+    "message": "Message",
+    "search": "Search",
+    "sell": "Sell",
+
+    "signin": "Log In",
+    "signin2": "Sign In",
+    "signin_google": "Signin with Google",
+    "signin_with": "signin with",
+    "login": "Log In",
+    "login2": "Sign In",
+    "login_google": "Login with Google",
+    "no_account": "Don't have an account ?",
+    "has_account": "Already have an account ?",
+
+    "email": "Email",
+    "email_placeholder": "mail@crafy.com",
+    "username": "Username",
+    "username_placeholder": "Crafty",
+    "password": "Password",
+    "password_placeholder": "*******",
+    "password_confirmation": "Password confirmation"
+}

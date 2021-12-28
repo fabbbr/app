@@ -7,6 +7,8 @@ import { StyleSheet } from 'react-native'
 import BottomNavigation from '@components/BottomNavigation'
 import GlobalStyle from '@styles/GlobalStyle'
 
+import '@utils/IMLocalize'
+
 function App() {
     return (
         <SafeAreaView style={{flex: 1}}>
