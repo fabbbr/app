@@ -1,10 +1,10 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import * as LS from './LocalStorage'
-import * as RNLocalize from 'react-native-localize'
+import * as LS from '@utils/LocalStorage'
+import * as Localization from 'expo-localization'
 
-import en from '../translations/en'
-import fr from '../translations/fr'
+import en from '@translations/en'
+import fr from '@translations/fr'
 
 const LANGUAGES = {
     en,
@@ -12,16 +12,22 @@ const LANGUAGES = {
 }
 
 const LANG_CODES = Object.keys(LANGUAGES)
-console.log(LANG_CODES);
+const DEFAULT = 'en'
 
 const LANGUAGE_DETECTOR = {
     type: 'languageDetector',
     async: true,
     detect: callback => {
+        LS.remove('user-language')
         LS.get('user-language').then(language => {
             if(!language) {
-                const findBestAvailableLanguage = RNLocalize.findBestAvailableLanguage(LANG_CODES)
-                callback(findBestAvailableLanguage.languageTag || 'en')
+                let localeLanguageTag = Localization?.locale
+                if(localeLanguageTag) {
+                    let code = localeLanguageTag.split('-')[0].toLowerCase()
+                    callback(LANG_CODES.includes(code) ? code : DEFAULT)
+                } else {
+                    callback(DEFAULT)
+                }
             } else {
                 callback(language)
             }
@@ -44,6 +50,7 @@ i18n
         interpolation: {
             escapeValue: false
         },
-        fallbackLng: 'en',
-        defaultNS: 'main'
+        fallbackLng: DEFAULT,
+        defaultNS: 'main',
+        compatibilityJSON: 'v3'
     })
