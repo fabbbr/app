@@ -7,7 +7,7 @@ export default function HomeScreen() {
 
     return (
         <View style={styles.container}>
-            <Text>{t('main:Home')}!</Text>
+            <Text>{t('home')}!</Text>
         </View>
     );
 }

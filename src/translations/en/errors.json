@@ -1,3 +1,9 @@
 {
-    
+    "form": {
+        "input": {
+            "empty": "This field is required",
+            "email": "Invalid email",
+            "password": "Passwords doesn't match"
+        }
+    }
 }
