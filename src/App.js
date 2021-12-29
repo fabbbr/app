@@ -7,7 +7,7 @@ import { StyleSheet } from 'react-native'
 import BottomNavigation from '@components/BottomNavigation'
 import GlobalStyle from '@styles/GlobalStyle'
 
-import '@utils/IMLocalize'
+import '@constants/IMLocalize'
 
 function App() {
     return (

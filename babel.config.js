@@ -12,11 +12,13 @@ module.exports = function(api) {
             "@components": "./src/components",
             "@screens": "./src/screens",
             "@utils": "./src/utils",
+            "@constants": "./src/constants",
+            "@translations": "./src/translations",
+            
             "@styles": "./src/styles",
             "@assets": "./src/assets",
             "@icons": "./src/assets/icons",
             "@img": "./src/assets/img",
-            "@translations": "./src/translations"
           }
         }
       ]
