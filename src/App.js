@@ -3,11 +3,11 @@ import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Provider } from 'react-redux'
-import store from '@store'
 
 import BottomNavigation from '@components/BottomNavigation'
 
 import '@constants/IMLocalize'
+import store from './store'
 
 function App() {
     return (

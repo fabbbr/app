@@ -13,7 +13,8 @@ module.exports = function(api) {
             "@screens": "./src/screens",
             "@utils": "./src/utils",
             "@constants": "./src/constants",
-            "@store": "./src/store",
+            "@slices": "./src/slices",
+            "@services": "./src/services",
             "@translations": "./src/translations",
             
             "@styles": "./src/styles",
