@@ -3,21 +3,23 @@ import { ScrollView, View, Pressable, Text } from "react-native"
 import { useForm } from "react-hook-form"
 import { Link } from "@react-navigation/native"
 import { useTranslation } from 'react-i18next'
+import { useSelector } from "react-redux"
 
+import AppInput from "@components/AppInput"
+import TextLine from "@components/TextLine"
+import * as Tools from '@utils/Tools'
+import * as Verifier from '@utils/Verifier'
 import GlobalStyle from "@styles/GlobalStyle"
 import ButtonStyle from "@styles/ButtonStyle"
 import ProfileStyle from "@styles/ProfileStyle"
 
-import AppInput from "@components/AppInput"
-import TextLine from "@components/TextLine"
-
-import * as Tools from '@utils/Tools'
-import * as Verifier from '@utils/Verifier'
 
 export default function SigninProfileScreen1({ navigation }) {
-    const { t } = useTranslation()
-    const { control, handleSubmit } = useForm()
     const [ errors, setErrors ] = useState({})
+    const { control, handleSubmit } = useForm()
+    const { t } = useTranslation()
+
+    const { isLoggedIn } = useSelector((state) => state.auth)
 
     const onSubmit = data => {
         let err = {}
@@ -34,6 +36,8 @@ export default function SigninProfileScreen1({ navigation }) {
             })
         }
     }
+
+    if (isLoggedIn) navigation.navigate('HomeProfileScreen')
 
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>

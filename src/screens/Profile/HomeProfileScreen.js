@@ -1,23 +1,15 @@
 import * as React from 'react'
 import { Text, View } from 'react-native'
-import AppButton from '@components/AppButton'
+import { useSelector } from 'react-redux'
 
 export default function HomeProfileScreen({ navigation }) {
+    const { isLoggedIn } = useSelector((state) => state.auth)
+    
+    if(!isLoggedIn) navigation.navigate('LoginProfileScreen')
+
     return(
         <View style={styles.container}>
-            <View style={{marginBottom: 20}}>
-                <AppButton 
-                    title="S'inscrire sur Chare"
-                    onPress={() => navigation.navigate('SigninProfile')}
-                />
-            </View>
-            <View>
-                <AppButton 
-                    title="J'ai déjà un compte" 
-                    type="outlined"
-                    onPress={() => navigation.navigate('LoginProfile')}
-                />
-            </View>
+            <Text>Profile</Text>
         </View>
     )
 }

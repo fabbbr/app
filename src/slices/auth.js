@@ -37,15 +37,19 @@ export const logout = createAsyncThunk(
     }
 )
 
-const user = JSON.parse(LS.get('user'))
-
-const initialState = user
-    ? { isLoggedIn: true, user }
-    : { isLoggedIn: false, user: null }
+// const initialState = async () => {
+//     try {
+//         let user = await LS.get('user')
+//         return user ? { isLoggedIn: true, user } : { isLoggedIn: false, user: null }
+//     } catch {
+//         return { isLoggedIn: false, user: null }
+//     }
+// }
+const initialState = { isLoggedIn: false, user: null }
 
 
 const authSlice = createSlice({
-    name: "auth",
+    name: 'auth',
     initialState,
     extraReducers: {
         [register.fulfilled]: (state, action) => {
