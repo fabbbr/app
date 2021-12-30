@@ -3,6 +3,7 @@ import { ScrollView, View, Pressable, Text } from 'react-native'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
+import { useFocusEffect } from '@react-navigation/native'
 
 import AppInput from '@components/AppInput'
 import * as Tools from '@utils/Tools'
@@ -44,7 +45,7 @@ export default function SigninProfileScreen({ route }) {
         if (Tools.objSize(err) === 0) {
             setLoading(true)
 
-            dispatch(login({
+            dispatch(register({
                 username: data.username,
                 email : data.email,
                 password: data.password
@@ -59,7 +60,9 @@ export default function SigninProfileScreen({ route }) {
         }
     }
 
-    if (isLoggedIn) navigation.navigate('HomeProfileScreen')
+    useFocusEffect(() => {
+        if(isLoggedIn) navigation.navigate('HomeProfileScreen')
+    })
 
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>

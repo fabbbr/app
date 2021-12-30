@@ -1,15 +1,22 @@
-import * as React from 'react'
+import React from 'react'
 import { Text, View } from 'react-native'
 import { useSelector } from 'react-redux'
+import { useFocusEffect } from '@react-navigation/native'
 
 export default function HomeProfileScreen({ navigation }) {
     const { isLoggedIn } = useSelector((state) => state.auth)
     
-    if(!isLoggedIn) navigation.navigate('LoginProfileScreen')
+    useFocusEffect(() => {
+        if(!isLoggedIn) navigation.navigate('LoginProfileScreen')
+    })
 
     return(
         <View style={styles.container}>
-            <Text>Profile</Text>
+            {
+                !isLoggedIn ? 
+                <></> :
+                <Text>Profile</Text>
+            }
         </View>
     )
 }

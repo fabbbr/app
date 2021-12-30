@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
-import { ScrollView, View, Pressable, Text } from "react-native"
-import { useForm } from "react-hook-form"
-import { Link } from "@react-navigation/native"
+import { ScrollView, View, Pressable, Text } from 'react-native'
+import { useForm } from 'react-hook-form'
+import { Link } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from "react-redux"
+import { useSelector } from 'react-redux'
+import { useFocusEffect } from '@react-navigation/native'
 
-import AppInput from "@components/AppInput"
-import TextLine from "@components/TextLine"
+import AppInput from '@components/AppInput'
+import TextLine from '@components/TextLine'
 import * as Tools from '@utils/Tools'
 import * as Verifier from '@utils/Verifier'
-import GlobalStyle from "@styles/GlobalStyle"
-import ButtonStyle from "@styles/ButtonStyle"
-import ProfileStyle from "@styles/ProfileStyle"
+import GlobalStyle from '@styles/GlobalStyle'
+import ButtonStyle from '@styles/ButtonStyle'
+import ProfileStyle from '@styles/ProfileStyle'
 
 
 export default function SigninProfileScreen1({ navigation }) {
@@ -37,7 +38,9 @@ export default function SigninProfileScreen1({ navigation }) {
         }
     }
 
-    if (isLoggedIn) navigation.navigate('HomeProfileScreen')
+    useFocusEffect(() => {
+        if(isLoggedIn) navigation.navigate('HomeProfileScreen')
+    })
 
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>

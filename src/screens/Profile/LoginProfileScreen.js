@@ -4,6 +4,7 @@ import { ScrollView, View, Pressable, Text } from 'react-native'
 import { useForm } from 'react-hook-form'
 import { Link } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
+import { useFocusEffect } from '@react-navigation/native'
 
 import AppInput from '@components/AppInput'
 import TextLine from '@components/TextLine'
@@ -56,7 +57,9 @@ export default function LoginProfileScreen({ navigation }) {
         }
     }
 
-    if (isLoggedIn) navigation.navigate('HomeProfileScreen')
+    useFocusEffect(() => {
+        if(isLoggedIn) navigation.navigate('HomeProfileScreen')
+    })
 
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
