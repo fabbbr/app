@@ -15,6 +15,7 @@ module.exports = function(api) {
             "@constants": "./src/constants",
             "@slices": "./src/slices",
             "@services": "./src/services",
+            "@containers": "./src/containers",
             "@translations": "./src/translations",
             
             "@styles": "./src/styles",
