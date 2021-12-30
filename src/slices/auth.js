@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import * as LS from '@utils/LocalStorage'
+import { setMessage } from '@slices/message'
 import AuthService from '@services/auth'
 
 export const register = createAsyncThunk(
-    "auth/register",
+    'auth/register',
     async ({ username, email, password }, thunkAPI) => {
         try {
             const data = await AuthService.register(username, email, password)
@@ -17,7 +17,7 @@ export const register = createAsyncThunk(
 );
 
 export const login = createAsyncThunk(
-    "auth/login",
+    'auth/login',
     async ({ username, password }, thunkAPI) => {
         try {
             const data = await AuthService.login(username, password)
@@ -31,9 +31,17 @@ export const login = createAsyncThunk(
 )
 
 export const logout = createAsyncThunk(
-    "auth/logout",
+    'auth/logout',
     async () => {
         await AuthService.logout()
+    }
+)
+
+export const setUserInit = createAsyncThunk(
+    'auth/getUser',
+    async () => {
+        const user = await AuthService.getUser()
+        return { user }
     }
 )
 
@@ -46,16 +54,14 @@ const initialState = {
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {
-        asyncSetInitialState: (state, action) => {
+    extraReducers: {
+        [setUserInit.fulfilled]: (state, action) => {
             if(action.payload.user) {
                 state.isLoggedIn = true,
                 state.user = action.payload.user
             }
             state.init = false
-        }
-    },
-    extraReducers: {
+        },
         [register.fulfilled]: (state, action) => {
             state.isLoggedIn = true
             state.user = action.payload.user
@@ -78,5 +84,4 @@ const authSlice = createSlice({
     }
 })
 
-export const { asyncSetInitialState } = authSlice.actions
 export default authSlice.reducer

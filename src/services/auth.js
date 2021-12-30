@@ -30,10 +30,15 @@ const logout = () => {
     LS.remove('user')
 }
 
+const getUser = () => {
+    LS.get('user')
+}
+
 const authService = {
     register,
     login,
-    logout
+    logout,
+    getUser
 }
 
 export default authService

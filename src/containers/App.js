@@ -1,29 +1,36 @@
-import  React, { useEffect } from 'react'
+import  React, { useEffect, useState } from 'react'
+import { Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useDispatch, useSelector } from 'react-redux'
 
 import BottomNavigation from '@components/BottomNavigation'
-import { asyncSetInitialState } from '@slices/auth'
-import * as LS from '@utils/LocalStorage'
+import { setUserInit } from '@slices/auth'
 
 export default function App() {
+    const [loading, setLoading] = useState(true)
     const dispatch = useDispatch()
     const { init } = useSelector((state) => state.auth)
 
     useEffect(() => {
         if(init) {
-            LS.get('user').then(user => {
-                dispatch(asyncSetInitialState({user}))
-            })
+            dispatch(setUserInit())
+                .unwrap()
+                .then(() => {
+                    setLoading(false)
+                })
         }
     }, [])
 
     return (
         <SafeAreaView style={{flex: 1}}>
-            <NavigationContainer>
-                <BottomNavigation />
-            </NavigationContainer>
+            {loading ?
+                (<Text>Loading</Text>)
+                :
+                (<NavigationContainer>
+                    <BottomNavigation />
+                </NavigationContainer>)
+            }
         </SafeAreaView>
     )
 }
