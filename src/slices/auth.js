@@ -37,25 +37,25 @@ export const logout = createAsyncThunk(
     }
 )
 
-// const initialState = async () => {
-//     try {
-//         let user = await LS.get('user')
-//         return user ? { isLoggedIn: true, user } : { isLoggedIn: false, user: null }
-//     } catch {
-//         return { isLoggedIn: false, user: null }
-//     }
-// }
-const initialState = { isLoggedIn: false, user: null }
-
+const initialState = { 
+    init: true,
+    isLoggedIn: false, 
+    user: null
+}
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
+    reducers: {
+        asyncSetInitialState: (state, action) => {
+            if(action.payload.user) {
+                state.isLoggedIn = true,
+                state.user = action.payload.user
+            }
+            state.init = false
+        }
+    },
     extraReducers: {
-        asyncSetInitialUser: (state, action) => {
-            state.isLoggedIn = true,
-            state.user = action.payload.user
-        },
         [register.fulfilled]: (state, action) => {
             state.isLoggedIn = true
             state.user = action.payload.user
@@ -78,5 +78,5 @@ const authSlice = createSlice({
     }
 })
 
-export const { asyncSetInitialUser } = authSlice.actions
+export const { asyncSetInitialState } = authSlice.actions
 export default authSlice.reducer
