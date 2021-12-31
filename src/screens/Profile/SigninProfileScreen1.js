@@ -1,23 +1,27 @@
 import React, { useState } from 'react'
-import { ScrollView, View, Pressable, Text } from "react-native"
-import { useForm } from "react-hook-form"
-import { Link } from "@react-navigation/native"
+import { ScrollView, View, Text } from 'react-native'
+import { useForm } from 'react-hook-form'
+import { Link } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { useFocusEffect } from '@react-navigation/native'
 
-import GlobalStyle from "@styles/GlobalStyle"
-import ButtonStyle from "@styles/ButtonStyle"
-import ProfileStyle from "@styles/ProfileStyle"
-
-import AppInput from "@components/AppInput"
-import TextLine from "@components/TextLine"
-
+import AppInput from '@components/AppInput'
+import TextLine from '@components/TextLine'
+import AppButton from '@components/AppButton'
+import AppTitle from '@components/AppTitle'
 import * as Tools from '@utils/Tools'
 import * as Verifier from '@utils/Verifier'
+import GlobalStyle from '@styles/GlobalStyle'
+import ProfileStyle from '@styles/ProfileStyle'
+
 
 export default function SigninProfileScreen1({ navigation }) {
-    const { t } = useTranslation()
-    const { control, handleSubmit } = useForm()
     const [ errors, setErrors ] = useState({})
+    const { control, handleSubmit } = useForm()
+    const { t } = useTranslation()
+
+    const { isLoggedIn } = useSelector((state) => state.auth)
 
     const onSubmit = data => {
         let err = {}
@@ -35,15 +39,17 @@ export default function SigninProfileScreen1({ navigation }) {
         }
     }
 
+    useFocusEffect(() => {
+        if(isLoggedIn) navigation.navigate('HomeProfileScreen')
+    })
+
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
-            <Text style={ProfileStyle.title}>{t('signin')}</Text>
+            <AppTitle text={t('signin')} align="center" icon="3lines" />
             <AppInput control={control} name="email" type="text" label={t('email')} error={errors.email} />
 
             <View style={{marginTop: 10}}>
-                <Pressable style={ButtonStyle.default} onPress={handleSubmit(onSubmit)}>
-                    <Text style={ButtonStyle.default_text}>{t('signin2')}</Text>
-                </Pressable>
+                <AppButton text={t('signin2')} onPress={handleSubmit(onSubmit)} />
             </View>
 
             <View style={{ marginVertical: 15 }}>
@@ -51,9 +57,7 @@ export default function SigninProfileScreen1({ navigation }) {
             </View>
 
             <View style={{ marginTop: 10 }}>
-                <Pressable style={ButtonStyle.google}>
-                    <Text style={ButtonStyle.google_text}>{t('signin_google')}</Text>
-                </Pressable>
+                <AppButton type="google" text={t('signin_google')} />
             </View>
 
             <View style={{ marginTop: 40, alignItems: 'center' }}>

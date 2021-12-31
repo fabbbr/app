@@ -4,10 +4,14 @@ import GlobalStyle from "@styles/GlobalStyle"
 const base = {
     borderRadius: 8,
     paddingHorizontal: 20,
-    paddingVertical: 10
+    paddingVertical: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
 }
+
 const base_text = {
-    textAlign: 'center'
+
 }
 
 export default StyleSheet.create({

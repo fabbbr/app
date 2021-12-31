@@ -1,23 +1,37 @@
-import React, { useState } from "react"
-import { ScrollView, View, Pressable, Text } from "react-native"
-import { useForm } from "react-hook-form"
-import { Link } from "@react-navigation/native"
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { ScrollView, View, Text } from 'react-native'
+import { useForm } from 'react-hook-form'
+import { Link } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
+import { useFocusEffect } from '@react-navigation/native'
 
-import GlobalStyle from "@styles/GlobalStyle"
-import ButtonStyle from "@styles/ButtonStyle"
-import ProfileStyle from "@styles/ProfileStyle"
-
-import AppInput from "@components/AppInput"
-import TextLine from "@components/TextLine"
-
-import * as Api from '@utils/Api'
+import AppInput from '@components/AppInput'
+import TextLine from '@components/TextLine'
+import AppButton from '@components/AppButton'
+import AppTitle from '@components/AppTitle'
 import * as Tools from '@utils/Tools'
+import { login } from '@slices/auth'
+import { clearMessage } from '@slices/message'
+import GlobalStyle from '@styles/GlobalStyle'
+import ProfileStyle from '@styles/ProfileStyle'
 
-export default function LoginProfileScreen() {
-    const { t } = useTranslation()
-    const { control, handleSubmit } = useForm()
+
+export default function LoginProfileScreen({ navigation }) {
+    const [loading, setLoading] = useState(false) // todo display loading
     const [errors, setErrors] = useState({})
+    const { control, handleSubmit } = useForm()
+    const { t } = useTranslation()
+
+    const { isLoggedIn } = useSelector((state) => state.auth)
+    const { message } = useSelector((state) => state.message) // todo display message
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(clearMessage())
+    }, [dispatch])
+
 
     const onSubmit = data => {
         let err = {}
@@ -28,23 +42,35 @@ export default function LoginProfileScreen() {
 
         setErrors(err)
         if (Tools.objSize(err) === 0) {
-            Api.post('login', data)
-                .then(data => {
-                    alert(JSON.stringify(data))
+            setLoading(true)
+
+            dispatch(login({
+                username: data.username,
+                password: data.password
+            }))
+                .unwrap()
+                .then(() => {
+                    navigation.navigate('HomeProfileScreen')
+                })
+                .catch(() => {
+                    setLoading(false)
                 })
         }
     }
 
+    useFocusEffect(() => {
+        if(isLoggedIn) navigation.navigate('HomeProfileScreen')
+    })
+
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
-            <Text style={ProfileStyle.title}>{t('login')}</Text>
+            <AppTitle text={t('login')} align="center" icon="3lines" />
+
             <AppInput control={control} name="username" type="text" label={t('email')} error={errors.username} />
             <AppInput control={control} name="password" type="password" label={t('password')} error={errors.password} />
 
             <View style={{ marginTop: 10 }}>
-                <Pressable style={ButtonStyle.default} onPress={handleSubmit(onSubmit)}>
-                    <Text style={ButtonStyle.default_text}>{t('login')}</Text>
-                </Pressable>
+                <AppButton text={t('login')} onPress={handleSubmit(onSubmit)} />
             </View>
 
             <View style={{ marginVertical: 15 }}>
@@ -52,9 +78,7 @@ export default function LoginProfileScreen() {
             </View>
 
             <View style={{ marginTop: 10 }}>
-                <Pressable style={ButtonStyle.google}>
-                    <Text style={ButtonStyle.google_text}>{t('login_google')}</Text>
-                </Pressable>
+                <AppButton type="google" text={t('login_google')} />
             </View>
 
             <View style={{ marginTop: 40, alignItems: 'center' }}>

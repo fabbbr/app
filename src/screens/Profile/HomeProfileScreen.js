@@ -1,23 +1,22 @@
-import * as React from 'react'
+import React from 'react'
 import { Text, View } from 'react-native'
-import AppButton from '@components/AppButton'
+import { useSelector } from 'react-redux'
+import { useFocusEffect } from '@react-navigation/native'
 
 export default function HomeProfileScreen({ navigation }) {
+    const { isLoggedIn } = useSelector((state) => state.auth)
+    
+    useFocusEffect(() => {
+        if(!isLoggedIn) navigation.navigate('LoginProfileScreen')
+    })
+
     return(
         <View style={styles.container}>
-            <View style={{marginBottom: 20}}>
-                <AppButton 
-                    title="S'inscrire sur Chare"
-                    onPress={() => navigation.navigate('SigninProfile')}
-                />
-            </View>
-            <View>
-                <AppButton 
-                    title="J'ai déjà un compte" 
-                    type="outlined"
-                    onPress={() => navigation.navigate('LoginProfile')}
-                />
-            </View>
+            {
+                !isLoggedIn ? 
+                <></> :
+                <Text>Profile</Text>
+            }
         </View>
     )
 }
