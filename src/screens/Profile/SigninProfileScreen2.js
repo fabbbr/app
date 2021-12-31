@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { ScrollView, View, Pressable, Text } from 'react-native'
+import { ScrollView, View, Text } from 'react-native'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
 import { useFocusEffect } from '@react-navigation/native'
 
 import AppInput from '@components/AppInput'
+import AppButton from '@components/AppButton'
+import AppTitle from '@components/AppTitle'
 import * as Tools from '@utils/Tools'
 import * as Verifier from '@utils/Verifier'
 import { register } from '@slices/auth'
 import { clearMessage } from '@slices/message'
-import ButtonStyle from '@styles/ButtonStyle'
 import ProfileStyle from '@styles/ProfileStyle'
 
 export default function SigninProfileScreen({ route }) {
@@ -66,7 +67,7 @@ export default function SigninProfileScreen({ route }) {
 
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
-            <Text style={ProfileStyle.title}>{t('signin')}</Text>
+            <AppTitle text={t('signin')} align="center" icon="3lines" />
 
             <AppInput control={control} name="email" type="text" label={t('email')} required error={errors.email} defaultValue={email} />
             <AppInput control={control} name="username" type="text" label={t('username')} required error={errors.username} />
@@ -74,9 +75,7 @@ export default function SigninProfileScreen({ route }) {
             <AppInput control={control} name="password2" type="password" label={t('password_confirmation')} required error={errors.password2} />
 
             <View style={{ marginTop: 10 }}>
-                <Pressable style={ButtonStyle.default} onPress={handleSubmit(onSubmit)}>
-                    <Text style={ButtonStyle.default_text}>{t('login')}</Text>
-                </Pressable>
+                <AppButton text={t('login')} onPress={handleSubmit(onSubmit)} />
             </View>
         </ScrollView>
     )

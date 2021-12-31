@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ScrollView, View, Pressable, Text } from 'react-native'
+import { ScrollView, View, Text } from 'react-native'
 import { useForm } from 'react-hook-form'
 import { Link } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
@@ -8,11 +8,12 @@ import { useFocusEffect } from '@react-navigation/native'
 
 import AppInput from '@components/AppInput'
 import TextLine from '@components/TextLine'
+import AppButton from '@components/AppButton'
+import AppTitle from '@components/AppTitle'
 import * as Tools from '@utils/Tools'
 import { login } from '@slices/auth'
 import { clearMessage } from '@slices/message'
 import GlobalStyle from '@styles/GlobalStyle'
-import ButtonStyle from '@styles/ButtonStyle'
 import ProfileStyle from '@styles/ProfileStyle'
 
 
@@ -63,14 +64,13 @@ export default function LoginProfileScreen({ navigation }) {
 
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
-            <Text style={ProfileStyle.title}>{t('login')}</Text>
+            <AppTitle text={t('login')} align="center" icon="3lines" />
+
             <AppInput control={control} name="username" type="text" label={t('email')} error={errors.username} />
             <AppInput control={control} name="password" type="password" label={t('password')} error={errors.password} />
 
             <View style={{ marginTop: 10 }}>
-                <Pressable style={ButtonStyle.default} onPress={handleSubmit(onSubmit)}>
-                    <Text style={ButtonStyle.default_text}>{t('login')}</Text>
-                </Pressable>
+                <AppButton text={t('login')} onPress={handleSubmit(onSubmit)} />
             </View>
 
             <View style={{ marginVertical: 15 }}>
@@ -78,9 +78,7 @@ export default function LoginProfileScreen({ navigation }) {
             </View>
 
             <View style={{ marginTop: 10 }}>
-                <Pressable style={ButtonStyle.google}>
-                    <Text style={ButtonStyle.google_text}>{t('login_google')}</Text>
-                </Pressable>
+                <AppButton type="google" text={t('login_google')} />
             </View>
 
             <View style={{ marginTop: 40, alignItems: 'center' }}>
