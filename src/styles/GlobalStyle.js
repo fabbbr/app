@@ -5,7 +5,8 @@ export default {
         background: '#FFFAF0',
         dark: '#141414',
         darklight: '#A3A3A3',
-        light: 'white'
+        light: 'white',
+        text2: '#6C777A'
     },
     size: {
         title: 20
