@@ -7,7 +7,8 @@ export default {
         darklight: '#A3A3A3',
         light: 'white',
         text2: '#6C777A',
-        lightgray: '#DDDDDD'
+        lightgray: '#DDDDDD',
+        lightgray2: '#BDBDBD'
     },
     size: {
         title: 20
