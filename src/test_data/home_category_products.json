@@ -4,6 +4,7 @@
         "country": "fr",
         "seller_name": "Nom du vendeur",
         "rating": "4.3",
+        "review": "233",
         "price": "19",
         "image": "todo later"
     },
@@ -12,6 +13,7 @@
         "country": "fr",
         "seller_name": "Nom du vendeur",
         "rating": "4.3",
+        "review": "233",
         "price": "27",
         "image": "todo later"
     },
@@ -20,6 +22,7 @@
         "country": "fr",
         "seller_name": "Nom du vendeur",
         "rating": "4.3",
+        "review": "233",
         "price": "47",
         "image": "todo later"
     },
@@ -28,6 +31,7 @@
         "country": "fr",
         "seller_name": "Nom du vendeur",
         "rating": "4.3",
+        "review": "233",
         "price": "28",
         "image": "todo later"
     }
