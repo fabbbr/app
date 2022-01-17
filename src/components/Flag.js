@@ -1,17 +1,21 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+import { ucFirst } from '@utils/Tools'
+
+import Fr from '@icons/flags/fr.svg'
+const fr = Fr
 
 export default function Flag({ code, width }) {
     if(!width) width = 25
 
-    console.log(width)
+    let Code = eval(code)
 
     return (
         <View style={{
             width: width,
-            height: width * (2/3),
-            backgroundColor: 'blue'
+            height: width * (2/3)
         }}>
+            <Code />
         </View>
     )
 }

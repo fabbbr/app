@@ -10,7 +10,7 @@ export default function ProductMiniature({ product }) {
             <View style={styles.container2}>
                 <Text style={styles.title}>{product.name}</Text>
                 <View style={styles.container3}>
-                    <Flag />
+                    <Flag code={product.country} />
                     <View style={styles.vertical_lign}></View>
                     <Text style={styles.seller_name}>{product.seller_name}</Text>
                 </View>
