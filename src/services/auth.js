@@ -2,36 +2,33 @@ import axios from 'axios'
 import { API_URL } from '@constants'
 import * as LS from '@utils/LocalStorage'
 
-const register = (username, email, password) => {
-    return axios.post(API_URL + 'signin', {
+const register = async (username, email, password) => {
+    const response = await axios.post(API_URL + 'signin', {
         username,
         email,
         password
     })
-      .then((response) => {
-          if (response.data.token) LS.set('user', JSON.stringify(response.data))
-          return response.data
-      })
+
+    if (response.data.token) LS.set('user', JSON.stringify(response.data))
+    return response.data
 }
 
-const login = (username, password) => {
-    return axios
-        .post(API_URL + 'login', {
+const login = async (username, password) => {
+    const response = await axios.post(API_URL + 'login', {
             username,
             password
         })
-        .then((response) => {
-            if (response.data.token) LS.set('user', JSON.stringify(response.data))
-            return response.data
-        })
+
+    if (response.data.token) LS.set('user', JSON.stringify(response.data))
+    return response.data
 };
 
-const logout = () => {
-    LS.remove('user')
+const logout = async () => {
+    return await LS.remove('user')
 }
 
-const getUser = () => {
-    LS.get('user')
+const getUser = async () => {
+    return await LS.get('user')
 }
 
 const authService = {

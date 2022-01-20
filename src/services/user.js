@@ -2,8 +2,9 @@ import axios from 'axios'
 import authHeader from '@services/auth-header'
 import { API_URL } from '@constants'
 
-const getUserBoard = () => {
-    return axios.get(API_URL + 'user', { headers: authHeader() })
+const getUserBoard = async () => {
+    const response = await axios.post(API_URL + 'user', { headers: authHeader() })
+    return response.data
 }
 
 const userService = {
