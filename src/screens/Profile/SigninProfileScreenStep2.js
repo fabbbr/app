@@ -29,7 +29,7 @@ export default function SigninProfileScreenStep2({ route }) {
         dispatch(clearMessage())
     }, [dispatch])
 
-    const onSubmit = data => {
+    const onSubmit = async (data) => {
         let err = {}
         data = Tools.objFormat(data)
 
@@ -45,19 +45,18 @@ export default function SigninProfileScreenStep2({ route }) {
         setErrors(err)
         if (Tools.objSize(err) === 0) {
             setLoading(true)
+            
+            try {
+                await dispatch(register({
+                    username: data.username,
+                    email : data.email,
+                    password: data.password
+                }))
 
-            dispatch(register({
-                username: data.username,
-                email : data.email,
-                password: data.password
-            }))
-                .unwrap()
-                .then(() => {
-                    navigation.navigate('HomeProfileScreen')
-                })
-                .catch(() => {
-                    setLoading(false)
-                })
+                navigation.navigate('HomeProfileScreen')
+            } catch {
+                setLoading(false)
+            }
         }
     }
 

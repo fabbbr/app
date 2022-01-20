@@ -33,7 +33,7 @@ export default function LoginProfileScreen({ navigation }) {
     }, [dispatch])
 
 
-    const onSubmit = data => {
+    const onSubmit = async (data) => {
         let err = {}
         data = Tools.objFormat(data)
 
@@ -43,18 +43,17 @@ export default function LoginProfileScreen({ navigation }) {
         setErrors(err)
         if (Tools.objSize(err) === 0) {
             setLoading(true)
-
-            dispatch(login({
-                username: data.username,
-                password: data.password
-            }))
-                .unwrap()
-                .then(() => {
-                    navigation.navigate('HomeProfileScreen')
-                })
-                .catch(() => {
-                    setLoading(false)
-                })
+            
+            try {
+                await dispatch(login({
+                    username: data.username,
+                    password: data.password
+                }))
+                
+                navigation.navigate('HomeProfileScreen')
+            } catch {
+                setLoading(false)
+            }
         }
     }
 
