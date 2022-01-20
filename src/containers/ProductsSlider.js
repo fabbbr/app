@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ScrollView, Text } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import ProductMiniature from '@components/ProductMiniature'
 
 export default function ProductsSlider({ products }) {
@@ -8,10 +8,17 @@ export default function ProductsSlider({ products }) {
     return (
         <ScrollView 
             horizontal={true} 
-            style={{flexGrow: 0}}
+            style={styles.container}
             showsHorizontalScrollIndicator={false}
         >
             {items}
         </ScrollView>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flexGrow: 0,
+        marginHorizontal: -5
+    }
+})
