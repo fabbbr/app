@@ -23,5 +23,8 @@
     "password_confirmation": "Confirmation mot de passe",
 
     "trends": "Tendances",
-    "creation_recommendation": "Recommendations de créations"
+    "creation_recommendation": "Recommendations de créations",
+    "community": "Communauté",
+    "discover_creation": "Découvrez les créations de la communauté",
+    "see_all": "voir tout"
 }
