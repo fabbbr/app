@@ -15,19 +15,21 @@ export default function App() {
     const { authInit } = useSelector((state) => state.auth)
 
     const asyncStart = async () => {
-        if(authInit) await dispatch(setUserInit())
-        getFonts()
+        return (
+            (authInit ? await dispatch(setUserInit()) : true)
+            && await getFonts() 
+        )
     }
 
     return (
         <SafeAreaView style={{flex: 1}}>
             {!loaded ?
-                 <Apploading
-                 startAsync={asyncStart}
-                 onFinish={() => {
-                   setLoaded(true)
-                 }}
-                 onError={console.warn}
+                <Apploading
+                    startAsync={asyncStart}
+                    onFinish={() => {
+                        setLoaded(true)
+                    }}
+                    onError={console.warn}
                />
             :
                 (<NavigationContainer>
