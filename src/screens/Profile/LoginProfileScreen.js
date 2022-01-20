@@ -83,7 +83,7 @@ export default function LoginProfileScreen({ navigation }) {
 
             <View style={{ marginTop: 40, alignItems: 'center' }}>
                 <Text style={{ color: GlobalStyle.color.gray, marginBottom: 5 }}>{t('no_account')}</Text>
-                <Link style={ProfileStyle.link} to={{ screen: 'SigninProfileScreen1' }}>
+                <Link style={ProfileStyle.link} to={{ screen: 'SigninProfileScreenStep1' }}>
                     {t('signin2')}
                 </Link>
             </View>

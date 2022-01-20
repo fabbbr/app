@@ -16,7 +16,7 @@ import GlobalStyle from '@styles/GlobalStyle'
 import ProfileStyle from '@styles/ProfileStyle'
 
 
-export default function SigninProfileScreen1({ navigation }) {
+export default function SigninProfileScreenStep1({ navigation }) {
     const [ errors, setErrors ] = useState({})
     const { control, handleSubmit } = useForm()
     const { t } = useTranslation()
@@ -33,7 +33,7 @@ export default function SigninProfileScreen1({ navigation }) {
 
         setErrors(err)
         if(Tools.objSize(err) === 0) {
-            navigation.navigate('SigninProfileScreen2', {
+            navigation.navigate('SigninProfileScreenStep2', {
                 email: data.email
             })
         }

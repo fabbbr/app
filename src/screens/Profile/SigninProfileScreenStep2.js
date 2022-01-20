@@ -14,7 +14,7 @@ import { register } from '@slices/auth'
 import { clearMessage } from '@slices/message'
 import ProfileStyle from '@styles/ProfileStyle'
 
-export default function SigninProfileScreen({ route }) {
+export default function SigninProfileScreenStep2({ route }) {
     const [loading, setLoading] = useState(false) // todo display loading
     const [errors, setErrors] = useState({})
     const { control, handleSubmit } = useForm()
