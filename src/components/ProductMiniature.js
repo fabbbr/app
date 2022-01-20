@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 1,
         borderColor: GlobalStyle.color.lightgray,
+        backgroundColor: GlobalStyle.color.light,
         overflow: 'hidden',
         width: 240
     },
