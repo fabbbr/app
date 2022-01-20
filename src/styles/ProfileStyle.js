@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native"
-import GlobalStyle from "@styles/GlobalStyle"
-import AppStyle from "@styles/AppStyle"
+import { StyleSheet } from 'react-native'
+import GlobalStyle from '@styles/GlobalStyle'
+import AppStyle from '@styles/AppStyle'
 
 export default StyleSheet.create({
     container: {
@@ -15,8 +15,14 @@ export default StyleSheet.create({
       fontWeight: 'bold',
       marginBottom: 10
     },
+    bottom_text: {
+      color: GlobalStyle.color.gray,
+      marginBottom: 5,
+      fontFamily: 'RiposteRegular'
+    },
     link: {
       color: GlobalStyle.color.primary,
-      textDecorationLine: 'underline'
+      textDecorationLine: 'underline',
+      fontFamily: 'RiposteRegular'
     }
   })

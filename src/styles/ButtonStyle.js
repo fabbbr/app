@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native"
-import GlobalStyle from "@styles/GlobalStyle"
+import { StyleSheet } from 'react-native'
+import GlobalStyle from '@styles/GlobalStyle'
 
 const base = {
     borderRadius: 8,
@@ -11,7 +11,7 @@ const base = {
 }
 
 const base_text = {
-
+    fontFamily: 'RiposteRegular'
 }
 
 export default StyleSheet.create({

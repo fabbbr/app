@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native"
-import GlobalStyle from "@styles/GlobalStyle"
+import { StyleSheet } from 'react-native'
+import GlobalStyle from '@styles/GlobalStyle'
 
 export default StyleSheet.create({
     box: {
@@ -12,10 +12,12 @@ export default StyleSheet.create({
         borderColor: GlobalStyle.color.gray
     },
     label: {
-        color: GlobalStyle.color.gray
+        color: GlobalStyle.color.gray,
+        fontFamily: 'RiposteRegular'
     },
     input: {
-        color: GlobalStyle.color.dark
+        color: GlobalStyle.color.dark,
+        fontFamily: 'RiposteRegular'
     }
 })
 
