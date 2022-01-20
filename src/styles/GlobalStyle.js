@@ -11,9 +11,6 @@ export default {
         lightgray: '#DDDDDD',
         lightgray2: '#BDBDBD'
     },
-    size: {
-        title: 20
-    },
     container: {
         padding : 20
     }

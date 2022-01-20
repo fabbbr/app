@@ -1,6 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+
 import GlobalStyle from '@styles/GlobalStyle'
+import AppStyle from '@styles/AppStyle'
 import Icon3lines from '@icons/title-3lines.svg'
 
 export default function AppTitle({text, align, icon, dash}) {
@@ -37,9 +39,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     text: {
-        color: GlobalStyle.color.primary,
-        fontWeight: 'bold',
-        fontSize: GlobalStyle.size.title,
+        ...AppStyle.h1,
         marginBottom: 5
     },
     icon_box: {

@@ -3,7 +3,8 @@ import GlobalStyle from '@styles/GlobalStyle'
 
 export default StyleSheet.create({
     h1: {
-        fontFamily: 'RecoletaMedium',
+        fontFamily: 'RecoletaBold',
+        color: GlobalStyle.color.primary,
         fontSize: 24
     },
     h2: {

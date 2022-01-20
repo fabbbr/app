@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native"
 import GlobalStyle from "@styles/GlobalStyle"
+import AppStyle from "@styles/AppStyle"
 
 export default StyleSheet.create({
     container: {
@@ -9,10 +10,9 @@ export default StyleSheet.create({
       padding: GlobalStyle.container.padding
     },
     title: {
-      color: GlobalStyle.color.primary,
-      fontWeight: 'bold',
+      ...AppStyle.h1,
       textAlign: 'center',
-      fontSize: GlobalStyle.size.title,
+      fontWeight: 'bold',
       marginBottom: 10
     },
     link: {
