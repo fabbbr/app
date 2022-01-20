@@ -15,7 +15,7 @@ export default function CategoryProducts({ id_category, name }) {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.title}>{name}</Text>
-                <Text style={styles.link}>{t('see_all')} ></Text>
+                <Text style={styles.link}>{t('see_all')}</Text>
             </View>
             <ProductsSlider products={data} />
         </View>
