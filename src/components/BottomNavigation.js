@@ -32,7 +32,7 @@ export default function BottomNavigation() {
                         }
                         },
                     tabBarActiveTintColor: GlobalStyle.color.primary,
-                    tabBarInactiveTintColor: GlobalStyle.color.text2,
+                    tabBarInactiveTintColor: GlobalStyle.color.text,
                     headerShown: false
                 })
             }

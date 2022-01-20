@@ -74,7 +74,7 @@ export default function LoginProfileScreen({ navigation }) {
             </View>
 
             <View style={{ marginVertical: 15 }}>
-                <TextLine text='connexion avec' color={GlobalStyle.color.darklight} lineColor={GlobalStyle.color.darklight} />
+                <TextLine text='connexion avec' color={GlobalStyle.color.gray} lineColor={GlobalStyle.color.gray} />
             </View>
 
             <View style={{ marginTop: 10 }}>
@@ -82,7 +82,7 @@ export default function LoginProfileScreen({ navigation }) {
             </View>
 
             <View style={{ marginTop: 40, alignItems: 'center' }}>
-                <Text style={{ color: GlobalStyle.color.darklight, marginBottom: 5 }}>{t('no_account')}</Text>
+                <Text style={{ color: GlobalStyle.color.gray, marginBottom: 5 }}>{t('no_account')}</Text>
                 <Link style={ProfileStyle.link} to={{ screen: 'SigninProfileScreen1' }}>
                     {t('signin2')}
                 </Link>

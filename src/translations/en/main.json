@@ -20,5 +20,11 @@
     "username_placeholder": "Crafty",
     "password": "Password",
     "password_placeholder": "*******",
-    "password_confirmation": "Password confirmation"
+    "password_confirmation": "Password confirmation",
+
+    "trends": "Trends",
+    "creation_recommendation": "Creations recommendations",
+    "community": "Community",
+    "discover_creation": "Discover community's creations",
+    "see_all": "see all"
 }

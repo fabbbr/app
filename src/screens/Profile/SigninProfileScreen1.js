@@ -53,7 +53,7 @@ export default function SigninProfileScreen1({ navigation }) {
             </View>
 
             <View style={{ marginVertical: 15 }}>
-                <TextLine text={t('signin_with')} color={GlobalStyle.color.darklight} lineColor={GlobalStyle.color.darklight} />
+                <TextLine text={t('signin_with')} color={GlobalStyle.color.gray} lineColor={GlobalStyle.color.gray} />
             </View>
 
             <View style={{ marginTop: 10 }}>
@@ -61,7 +61,7 @@ export default function SigninProfileScreen1({ navigation }) {
             </View>
 
             <View style={{ marginTop: 40, alignItems: 'center' }}>
-                <Text style={{ color: GlobalStyle.color.darklight, marginBottom: 5 }}>{t('has_account')}</Text>
+                <Text style={{ color: GlobalStyle.color.gray, marginBottom: 5 }}>{t('has_account')}</Text>
                 <Link style={ProfileStyle.link} to={{ screen: 'LoginProfileScreen' }}>
                     {t('login2')}
                 </Link>
