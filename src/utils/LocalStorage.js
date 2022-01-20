@@ -1,10 +1,10 @@
 import * as SecureStore from 'expo-secure-store'
 
-export async function set(key, value) {
+export const set = async (key, value) => {
     return await SecureStore.setItemAsync(key, value)
 }
 
-export async function get(key) {
+export const get = async (key) => {
     let result = await SecureStore.getItemAsync(key)
     if(result) {
         return result
@@ -13,6 +13,6 @@ export async function get(key) {
     }
 }
 
-export async function remove(key) {
+export const remove = async (key) => {
     return await SecureStore.deleteItemAsync(key)
 }
