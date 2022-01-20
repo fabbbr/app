@@ -1,8 +1,9 @@
 import * as Font from 'expo-font'
 
 export const getFonts = () => {
-    Font.loadAsync({
-      recoleta: require("@fonts/Recoleta/Recoleta-Regular.ttf"),
-      Riposte: require("@fonts/Riposte/Riposte-Regular.otf")
+    return Font.loadAsync({
+      RecoletaRegular: require("@fonts/Recoleta/Recoleta-Regular.ttf"),
+      RecoletaBold: require("@fonts/Recoleta/Recoleta-Bold.ttf"),
+      RiposteRegular: require("@fonts/Riposte/Riposte-Regular.otf")
     })
 }

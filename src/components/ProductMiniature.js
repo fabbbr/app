@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 10
     },
     title: {
-
+        fontFamily: 'Recoleta'
     },
     container3: {
         flexDirection: 'row',
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10
     },
     seller_name: {
-        color: GlobalStyle.color.text2
+        color: GlobalStyle.color.text
     },
     horizontal_lign: {
         backgroundColor: GlobalStyle.color.lightgray,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
     rating: {
         marginLeft: 5,
-        color: GlobalStyle.color.text2
+        color: GlobalStyle.color.text
     },
     review: {
         marginLeft: 5,
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: 5
     }
-})
+}) 

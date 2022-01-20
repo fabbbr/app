@@ -9,10 +9,10 @@ export default StyleSheet.create({
         paddingHorizontal: 15,
         paddingVertical: 5,
         backgroundColor: GlobalStyle.color.light,
-        borderColor: GlobalStyle.color.darklight
+        borderColor: GlobalStyle.color.gray
     },
     label: {
-        color: GlobalStyle.color.darklight
+        color: GlobalStyle.color.gray
     },
     input: {
         color: GlobalStyle.color.dark

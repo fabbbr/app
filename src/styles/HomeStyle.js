@@ -9,7 +9,7 @@ export default StyleSheet.create({
     },
 
     sub_title: {
-        color: GlobalStyle.color.text2,
+        color: GlobalStyle.color.text,
         fontSize: 12
     }
 })
