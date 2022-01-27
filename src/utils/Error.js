@@ -1,7 +1,11 @@
 import { setMessage } from '@slices/message'
 
 export const slice = (thunkAPI, error) => {
-    const messsage = error.message || error.toString()
-    thunkAPI.dispatch(setMessage(messsage))
+    const err = standard(error)
+    thunkAPI.dispatch(setMessage(err.message))
     return thunkAPI.rejectWithValue()
+}
+
+export const standard = (error) => {
+    return error.response.data
 }
