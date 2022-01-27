@@ -10,8 +10,8 @@ const register = async (username, email, password, country) => {
         country
     })
 
-    if (response.data.token) LS.set('user', JSON.stringify(response.data))
-    return response.data
+    if (response.data.user) LS.set('user', JSON.stringify(response.data.user))
+    return response.data.user
 }
 
 const login = async (username, password) => {
@@ -20,8 +20,8 @@ const login = async (username, password) => {
             password
         })
 
-    if (response.data.token) LS.set('user', JSON.stringify(response.data))
-    return response.data
+    if (response.data.user) LS.set('user', JSON.stringify(response.data.user.token))
+    return response.data.user
 };
 
 const logout = async () => {
