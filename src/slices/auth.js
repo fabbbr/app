@@ -4,9 +4,9 @@ import * as ErrorUtils from '@utils/Error'
 
 export const register = createAsyncThunk(
     'auth/register',
-    async ({ username, email, password }, thunkAPI) => {
+    async ({ username, email, password, country }, thunkAPI) => {
         try {
-            const data = await AuthService.register(username, email, password)
+            const data = await AuthService.register(username, email, password, country)
             return { user: data }
         } catch (error) {
             return ErrorUtils.slice(thunkAPI, error)
