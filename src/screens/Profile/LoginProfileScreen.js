@@ -18,13 +18,13 @@ import GlobalStyle from '@styles/GlobalStyle'
 import ProfileStyle from '@styles/ProfileStyle'
 
 export default function LoginProfileScreen({ navigation }) {
-    const [loading, setLoading] = useState(false) // todo display loading
+    const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
     const { control, handleSubmit } = useForm()
     const { t } = useTranslation()
 
     const { isLoggedIn } = useSelector((state) => state.auth)
-    const { message, messageType } = useSelector((state) => state.message) // todo display message
+    const { message, messageType } = useSelector((state) => state.message)
 
     const dispatch = useDispatch()
 
