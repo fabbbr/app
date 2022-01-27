@@ -10,12 +10,12 @@ import AppInput from '@components/AppInput'
 import TextLine from '@components/TextLine'
 import AppButton from '@components/AppButton'
 import AppTitle from '@components/AppTitle'
+import AppMessage from '@components/AppMessage'
 import * as Tools from '@utils/Tools'
 import { login } from '@slices/auth'
 import { clearMessage } from '@slices/message'
 import GlobalStyle from '@styles/GlobalStyle'
 import ProfileStyle from '@styles/ProfileStyle'
-
 
 export default function LoginProfileScreen({ navigation }) {
     const [loading, setLoading] = useState(false) // todo display loading
@@ -24,14 +24,13 @@ export default function LoginProfileScreen({ navigation }) {
     const { t } = useTranslation()
 
     const { isLoggedIn } = useSelector((state) => state.auth)
-    const { message } = useSelector((state) => state.message) // todo display message
+    const { message, messageType } = useSelector((state) => state.message) // todo display message
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(clearMessage())
     }, [dispatch])
-
 
     const onSubmit = async (data) => {
         let err = {}
@@ -43,14 +42,16 @@ export default function LoginProfileScreen({ navigation }) {
         setErrors(err)
         if (Tools.objSize(err) === 0) {
             setLoading(true)
-            
+
             try {
-                await dispatch(login({
-                    username: data.username,
-                    password: data.password
-                }))
-                
-                navigation.navigate('HomeProfileScreen')
+                const response = await dispatch(
+                    login({
+                        username: data.username,
+                        password: data.password,
+                    })
+                ).unwrap()
+
+                if (response) navigation.navigate('HomeProfileScreen')
             } catch {
                 setLoading(false)
             }
@@ -58,31 +59,60 @@ export default function LoginProfileScreen({ navigation }) {
     }
 
     useFocusEffect(() => {
-        if(isLoggedIn) navigation.navigate('HomeProfileScreen')
+        if (isLoggedIn) navigation.navigate('HomeProfileScreen')
     })
 
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
-            <AppTitle text={t('login')} align="center" icon="3lines" />
+            <AppTitle text={t('login')} align='center' icon='3lines' />
 
-            <AppInput control={control} name="username" type="text" label={t('email')} error={errors.username} />
-            <AppInput control={control} name="password" type="password" label={t('password')} error={errors.password} />
+            <AppInput
+                control={control}
+                name='username'
+                type='text'
+                label={t('email')}
+                error={errors.username}
+            />
+            <AppInput
+                control={control}
+                name='password'
+                type='password'
+                label={t('password')}
+                error={errors.password}
+            />
+
+            {messageType ? (
+                <View style={{ marginVertical: 10 }}>
+                    <AppMessage message={message} messageType={messageType} />
+                </View>
+            ) : null}
 
             <View style={{ marginTop: 10 }}>
-                <AppButton text={t('login')} onPress={handleSubmit(onSubmit)} />
+                <AppButton
+                    text={t('login')}
+                    onPress={handleSubmit(onSubmit)}
+                    loading={loading}
+                />
             </View>
 
             <View style={{ marginVertical: 15 }}>
-                <TextLine text='connexion avec' color={GlobalStyle.color.gray} lineColor={GlobalStyle.color.gray} />
+                <TextLine
+                    text='connexion avec'
+                    color={GlobalStyle.color.gray}
+                    lineColor={GlobalStyle.color.gray}
+                />
             </View>
 
             <View style={{ marginTop: 10 }}>
-                <AppButton type="google" text={t('login_google')} />
+                <AppButton type='google' text={t('login_google')} />
             </View>
 
             <View style={{ marginTop: 40, alignItems: 'center' }}>
                 <Text style={ProfileStyle.bottom_text}>{t('no_account')}</Text>
-                <Link style={ProfileStyle.link} to={{ screen: 'SigninProfileScreenStep1' }}>
+                <Link
+                    style={ProfileStyle.link}
+                    to={{ screen: 'SigninProfileScreenStep1' }}
+                >
                     {t('signin2')}
                 </Link>
             </View>
