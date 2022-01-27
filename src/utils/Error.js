@@ -2,7 +2,12 @@ import { setMessage } from '@slices/message'
 
 export const slice = (thunkAPI, error) => {
     const err = standard(error)
-    thunkAPI.dispatch(setMessage(err.message))
+    thunkAPI.dispatch(
+        setMessage({
+            message: err.message,
+            messageType: 2,
+        })
+    )
     return thunkAPI.rejectWithValue()
 }
 
