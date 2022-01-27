@@ -17,7 +17,6 @@ export default function AppInput({
     placeholder,
     required,
     error,
-    defaultValue,
 }) {
     let Type
     switch (type) {
@@ -43,12 +42,7 @@ export default function AppInput({
                 <Text style={FormStyle.label}>{label}</Text>
                 <Controller
                     render={({ field }) => (
-                        <Type
-                            {...field}
-                            ref={null}
-                            placeholder={placeholder}
-                            value={defaultValue}
-                        />
+                        <Type {...field} ref={null} placeholder={placeholder} />
                     )}
                     name={name}
                     control={control}
