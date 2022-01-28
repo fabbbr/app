@@ -8,7 +8,7 @@ import { logout } from '@slices/auth'
 import AppButton from '@components/AppButton'
 
 export default function HomeProfileScreen({ navigation }) {
-    const { isLoggedIn } = useSelector((state) => state.auth)
+    const { isLoggedIn, user } = useSelector((state) => state.auth)
     const { t } = useTranslation()
     const dispatch = useDispatch()
 
@@ -25,7 +25,9 @@ export default function HomeProfileScreen({ navigation }) {
         <View style={styles.container}>
             {isLoggedIn ? (
                 <>
-                    <Text>Profile</Text>
+                    <Text style={{ marginBottom: 10 }}>
+                        Profile of {user.username}
+                    </Text>
                     <AppButton text={t('logout')} onPress={handleLogout} />
                 </>
             ) : null}
