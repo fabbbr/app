@@ -1,63 +1,119 @@
-import React, { useState } from "react"
-import { ScrollView, View, Pressable, Text } from "react-native"
-import { useForm } from "react-hook-form"
-import { Link } from "@react-navigation/native"
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { ScrollView, View, Text } from 'react-native'
+import { useForm } from 'react-hook-form'
+import { Link } from '@react-navigation/native'
+import { useTranslation } from 'react-i18next'
+import { useFocusEffect } from '@react-navigation/native'
 
-import GlobalStyle from "../../styles/GlobalStyle"
-import ButtonStyle from "../../styles/ButtonStyle"
-import ProfileStyle from "../../styles/ProfileStyle"
+import AppInput from '@components/AppInput'
+import TextLine from '@components/TextLine'
+import AppButton from '@components/AppButton'
+import AppTitle from '@components/AppTitle'
+import AppMessage from '@components/AppMessage'
+import * as Tools from '@utils/Tools'
+import { login } from '@slices/auth'
+import { clearMessage } from '@slices/message'
+import GlobalStyle from '@styles/GlobalStyle'
+import ProfileStyle from '@styles/ProfileStyle'
 
-import AppInput from "../../components/AppInput"
-import TextLine from "../../components/TextLine"
-
-import * as Api from "../../utils/Api"
-import * as Tools from '../../utils/Tools'
-
-export default function LoginProfileScreen() {
-    const { control, handleSubmit } = useForm()
+export default function LoginProfileScreen({ navigation }) {
+    const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
-    const onSubmit = data => {
+    const { control, handleSubmit } = useForm()
+    const { t } = useTranslation()
+
+    const { isLoggedIn } = useSelector((state) => state.auth)
+    const { message, messageType } = useSelector((state) => state.message)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(clearMessage())
+    }, [dispatch])
+
+    const onSubmit = async (data) => {
         let err = {}
         data = Tools.objFormat(data)
 
-        if (!data.username.length) err.username = 'Ce champ est obligatoire'
-        if (!data.password.length) err.password = 'Ce champ est obligatoire'
+        if (!data.username.length) err.username = t('errors:form.input.empty')
+        if (!data.password.length) err.password = t('errors:form.input.empty')
 
         setErrors(err)
         if (Tools.objSize(err) === 0) {
-            Api.post('login', data)
-                .then(data => {
-                    alert(JSON.stringify(data))
-                })
+            setLoading(true)
+
+            try {
+                const response = await dispatch(
+                    login({
+                        username: data.username,
+                        password: data.password,
+                    })
+                ).unwrap()
+
+                if (response) navigation.navigate('HomeProfileScreen')
+            } catch {
+                setLoading(false)
+            }
         }
     }
 
+    useFocusEffect(() => {
+        if (isLoggedIn) navigation.navigate('HomeProfileScreen')
+    })
+
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
-            <Text style={ProfileStyle.title}>Connexion</Text>
-            <AppInput control={control} name="username" type="text" label="Email" error={errors.username} />
-            <AppInput control={control} name="password" type="password" label="Mot de passe" error={errors.password} />
+            <AppTitle text={t('login')} align='center' icon='3lines' />
+
+            <AppInput
+                control={control}
+                name='username'
+                type='text'
+                label={t('email')}
+                error={errors.username}
+            />
+            <AppInput
+                control={control}
+                name='password'
+                type='password'
+                label={t('password')}
+                error={errors.password}
+            />
+
+            {messageType ? (
+                <View style={{ marginVertical: 10 }}>
+                    <AppMessage message={message} messageType={messageType} />
+                </View>
+            ) : null}
 
             <View style={{ marginTop: 10 }}>
-                <Pressable style={ButtonStyle.default} onPress={handleSubmit(onSubmit)}>
-                    <Text style={ButtonStyle.default_text}>Connexion</Text>
-                </Pressable>
+                <AppButton
+                    text={t('login')}
+                    onPress={handleSubmit(onSubmit)}
+                    loading={loading}
+                />
             </View>
 
             <View style={{ marginVertical: 15 }}>
-                <TextLine text='connexion avec' color={GlobalStyle.color.darklight} lineColor={GlobalStyle.color.darklight} />
+                <TextLine
+                    text='connexion avec'
+                    color={GlobalStyle.color.gray}
+                    lineColor={GlobalStyle.color.gray}
+                />
             </View>
 
             <View style={{ marginTop: 10 }}>
-                <Pressable style={ButtonStyle.google}>
-                    <Text style={ButtonStyle.google_text}>Connexion avec Gologolo</Text>
-                </Pressable>
+                <AppButton type='google' text={t('login_google')} />
             </View>
 
             <View style={{ marginTop: 40, alignItems: 'center' }}>
-                <Text style={{ color: GlobalStyle.color.darklight, marginBottom: 5 }}>Vous n'avez pas de compte ?</Text>
-                <Link style={ProfileStyle.link} to={{ screen: 'SigninProfileScreen1' }}>
-                    Créer un compte
+                <Text style={ProfileStyle.bottom_text}>{t('no_account')}</Text>
+                <Link
+                    style={ProfileStyle.link}
+                    to={{ screen: 'SigninProfileScreenStep1' }}
+                >
+                    {t('signin2')}
                 </Link>
             </View>
         </ScrollView>

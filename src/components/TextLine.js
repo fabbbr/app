@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     },
     text: {
         textAlign: 'center',
-        paddingHorizontal: 8
+        paddingHorizontal: 8,
+        fontFamily: 'RiposteRegular'
     },
     line: {
         flex: 1,

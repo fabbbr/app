@@ -1,12 +1,28 @@
 {
   "expo": {
-    "name": "app-front",
-    "slug": "app-front",
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "expo.ts",
+        "expo.tsx",
+        "expo.js",
+        "expo.jsx",
+        "ts",
+        "tsx",
+        "js",
+        "jsx",
+        "json",
+        "wasm",
+        "svg"
+      ]
+    },
+    "name": "Crafty",
+    "slug": "Crafty-Discover-European-Culture",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/icon.png",
+    "icon": "./src/assets/img/icon.png",
     "splash": {
-      "image": "./src/assets/splash.png",
+      "image": "./src/assets/img/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,16 +33,22 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.crafty.crafty",
+      "buildNumber": "1.0.0",
+
       "supportsTablet": true
     },
     "android": {
+      "package": "com.crafty.crafty",
+      "versionCode": 1,
+
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/img/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./src/assets/favicon.png"
+      "favicon": "./src/assets/img/favicon.png"
     }
   }
 }

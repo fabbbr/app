@@ -1,23 +1,36 @@
-import * as React from 'react'
+import React from 'react'
 import { Text, View } from 'react-native'
-import AppButton from '../../components/AppButton'
+import { useSelector, useDispatch } from 'react-redux'
+import { useFocusEffect } from '@react-navigation/native'
+import { useTranslation } from 'react-i18next'
+
+import { logout } from '@slices/auth'
+import AppButton from '@components/AppButton'
 
 export default function HomeProfileScreen({ navigation }) {
-    return(
+    const { isLoggedIn, user } = useSelector((state) => state.auth)
+    const { t } = useTranslation()
+    const dispatch = useDispatch()
+
+    useFocusEffect(() => {
+        if (!isLoggedIn) navigation.navigate('LoginProfileScreen')
+    })
+
+    const handleLogout = async () => {
+        await dispatch(logout())
+        navigation.navigate('LoginProfileScreen')
+    }
+
+    return (
         <View style={styles.container}>
-            <View style={{marginBottom: 20}}>
-                <AppButton 
-                    title="S'inscrire sur Chare"
-                    onPress={() => navigation.navigate('SigninProfile')}
-                />
-            </View>
-            <View>
-                <AppButton 
-                    title="J'ai déjà un compte" 
-                    type="outlined"
-                    onPress={() => navigation.navigate('LoginProfile')}
-                />
-            </View>
+            {isLoggedIn ? (
+                <>
+                    <Text style={{ marginBottom: 10 }}>
+                        Profile of {user.username}
+                    </Text>
+                    <AppButton text={t('logout')} onPress={handleLogout} />
+                </>
+            ) : null}
         </View>
     )
 }
@@ -26,6 +39,7 @@ const styles = {
     container: {
         flex: 1,
         padding: 20,
-        justifyContent: 'center'
-    }
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 }

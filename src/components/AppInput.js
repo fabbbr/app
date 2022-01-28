@@ -1,22 +1,30 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import { Controller } from "react-hook-form"
+import { Controller } from 'react-hook-form'
 
-import FormStyle from '../styles/FormStyle'
+import FormStyle from '@styles/FormStyle'
 
-import TextInput from './inputs/TextInput'
-import PasswordInput from './inputs/PasswordInput'
-import NumberInput from './inputs/NumberInput'
-import DateInput from './inputs/DateInput'
+import TextInput from '@components/inputs/TextInput'
+import PasswordInput from '@components/inputs/PasswordInput'
+import NumberInput from '@components/inputs/NumberInput'
+import DateInput from '@components/inputs/DateInput'
 
-export default function AppInput({ control, name, type, label, placeholder, required, error, defaultValue }) {
+export default function AppInput({
+    control,
+    name,
+    type,
+    label,
+    placeholder,
+    required,
+    error,
+}) {
     let Type
-    switch(type) {
+    switch (type) {
         case 'text':
             Type = TextInput
             break
         case 'password':
-            Type = PasswordInput 
+            Type = PasswordInput
             break
         case 'number':
             Type = NumberInput
@@ -26,19 +34,21 @@ export default function AppInput({ control, name, type, label, placeholder, requ
             break
     }
 
-    let errorStr
-    if(error) errorStr = <Text>{error}</Text>
-    if(required) label += ' *'
+    if (required) label += ' *'
 
-    return(
-        <View style={FormStyle.box}>
-            <Text style={FormStyle.label}>{label}</Text>
-            <Controller
-                render={({ field }) => (<Type {...field} ref={null} placeholder={placeholder} value={defaultValue} />)}
-                name={name}
-                control={control}
-            />
-            {errorStr}
+    return (
+        <View style={FormStyle.wrapper}>
+            <View style={FormStyle.box}>
+                <Text style={FormStyle.label}>{label}</Text>
+                <Controller
+                    render={({ field }) => (
+                        <Type {...field} ref={null} placeholder={placeholder} />
+                    )}
+                    name={name}
+                    control={control}
+                />
+            </View>
+            {error ? <Text style={FormStyle.error}>{error}</Text> : null}
         </View>
     )
 }

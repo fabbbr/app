@@ -1,0 +1,30 @@
+{
+    "home": "Accueil",
+    "message": "Message",
+    "search": "Recherche",
+    "sell": "Vendre",
+
+    "signin": "Inscription",
+    "signin2": "Créer un compte",
+    "signin_google": "S'inscrire avec Google",
+    "signin_with": "s'inscrire avec",
+    "login": "Connexion",
+    "login2": "Se connecter",
+    "login_google": "Connexion avec Google",
+    "no_account": "Vous n'avez pas de compte ?",
+    "has_account": "Vous avez déjà un compte ?",
+
+    "email": "Email",
+    "email_placeholder": "mail@crafy.com",
+    "username": "Nom d'utilisateur",
+    "username_placeholder": "Crafty",
+    "password": "Mot de passe",
+    "password_placeholder": "*******",
+    "password_confirmation": "Confirmation mot de passe",
+
+    "trends": "Tendances",
+    "creation_recommendation": "Recommendations de créations",
+    "community": "Communauté",
+    "discover_creation": "Découvrez les créations de la communauté",
+    "see_all": "voir tout"
+}

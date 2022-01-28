@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextInput } from 'react-native'
-import FormStyle from '../../styles/FormStyle'
+import FormStyle from '@styles/FormStyle'
 
 export default function TextInput2({ onChange, onBlur, value, placeholder }) {
 

@@ -1,50 +1,34 @@
-import * as React from "react"
-import { StyleSheet, TouchableOpacity, Text } from "react-native"
+import React from 'react'
+import { TouchableOpacity, Text, View, ActivityIndicator } from 'react-native'
+import ButtonStyle from '@styles/ButtonStyle'
+import IconGoogle from '@icons/google.svg'
 
-export default function AppButton({ onPress, title, type }) {
+export default function AppButton({ type, text, onPress, loading }) {
+    if (type === undefined || !type.length) type = 'default'
+    const type_text = type + '_text'
 
-    if(type === undefined || !type.length) type = 'filled'
+    let Icon
+    switch (type) {
+        case 'google':
+            Icon = <IconGoogle style={{ marginRight: 10 }} />
+            break
+    }
 
-    return(
-        <TouchableOpacity onPress={onPress} style={styles[type].container}>
-            <Text style={styles[type].text}>{title}</Text>
+    return (
+        <TouchableOpacity
+            onPress={onPress}
+            style={ButtonStyle[type]}
+            activeOpacity={0.8}
+        >
+            {loading ? (
+                <ActivityIndicator
+                    size='small'
+                    color='#ddd'
+                    style={{ marginRight: 10 }}
+                />
+            ) : null}
+            <View>{Icon}</View>
+            <Text style={ButtonStyle[type_text]}>{text}</Text>
         </TouchableOpacity>
     )
 }
-
-const blue1 = '#236090'
-
-const containerBase = {
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-}
-const textBase = {
-    fontSize: 18,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-}
-
-const styles = {
-    filled: {
-        container: {
-            ...containerBase,
-            backgroundColor: blue1
-        },
-        text: {
-            ...textBase,
-            color: 'white'
-        }
-    },
-    outlined: {
-        container: {
-            ...containerBase,
-            borderColor: blue1,
-            borderWidth: 1
-        },
-        text: {
-            ...textBase,
-            color: blue1
-        }
-    }
-};
