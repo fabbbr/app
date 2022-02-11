@@ -6,15 +6,17 @@ import Fr from '@icons/flags/fr.svg'
 const fr = Fr
 
 export default function Flag({ code, width }) {
-    if(!width) width = 25
+    if (!width) width = 25
 
     let Code = eval(code)
 
     return (
-        <View style={{
-            width: width,
-            height: width * (2/3)
-        }}>
+        <View
+            style={{
+                width: width,
+                height: width * (2 / 3),
+            }}
+        >
             <Code />
         </View>
     )

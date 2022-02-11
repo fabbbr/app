@@ -16,7 +16,6 @@ import { clearMessage } from '@slices/message'
 import GlobalStyle from '@styles/GlobalStyle'
 import ProfileStyle from '@styles/ProfileStyle'
 
-
 export default function LoginProfileScreen({ navigation }) {
     const [loading, setLoading] = useState(false) // todo display loading
     const [errors, setErrors] = useState({})
@@ -32,7 +31,6 @@ export default function LoginProfileScreen({ navigation }) {
         dispatch(clearMessage())
     }, [dispatch])
 
-
     const onSubmit = async (data) => {
         let err = {}
         data = Tools.objFormat(data)
@@ -43,13 +41,15 @@ export default function LoginProfileScreen({ navigation }) {
         setErrors(err)
         if (Tools.objSize(err) === 0) {
             setLoading(true)
-            
+
             try {
-                await dispatch(login({
-                    username: data.username,
-                    password: data.password
-                }))
-                
+                await dispatch(
+                    login({
+                        username: data.username,
+                        password: data.password,
+                    })
+                )
+
                 navigation.navigate('HomeProfileScreen')
             } catch {
                 setLoading(false)
@@ -58,22 +58,38 @@ export default function LoginProfileScreen({ navigation }) {
     }
 
     useFocusEffect(() => {
-        if(isLoggedIn) navigation.navigate('HomeProfileScreen')
+        if (isLoggedIn) navigation.navigate('HomeProfileScreen')
     })
 
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
             <AppTitle text={t('login')} align="center" icon="3lines" />
 
-            <AppInput control={control} name="username" type="text" label={t('email')} error={errors.username} />
-            <AppInput control={control} name="password" type="password" label={t('password')} error={errors.password} />
+            <AppInput
+                control={control}
+                name="username"
+                type="text"
+                label={t('email')}
+                error={errors.username}
+            />
+            <AppInput
+                control={control}
+                name="password"
+                type="password"
+                label={t('password')}
+                error={errors.password}
+            />
 
             <View style={{ marginTop: 10 }}>
                 <AppButton text={t('login')} onPress={handleSubmit(onSubmit)} />
             </View>
 
             <View style={{ marginVertical: 15 }}>
-                <TextLine text='connexion avec' color={GlobalStyle.color.gray} lineColor={GlobalStyle.color.gray} />
+                <TextLine
+                    text="connexion avec"
+                    color={GlobalStyle.color.gray}
+                    lineColor={GlobalStyle.color.gray}
+                />
             </View>
 
             <View style={{ marginTop: 10 }}>
@@ -82,7 +98,10 @@ export default function LoginProfileScreen({ navigation }) {
 
             <View style={{ marginTop: 40, alignItems: 'center' }}>
                 <Text style={ProfileStyle.bottom_text}>{t('no_account')}</Text>
-                <Link style={ProfileStyle.link} to={{ screen: 'SigninProfileScreenStep1' }}>
+                <Link
+                    style={ProfileStyle.link}
+                    to={{ screen: 'SigninProfileScreenStep1' }}
+                >
                     {t('signin2')}
                 </Link>
             </View>

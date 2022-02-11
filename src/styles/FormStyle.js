@@ -9,15 +9,14 @@ export default StyleSheet.create({
         paddingHorizontal: 15,
         paddingVertical: 5,
         backgroundColor: GlobalStyle.color.light,
-        borderColor: GlobalStyle.color.gray
+        borderColor: GlobalStyle.color.gray,
     },
     label: {
         color: GlobalStyle.color.gray,
-        fontFamily: 'RiposteRegular'
+        fontFamily: 'RiposteRegular',
     },
     input: {
         color: GlobalStyle.color.dark,
-        fontFamily: 'RiposteRegular'
-    }
+        fontFamily: 'RiposteRegular',
+    },
 })
-

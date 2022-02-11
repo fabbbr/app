@@ -30,7 +30,7 @@ export default function HomeScreen() {
     return (
         <ScrollView style={HomeStyle.container}>
             <View style={HomeStyle.trends}>
-                <AppTitle text={t('trends')} icon='3lines' dash />
+                <AppTitle text={t('trends')} icon="3lines" dash />
                 <Text style={HomeStyle.sub_title}>
                     {t('creation_recommendation')}
                 </Text>
@@ -38,7 +38,7 @@ export default function HomeScreen() {
             </View>
 
             <View style={HomeStyle.community}>
-                <AppTitle text={t('community')} icon='3lines' dash />
+                <AppTitle text={t('community')} icon="3lines" dash />
                 <Text style={HomeStyle.sub_title}>
                     {t('discover_creation')}
                 </Text>

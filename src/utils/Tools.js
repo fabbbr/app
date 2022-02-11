@@ -1,14 +1,15 @@
 export const objSize = (obj) => {
-    let size = 0, key
+    let size = 0,
+        key
     for (key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
+        if (obj.hasOwnProperty(key)) size++
     }
-    return size;
+    return size
 }
 
 export const objFormat = (obj) => {
-    for(let key in obj) {
-        if(obj.hasOwnProperty(key) && obj[key] === undefined) obj[key] = ''
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key) && obj[key] === undefined) obj[key] = ''
     }
     return obj
 }

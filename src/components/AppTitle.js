@@ -5,17 +5,17 @@ import GlobalStyle from '@styles/GlobalStyle'
 import AppStyle from '@styles/AppStyle'
 import Icon3lines from '@icons/title-3lines.svg'
 
-export default function AppTitle({text, align, icon, dash}) {
-    if(align === undefined || !align.length) align = 'flex-start'
+export default function AppTitle({ text, align, icon, dash }) {
+    if (align === undefined || !align.length) align = 'flex-start'
 
     let Dash
-    if(dash === true) {
+    if (dash === true) {
         Dash = <View style={styles.line}></View>
     }
 
     let Icon
-    switch(icon) {
-        case '3lines': 
+    switch (icon) {
+        case '3lines':
             Icon = (
                 <View style={styles.icon_box}>
                     <Icon3lines />
@@ -23,12 +23,11 @@ export default function AppTitle({text, align, icon, dash}) {
             )
             break
     }
-    
 
     return (
-        <View style={{...styles.box, justifyContent: align}}>
+        <View style={{ ...styles.box, justifyContent: align }}>
             {Dash}
-            <Text style={{...styles.text}}>{text}</Text>
+            <Text style={{ ...styles.text }}>{text}</Text>
             {Icon}
         </View>
     )
@@ -36,14 +35,14 @@ export default function AppTitle({text, align, icon, dash}) {
 
 const styles = StyleSheet.create({
     box: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     text: {
         ...AppStyle.h1,
-        marginBottom: 5
+        marginBottom: 5,
     },
     icon_box: {
-        marginLeft: 2
+        marginLeft: 2,
     },
     line: {
         marginTop: 14,
@@ -51,5 +50,5 @@ const styles = StyleSheet.create({
         width: 16,
         height: 1,
         backgroundColor: GlobalStyle.color.primary,
-    }
+    },
 })

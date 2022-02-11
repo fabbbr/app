@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import { Controller } from "react-hook-form"
+import { Controller } from 'react-hook-form'
 
 import FormStyle from '@styles/FormStyle'
 
@@ -9,14 +9,23 @@ import PasswordInput from '@components/inputs/PasswordInput'
 import NumberInput from '@components/inputs/NumberInput'
 import DateInput from '@components/inputs/DateInput'
 
-export default function AppInput({ control, name, type, label, placeholder, required, error, defaultValue }) {
+export default function AppInput({
+    control,
+    name,
+    type,
+    label,
+    placeholder,
+    required,
+    error,
+    defaultValue,
+}) {
     let Type
-    switch(type) {
+    switch (type) {
         case 'text':
             Type = TextInput
             break
         case 'password':
-            Type = PasswordInput 
+            Type = PasswordInput
             break
         case 'number':
             Type = NumberInput
@@ -27,14 +36,21 @@ export default function AppInput({ control, name, type, label, placeholder, requ
     }
 
     let errorStr
-    if(error) errorStr = <Text>{error}</Text>
-    if(required) label += ' *'
+    if (error) errorStr = <Text>{error}</Text>
+    if (required) label += ' *'
 
-    return(
+    return (
         <View style={FormStyle.box}>
             <Text style={FormStyle.label}>{label}</Text>
             <Controller
-                render={({ field }) => (<Type {...field} ref={null} placeholder={placeholder} value={defaultValue} />)}
+                render={({ field }) => (
+                    <Type
+                        {...field}
+                        ref={null}
+                        placeholder={placeholder}
+                        value={defaultValue}
+                    />
+                )}
                 name={name}
                 control={control}
             />

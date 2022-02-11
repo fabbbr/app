@@ -6,12 +6,12 @@ export default {
         text: '#6C777A',
         dark: '#141414',
         light: 'white',
-        
+
         gray: '#A3A3A3',
         lightgray: '#DDDDDD',
-        lightgray2: '#BDBDBD'
+        lightgray2: '#BDBDBD',
     },
     container: {
-        padding : 20
-    }
+        padding: 20,
+    },
 }

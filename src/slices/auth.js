@@ -12,7 +12,7 @@ export const register = createAsyncThunk(
             return SliceUtils.error(thunkAPI, error)
         }
     }
-);
+)
 
 export const login = createAsyncThunk(
     'auth/login',
@@ -26,25 +26,19 @@ export const login = createAsyncThunk(
     }
 )
 
-export const logout = createAsyncThunk(
-    'auth/logout',
-    async () => {
-        await AuthService.logout()
-    }
-)
+export const logout = createAsyncThunk('auth/logout', async () => {
+    await AuthService.logout()
+})
 
-export const setUserInit = createAsyncThunk(
-    'auth/getUser',
-    async () => {
-        const user = await AuthService.getUser()
-        return { user }
-    }
-)
+export const setUserInit = createAsyncThunk('auth/getUser', async () => {
+    const user = await AuthService.getUser()
+    return { user }
+})
 
-const initialState = { 
+const initialState = {
     init: true,
-    isLoggedIn: false, 
-    user: null
+    isLoggedIn: false,
+    user: null,
 }
 
 const authSlice = createSlice({
@@ -52,9 +46,8 @@ const authSlice = createSlice({
     initialState,
     extraReducers: {
         [setUserInit.fulfilled]: (state, action) => {
-            if(action.payload.user) {
-                state.isLoggedIn = true,
-                state.user = action.payload.user
+            if (action.payload.user) {
+                ;(state.isLoggedIn = true), (state.user = action.payload.user)
             }
             state.init = false
         },
@@ -76,8 +69,8 @@ const authSlice = createSlice({
         [logout.fulfilled]: (state, action) => {
             state.isLoggedIn = false
             state.user = null
-        }
-    }
+        },
+    },
 })
 
 export default authSlice.reducer

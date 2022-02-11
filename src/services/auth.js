@@ -6,7 +6,7 @@ const register = async (username, email, password) => {
     const response = await axios.post(API_URL + 'signin', {
         username,
         email,
-        password
+        password,
     })
 
     if (response.data.token) LS.set('user', JSON.stringify(response.data))
@@ -15,13 +15,13 @@ const register = async (username, email, password) => {
 
 const login = async (username, password) => {
     const response = await axios.post(API_URL + 'login', {
-            username,
-            password
-        })
+        username,
+        password,
+    })
 
     if (response.data.token) LS.set('user', JSON.stringify(response.data))
     return response.data
-};
+}
 
 const logout = async () => {
     return await LS.remove('user')
@@ -35,7 +35,7 @@ const authService = {
     register,
     login,
     logout,
-    getUser
+    getUser,
 }
 
 export default authService

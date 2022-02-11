@@ -20,7 +20,7 @@ export default function BottomNavigation() {
                         case 'Root':
                             return (
                                 <AntDesign
-                                    name='home'
+                                    name="home"
                                     size={size}
                                     color={color}
                                 />
@@ -28,7 +28,7 @@ export default function BottomNavigation() {
                         case 'Search':
                             return (
                                 <AntDesign
-                                    name='search1'
+                                    name="search1"
                                     size={size}
                                     color={color}
                                 />
@@ -36,7 +36,7 @@ export default function BottomNavigation() {
                         case 'Sell':
                             return (
                                 <AntDesign
-                                    name='pluscircleo'
+                                    name="pluscircleo"
                                     size={size}
                                     color={color}
                                 />
@@ -44,7 +44,7 @@ export default function BottomNavigation() {
                         case 'Message':
                             return (
                                 <AntDesign
-                                    name='mail'
+                                    name="mail"
                                     size={size}
                                     color={color}
                                 />
@@ -52,7 +52,7 @@ export default function BottomNavigation() {
                         case 'Profile':
                             return (
                                 <AntDesign
-                                    name='user'
+                                    name="user"
                                     size={size}
                                     color={color}
                                 />
@@ -64,11 +64,11 @@ export default function BottomNavigation() {
                 headerShown: false,
             })}
         >
-            <Tab.Screen name='Root' component={RootScreen} />
-            <Tab.Screen name='Search' component={SearchScreen} />
-            <Tab.Screen name='Sell' component={SellScreen} />
-            <Tab.Screen name='Message' component={MessageScreen} />
-            <Tab.Screen name='Profile' component={ProfileScreen} />
+            <Tab.Screen name="Root" component={RootScreen} />
+            <Tab.Screen name="Search" component={SearchScreen} />
+            <Tab.Screen name="Sell" component={SellScreen} />
+            <Tab.Screen name="Message" component={MessageScreen} />
+            <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
     )
 }

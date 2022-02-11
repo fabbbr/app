@@ -12,19 +12,19 @@ export default function ProfileNavigation() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen
-                name='HomeProfileScreen'
+                name="HomeProfileScreen"
                 component={HomeProfileScreen}
             />
             <Stack.Screen
-                name='LoginProfileScreen'
+                name="LoginProfileScreen"
                 component={LoginProfileScreen}
             />
             <Stack.Screen
-                name='SigninProfileScreenStep1'
+                name="SigninProfileScreenStep1"
                 component={SigninProfileScreenStep1}
             />
             <Stack.Screen
-                name='SigninProfileScreenStep2'
+                name="SigninProfileScreenStep2"
                 component={SigninProfileScreenStep2}
             />
         </Stack.Navigator>

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {}
 
@@ -10,9 +10,9 @@ const messageSlice = createSlice({
             return { message: action.payload }
         },
         clearMessage: () => {
-            return { message: "" }
-        }
-    }
+            return { message: '' }
+        },
+    },
 })
 
 export const { setMessage, clearMessage } = messageSlice.actions

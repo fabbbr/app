@@ -6,7 +6,7 @@ export const set = async (key, value) => {
 
 export const get = async (key) => {
     let result = await SecureStore.getItemAsync(key)
-    if(result) {
+    if (result) {
         return result
     } else {
         return null

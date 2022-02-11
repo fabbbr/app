@@ -7,31 +7,31 @@ const base = {
     paddingVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
 }
 
 const base_text = {
-    fontFamily: 'RiposteRegular'
+    fontFamily: 'RiposteRegular',
 }
 
 export default StyleSheet.create({
     default: {
         ...base,
-        backgroundColor: GlobalStyle.color.primary
+        backgroundColor: GlobalStyle.color.primary,
     },
     default_text: {
         ...base_text,
-        color: GlobalStyle.color.light
+        color: GlobalStyle.color.light,
     },
 
     google: {
         ...base,
         backgroundColor: GlobalStyle.color.light,
         borderWidth: 1,
-        borderColor: '#eee'
+        borderColor: '#eee',
     },
     google_text: {
         ...base_text,
-        color: GlobalStyle.color.dark
-    }
+        color: GlobalStyle.color.dark,
+    },
 })

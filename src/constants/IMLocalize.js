@@ -8,7 +8,7 @@ import fr from '@translations/fr'
 
 const LANGUAGES = {
     en,
-    fr
+    fr,
 }
 
 const LANG_CODES = Object.keys(LANGUAGES)
@@ -17,12 +17,12 @@ const DEFAULT = 'en'
 const LANGUAGE_DETECTOR = {
     type: 'languageDetector',
     async: true,
-    detect: callback => {
+    detect: (callback) => {
         LS.remove('user-language')
-        LS.get('user-language').then(language => {
-            if(!language) {
+        LS.get('user-language').then((language) => {
+            if (!language) {
                 let localeLanguageTag = Localization?.locale
-                if(localeLanguageTag) {
+                if (localeLanguageTag) {
                     let code = localeLanguageTag.split('-')[0].toLowerCase()
                     callback(LANG_CODES.includes(code) ? code : DEFAULT)
                 } else {
@@ -33,24 +33,23 @@ const LANGUAGE_DETECTOR = {
             }
         })
     },
-    init: () => { },
-    cacheUserLanguage: language => {
-        LS.set('user-language', language);
-    }
+    init: () => {},
+    cacheUserLanguage: (language) => {
+        LS.set('user-language', language)
+    },
 }
 
-i18n
-    .use(LANGUAGE_DETECTOR)
+i18n.use(LANGUAGE_DETECTOR)
     .use(initReactI18next)
     .init({
         resources: LANGUAGES,
         react: {
-            useSuspense: false
+            useSuspense: false,
         },
         interpolation: {
-            escapeValue: false
+            escapeValue: false,
         },
         fallbackLng: DEFAULT,
         defaultNS: 'main',
-        compatibilityJSON: 'v3'
+        compatibilityJSON: 'v3',
     })

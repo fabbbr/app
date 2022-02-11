@@ -9,13 +9,13 @@ export default function SearchScreen() {
         <View style={styles.container}>
             <Text>{t('search')}!</Text>
         </View>
-    );
+    )
 }
 
 const styles = {
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center' 
-    }
+        alignItems: 'center',
+    },
 }
