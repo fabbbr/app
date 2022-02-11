@@ -6,5 +6,6 @@ export const getFonts = () => {
         RecoletaMedium: require('@fonts/Recoleta/Recoleta-Medium.ttf'),
         RecoletaBold: require('@fonts/Recoleta/Recoleta-Bold.ttf'),
         RiposteRegular: require('@fonts/Riposte/Riposte-Regular.otf'),
+        RiposteMedium: require('@fonts/Riposte/Riposte-Medium.otf'),
     })
 }

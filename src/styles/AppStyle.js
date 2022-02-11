@@ -8,11 +8,15 @@ export default StyleSheet.create({
         fontSize: 24,
     },
     h2: {
-        fontFamily: 'RecoletaMedium',
+        fontFamily: 'RiposteMedium',
+        fontSize: 20,
+    },
+    h2_bold: {
+        fontFamily: 'RecoletaBold',
         fontSize: 20,
     },
     h3: {
-        fontFamily: 'RecoletaMedium',
+        fontFamily: 'RiposteMedium',
         fontSize: 16,
     },
     h3_bold: {

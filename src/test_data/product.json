@@ -1,0 +1,20 @@
+{
+    "id": 1,
+    "name": "Bracelet fait main",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquam eros nisi euismod.",
+    "country": "fr",
+    "rating": "4.3",
+    "review": "233",
+    "price": "19",
+    "images": [
+        "1",
+        "2",
+        "3"
+    ],
+    "store": {
+        "id": 1,
+        "name": "store 1",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquam eros nisi euismod. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquam eros nisi euismod."
+    }
+}
+
