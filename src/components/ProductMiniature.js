@@ -1,25 +1,35 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import Flag from '@components/Flag'
 import YellowStar from '@icons/yellow-star.svg'
 import GlobalStyle from '@styles/GlobalStyle'
 import AppStyle from '@styles/AppStyle'
 
-
 export default function ProductMiniature({ product }) {
+    const navigation = useNavigation()
+
+    const onPress = () => {
+        navigation.navigate('ProductScreen', { id: product.id })
+    }
+
     return (
-        <View style={styles.container}>
+        <TouchableOpacity
+            style={styles.container}
+            activeOpacity={0.8}
+            onPress={onPress}
+        >
             <View style={styles.img}></View>
             <View style={styles.container2}>
                 <Text style={AppStyle.h3}>{product.name}</Text>
-                
+
                 <View style={styles.container3}>
                     <Flag code={product.country} />
                     <View style={styles.vertical_lign}></View>
                     <Text style={AppStyle.text}>{product.seller_name}</Text>
                 </View>
-                
+
                 <View style={styles.horizontal_lign}></View>
 
                 <View style={styles.bottom}>
@@ -33,7 +43,7 @@ export default function ProductMiniature({ product }) {
                     </View>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -45,50 +55,50 @@ const styles = StyleSheet.create({
         borderColor: GlobalStyle.color.lightgray,
         backgroundColor: GlobalStyle.color.light,
         overflow: 'hidden',
-        width: 240
+        width: 240,
     },
     container2: {
         padding: 10,
-        paddingTop: 15
+        paddingTop: 15,
     },
     img: {
         backgroundColor: 'lightgray',
-        height: 240
+        height: 240,
     },
     container3: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 5
+        marginTop: 5,
     },
     vertical_lign: {
         backgroundColor: GlobalStyle.color.lightgray,
         width: 1,
         height: 20,
-        marginHorizontal: 10
+        marginHorizontal: 10,
     },
     horizontal_lign: {
         backgroundColor: GlobalStyle.color.lightgray,
         height: 1,
-        marginVertical: 8
+        marginVertical: 8,
     },
 
     bottom: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     bottom_left: {
         flexDirection: 'row',
         padding: 5,
-        marginTop: 2
+        marginTop: 2,
     },
     rating: {
         ...AppStyle.text,
-        marginLeft: 5
+        marginLeft: 5,
     },
     review: {
         ...AppStyle.text,
         marginLeft: 5,
-        color: GlobalStyle.color.lightgray2
+        color: GlobalStyle.color.lightgray2,
     },
     price: {
         ...AppStyle.h3_bold,
@@ -96,6 +106,6 @@ const styles = StyleSheet.create({
         backgroundColor: GlobalStyle.color.background,
         paddingVertical: 5,
         paddingHorizontal: 10,
-        borderRadius: 5
-    }
-}) 
+        borderRadius: 5,
+    },
+})
