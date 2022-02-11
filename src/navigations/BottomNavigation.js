@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { AntDesign } from '@expo/vector-icons'
 
 import GlobalStyle from '@styles/GlobalStyle'
-import HomeScreen from '@screens/HomeScreen'
+import RootScreen from '@screens/RootScreen'
 import SearchScreen from '@screens/SearchScreen'
 import SellScreen from '@screens/SellScreen'
 import MessageScreen from '@screens/MessageScreen'
@@ -17,7 +17,7 @@ export default function BottomNavigation() {
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                     switch (route.name) {
-                        case 'Home':
+                        case 'Root':
                             return (
                                 <AntDesign
                                     name='home'
@@ -64,7 +64,7 @@ export default function BottomNavigation() {
                 headerShown: false,
             })}
         >
-            <Tab.Screen name='Home' component={HomeScreen} />
+            <Tab.Screen name='Root' component={RootScreen} />
             <Tab.Screen name='Search' component={SearchScreen} />
             <Tab.Screen name='Sell' component={SellScreen} />
             <Tab.Screen name='Message' component={MessageScreen} />
