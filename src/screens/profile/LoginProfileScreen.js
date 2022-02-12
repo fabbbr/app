@@ -10,6 +10,7 @@ import AppInput from '@components/AppInput'
 import TextLine from '@components/TextLine'
 import AppButton from '@components/AppButton'
 import AppTitle from '@components/AppTitle'
+import AppMessage from '@components/AppMessage'
 import * as Tools from '@utils/Tools'
 import { login } from '@slices/auth'
 import { clearMessage } from '@slices/message'
@@ -17,13 +18,13 @@ import GlobalStyle from '@styles/GlobalStyle'
 import ProfileStyle from '@styles/ProfileStyle'
 
 export default function LoginProfileScreen({ navigation }) {
-    const [loading, setLoading] = useState(false) // todo display loading
+    const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
     const { control, handleSubmit } = useForm()
     const { t } = useTranslation()
 
     const { isLoggedIn } = useSelector((state) => state.auth)
-    const { message } = useSelector((state) => state.message) // todo display message
+    const { message, messageType } = useSelector((state) => state.message)
 
     const dispatch = useDispatch()
 
@@ -43,14 +44,14 @@ export default function LoginProfileScreen({ navigation }) {
             setLoading(true)
 
             try {
-                await dispatch(
+                const response = await dispatch(
                     login({
                         username: data.username,
                         password: data.password,
                     })
-                )
+                ).unwrap()
 
-                navigation.navigate('HomeProfileScreen')
+                if (response) navigation.navigate('HomeProfileScreen')
             } catch {
                 setLoading(false)
             }
@@ -80,8 +81,18 @@ export default function LoginProfileScreen({ navigation }) {
                 error={errors.password}
             />
 
+            {messageType ? (
+                <View style={{ marginVertical: 10 }}>
+                    <AppMessage message={message} messageType={messageType} />
+                </View>
+            ) : null}
+
             <View style={{ marginTop: 10 }}>
-                <AppButton text={t('login')} onPress={handleSubmit(onSubmit)} />
+                <AppButton
+                    text={t('login')}
+                    onPress={handleSubmit(onSubmit)}
+                    loading={loading}
+                />
             </View>
 
             <View style={{ marginVertical: 15 }}>

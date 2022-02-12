@@ -17,7 +17,6 @@ export default function AppInput({
     placeholder,
     required,
     error,
-    defaultValue,
 }) {
     let Type
     switch (type) {
@@ -35,26 +34,21 @@ export default function AppInput({
             break
     }
 
-    let errorStr
-    if (error) errorStr = <Text>{error}</Text>
     if (required) label += ' *'
 
     return (
-        <View style={FormStyle.box}>
-            <Text style={FormStyle.label}>{label}</Text>
-            <Controller
-                render={({ field }) => (
-                    <Type
-                        {...field}
-                        ref={null}
-                        placeholder={placeholder}
-                        value={defaultValue}
-                    />
-                )}
-                name={name}
-                control={control}
-            />
-            {errorStr}
+        <View style={FormStyle.wrapper}>
+            <View style={FormStyle.box}>
+                <Text style={FormStyle.label}>{label}</Text>
+                <Controller
+                    render={({ field }) => (
+                        <Type {...field} ref={null} placeholder={placeholder} />
+                    )}
+                    name={name}
+                    control={control}
+                />
+            </View>
+            {error ? <Text style={FormStyle.error}>{error}</Text> : null}
         </View>
     )
 }

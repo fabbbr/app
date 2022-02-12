@@ -1,9 +1,9 @@
 import React from 'react'
-import { TouchableOpacity, Text, View } from 'react-native'
+import { TouchableOpacity, Text, View, ActivityIndicator } from 'react-native'
 import ButtonStyle from '@styles/ButtonStyle'
 import IconGoogle from '@icons/google.svg'
 
-export default function AppButton({ type, text, onPress }) {
+export default function AppButton({ type, text, onPress, loading }) {
     if (type === undefined || !type.length) type = 'default'
     const type_text = type + '_text'
 
@@ -20,6 +20,13 @@ export default function AppButton({ type, text, onPress }) {
             style={ButtonStyle[type]}
             activeOpacity={0.8}
         >
+            {loading ? (
+                <ActivityIndicator
+                    size="small"
+                    color="#ddd"
+                    style={{ marginRight: 10 }}
+                />
+            ) : null}
             <View>{Icon}</View>
             <Text style={ButtonStyle[type_text]}>{text}</Text>
         </TouchableOpacity>

@@ -14,16 +14,27 @@ import { register } from '@slices/auth'
 import { clearMessage } from '@slices/message'
 import ProfileStyle from '@styles/ProfileStyle'
 
-export default function SigninProfileScreenStep2({ route }) {
-    const [loading, setLoading] = useState(false) // todo display loading
+export default function SigninProfileScreenStep2({ route, navigation }) {
+    const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
-    const { control, handleSubmit } = useForm()
-    const { t } = useTranslation()
     const { email } = route.params
+    const { control, handleSubmit, setValue } = useForm()
+    const { t } = useTranslation()
 
     const { isLoggedIn } = useSelector((state) => state.auth)
-    const { message } = useSelector((state) => state.message) // todo display message
+    const { message, messageType } = useSelector((state) => state.message) // todo display message
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        setValue('email', email)
+    }, [])
+
+    useEffect(() => {
+        if (message === 'EMAIL_ALREADY_USED')
+            setErrors({ ...errors, email: message })
+        if (message === 'USERNAME_ALREADY_USED')
+            setErrors({ ...errors, username: message })
+    }, [message])
 
     useEffect(() => {
         dispatch(clearMessage())
@@ -34,29 +45,36 @@ export default function SigninProfileScreenStep2({ route }) {
         data = Tools.objFormat(data)
 
         data.email = data.email.trim()
+
         if (!data.email.length) err.email = t('errors:form.input.empty')
-        else if (!Verifier.email(data.email)) t('errors:form.input.email')
+        else if (!Verifier.email(data.email))
+            err.email = t('errors:form.input.email')
+
         if (!data.username) err.username = t('errors:form.input.empty')
+
         if (!data.password.length) err.password = t('errors:form.input.empty')
-        if (!data.password2.length) err.password2 = t('errors:form.input.empty')
-        else if (data.password !== data.password2)
-            err.password2 = t('errors:form.input.password')
-        data.country = 'FR'
+        if (!data.passwordConfirmation.length)
+            err.passwordConfirmation = t('errors:form.input.empty')
+        else if (data.password !== data.passwordConfirmation)
+            err.passwordConfirmation = t('errors:form.input.password')
+
+        data.country = 'FR' // todo add select country
 
         setErrors(err)
         if (Tools.objSize(err) === 0) {
             setLoading(true)
 
             try {
-                await dispatch(
+                const response = await dispatch(
                     register({
                         username: data.username,
                         email: data.email,
                         password: data.password,
+                        country: data.country,
                     })
-                )
+                ).unwrap()
 
-                navigation.navigate('HomeProfileScreen')
+                if (response) navigation.navigate('HomeProfileScreen')
             } catch {
                 setLoading(false)
             }
@@ -69,6 +87,9 @@ export default function SigninProfileScreenStep2({ route }) {
 
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
+            <Text>
+                {message} {messageType}
+            </Text>
             <AppTitle text={t('signin')} align="center" icon="3lines" />
 
             <AppInput
@@ -78,7 +99,6 @@ export default function SigninProfileScreenStep2({ route }) {
                 label={t('email')}
                 required
                 error={errors.email}
-                defaultValue={email}
             />
             <AppInput
                 control={control}
@@ -98,15 +118,25 @@ export default function SigninProfileScreenStep2({ route }) {
             />
             <AppInput
                 control={control}
-                name="password2"
+                name="passwordConfirmation"
                 type="password"
                 label={t('password_confirmation')}
                 required
-                error={errors.password2}
+                error={errors.passwordConfirmation}
             />
 
+            {messageType && ['INVALID_PARAMETERS'].includes(message) ? (
+                <View style={{ marginVertical: 10 }}>
+                    <AppMessage message={message} messageType={messageType} />
+                </View>
+            ) : null}
+
             <View style={{ marginTop: 10 }}>
-                <AppButton text={t('login')} onPress={handleSubmit(onSubmit)} />
+                <AppButton
+                    text={t('signin2')}
+                    onPress={handleSubmit(onSubmit)}
+                    loading={loading}
+                />
             </View>
         </ScrollView>
     )

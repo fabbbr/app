@@ -1,6 +1,5 @@
 {
   "expo": {
-    
     "packagerOpts": {
       "config": "metro.config.js",
       "sourceExts": [
@@ -17,8 +16,8 @@
         "svg"
       ]
     },
-    "name": "app-front",
-    "slug": "app-front",
+    "name": "Crafty",
+    "slug": "Crafty-Discover-European-Culture",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/img/icon.png",
@@ -34,9 +33,15 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.crafty.crafty",
+      "buildNumber": "1.0.0",
+
       "supportsTablet": true
     },
     "android": {
+      "package": "com.crafty.crafty",
+      "versionCode": 1,
+
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/img/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
