@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import Flag from '@components/Flag'
@@ -20,7 +20,8 @@ export default function ProductMiniature({ product }) {
             activeOpacity={0.8}
             onPress={onPress}
         >
-            <View style={styles.img}></View>
+            <Image source={{ uri: product.image }} style={styles.img} />
+
             <View style={styles.container2}>
                 <Text style={AppStyle.h3}>{product.name}</Text>
 
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
     },
     img: {
         backgroundColor: 'lightgray',
+        width: 240,
         height: 240,
     },
     container3: {
