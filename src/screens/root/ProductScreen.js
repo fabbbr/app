@@ -1,9 +1,10 @@
-import * as React from 'react'
+import React from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 
 import Flag from '@components/Flag'
+import Slider from '@components/Slider'
 
 import StoreIcon from '@icons/store.svg'
 import YellowStarIcon from '@icons/yellow-star.svg'
@@ -24,6 +25,8 @@ export default function ProductHomeScreen({ route }) {
 
     return (
         <View style={HomeStyle.container}>
+            <Slider items={product.images} />
+
             <View style={styles.container_bottom}>
                 <View style={styles.container_title}>
                     <Text style={AppStyle.h2}>{product.name}</Text>
