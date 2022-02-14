@@ -19,3 +19,4 @@ rules:
           - style
           - test
           - merge
+          - translation

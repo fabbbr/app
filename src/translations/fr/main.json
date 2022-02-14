@@ -26,5 +26,13 @@
     "creation_recommendation": "Recommendations de créations",
     "community": "Communauté",
     "discover_creation": "Découvrez les créations de la communauté",
-    "see_all": "voir tout"
+    "see_all": "voir tout",
+
+    "description": "Description",
+    "view_store": "Voir la boutique",
+    "store_information": "Informations sur la boutique",
+    "send_message": "Envoyer un message",
+    "buy": "Acheter",
+    "back": "Retour",
+    "share": "Partager"
 }

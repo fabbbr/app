@@ -26,5 +26,13 @@
     "creation_recommendation": "Creations recommendations",
     "community": "Community",
     "discover_creation": "Discover community's creations",
-    "see_all": "see all"
+    "see_all": "see all",
+
+    "description": "Description",
+    "view_store": "View store",
+    "store_information": "Store information",
+    "send_message": "Send message",
+    "buy": "Buy",
+    "back": "Back",
+    "share": "Share"
 }
