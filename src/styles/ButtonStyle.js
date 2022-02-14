@@ -8,13 +8,17 @@ const base = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'transparent',
 }
 
 const base_text = {
     fontFamily: 'RiposteRegular',
+    textAlign: 'center',
+    fontSize: 14,
 }
 
-export default StyleSheet.create({
+const styles = {
     default: {
         ...base,
         backgroundColor: GlobalStyle.color.primary,
@@ -34,4 +38,27 @@ export default StyleSheet.create({
         ...base_text,
         color: GlobalStyle.color.dark,
     },
-})
+    outlined: {
+        ...base,
+        borderColor: GlobalStyle.color.primary,
+        backgroundColor: GlobalStyle.color.light,
+    },
+    outlined_text: {
+        ...base_text,
+        color: GlobalStyle.color.primary,
+    },
+}
+
+const styles2 = {}
+for (let key in styles) {
+    if (key.substr(key.length - 5) === '_text') {
+        styles2[key.substring(0, key.length - 5) + '_medium' + '_text'] = {
+            ...styles[key],
+            fontSize: 12,
+        }
+    } else {
+        styles2[key + '_medium'] = { ...styles[key] }
+    }
+}
+
+export default StyleSheet.create({ ...styles, ...styles2 })

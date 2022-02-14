@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, View, ActivityIndicator } from 'react-native'
 import ButtonStyle from '@styles/ButtonStyle'
 import IconGoogle from '@icons/google.svg'
 
-export default function AppButton({ type, text, onPress, loading }) {
+export default function AppButton({ type, text, onPress, loading, uppercase }) {
     if (type === undefined || !type.length) type = 'default'
     const type_text = type + '_text'
 
@@ -28,7 +28,14 @@ export default function AppButton({ type, text, onPress, loading }) {
                 />
             ) : null}
             <View>{Icon}</View>
-            <Text style={ButtonStyle[type_text]}>{text}</Text>
+            <Text
+                style={{
+                    ...ButtonStyle[type_text],
+                    ...(uppercase ? { textTransform: 'uppercase' } : {}),
+                }}
+            >
+                {text}
+            </Text>
         </TouchableOpacity>
     )
 }
