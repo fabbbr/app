@@ -9,13 +9,13 @@ export default function MessageScreen() {
         <View style={styles.container}>
             <Text>{t('message')}!</Text>
         </View>
-    );
+    )
 }
 
 const styles = {
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center' 
-    }
+        alignItems: 'center',
+    },
 }

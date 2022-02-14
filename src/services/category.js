@@ -2,12 +2,16 @@ import axios from 'axios'
 import { API_URL } from '@constants'
 
 const getChildCategories = async (id_category) => {
-    const response = await axios.post(API_URL + 'category/childs', { id_category })
+    const response = await axios.post(API_URL + 'category/childs', {
+        id_category,
+    })
     return response.data
 }
 
 const getCategoryProducts = async (id_category) => {
-    const response = await axios.post(API_URL + 'category/products', { id_category })
+    const response = await axios.post(API_URL + 'category/products', {
+        id_category,
+    })
     return response.data
 }
 
@@ -25,7 +29,7 @@ const categoryService = {
     getChildCategories,
     getCategoryProducts,
     getTrendProducts,
-    getCommunityCategories
+    getCommunityCategories,
 }
 
 export default categoryService

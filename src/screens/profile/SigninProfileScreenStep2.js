@@ -90,36 +90,36 @@ export default function SigninProfileScreenStep2({ route, navigation }) {
             <Text>
                 {message} {messageType}
             </Text>
-            <AppTitle text={t('signin')} align='center' icon='3lines' />
+            <AppTitle text={t('signin')} align="center" icon="3lines" />
 
             <AppInput
                 control={control}
-                name='email'
-                type='text'
+                name="email"
+                type="text"
                 label={t('email')}
                 required
                 error={errors.email}
             />
             <AppInput
                 control={control}
-                name='username'
-                type='text'
+                name="username"
+                type="text"
                 label={t('username')}
                 required
                 error={errors.username}
             />
             <AppInput
                 control={control}
-                name='password'
-                type='password'
+                name="password"
+                type="password"
                 label={t('password')}
                 required
                 error={errors.password}
             />
             <AppInput
                 control={control}
-                name='passwordConfirmation'
-                type='password'
+                name="passwordConfirmation"
+                type="password"
                 label={t('password_confirmation')}
                 required
                 error={errors.passwordConfirmation}

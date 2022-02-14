@@ -1,0 +1,21 @@
+{
+    "id": 1,
+    "name": "Bracelet fait main",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquam eros nisi euismod.",
+    "country": "fr",
+    "rating": "4.3",
+    "review": "233",
+    "price": "19",
+    "images": [
+        "https://i.etsystatic.com/20363554/r/il/769326/2272267436/il_794xN.2272267436_p3wb.jpg",
+        "https://i.etsystatic.com/20363554/r/il/07d049/2319866211/il_794xN.2319866211_em0b.jpg",
+        "https://i.etsystatic.com/20363554/r/il/003987/2272267078/il_794xN.2272267078_r3tf.jpg",
+        "https://i.etsystatic.com/20363554/r/il/a84d6f/2319866445/il_794xN.2319866445_38ac.jpg"
+    ],
+    "store": {
+        "id": 1,
+        "name": "store 1",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquam eros nisi euismod. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquam eros nisi euismod."
+    }
+}
+

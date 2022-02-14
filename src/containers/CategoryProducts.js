@@ -15,7 +15,9 @@ export default function CategoryProducts({ id_category, name }) {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.title}>{name}</Text>
-                <Text style={styles.link}>{t('see_all')} {'>'}</Text>
+                <Text style={styles.link}>
+                    {t('see_all')} {'>'}
+                </Text>
             </View>
             <ProductsSlider products={data} />
         </View>
@@ -24,21 +26,21 @@ export default function CategoryProducts({ id_category, name }) {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 30
+        marginBottom: 30,
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
-        marginBottom: 5
+        marginBottom: 5,
     },
     title: {
         color: GlobalStyle.color.dark,
         fontSize: 20,
-        fontFamily: 'RiposteRegular'
+        fontFamily: 'RiposteRegular',
     },
     link: {
         color: GlobalStyle.color.gray,
         fontFamily: 'RiposteRegular',
-    }
+    },
 })

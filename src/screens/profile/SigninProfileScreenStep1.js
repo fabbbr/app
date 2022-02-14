@@ -45,11 +45,11 @@ export default function SigninProfileScreenStep1({ navigation }) {
 
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
-            <AppTitle text={t('signin')} align='center' icon='3lines' />
+            <AppTitle text={t('signin')} align="center" icon="3lines" />
             <AppInput
                 control={control}
-                name='email'
-                type='text'
+                name="email"
+                type="text"
                 label={t('email')}
                 error={errors.email}
             />
@@ -70,7 +70,7 @@ export default function SigninProfileScreenStep1({ navigation }) {
             </View>
 
             <View style={{ marginTop: 10 }}>
-                <AppButton type='google' text={t('signin_google')} />
+                <AppButton type="google" text={t('signin_google')} />
             </View>
 
             <View style={{ marginTop: 40, alignItems: 'center' }}>

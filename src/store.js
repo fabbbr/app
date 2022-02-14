@@ -5,8 +5,8 @@ import messageReducer from '@slices/message'
 const store = configureStore({
     reducer: {
         auth: authReducer,
-        message: messageReducer
-    }
+        message: messageReducer,
+    },
 })
 
 export default store

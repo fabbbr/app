@@ -64,19 +64,19 @@ export default function LoginProfileScreen({ navigation }) {
 
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
-            <AppTitle text={t('login')} align='center' icon='3lines' />
+            <AppTitle text={t('login')} align="center" icon="3lines" />
 
             <AppInput
                 control={control}
-                name='username'
-                type='text'
+                name="username"
+                type="text"
                 label={t('email')}
                 error={errors.username}
             />
             <AppInput
                 control={control}
-                name='password'
-                type='password'
+                name="password"
+                type="password"
                 label={t('password')}
                 error={errors.password}
             />
@@ -97,14 +97,14 @@ export default function LoginProfileScreen({ navigation }) {
 
             <View style={{ marginVertical: 15 }}>
                 <TextLine
-                    text='connexion avec'
+                    text="connexion avec"
                     color={GlobalStyle.color.gray}
                     lineColor={GlobalStyle.color.gray}
                 />
             </View>
 
             <View style={{ marginTop: 10 }}>
-                <AppButton type='google' text={t('login_google')} />
+                <AppButton type="google" text={t('login_google')} />
             </View>
 
             <View style={{ marginTop: 40, alignItems: 'center' }}>

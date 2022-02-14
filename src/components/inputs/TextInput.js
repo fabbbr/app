@@ -3,14 +3,13 @@ import { TextInput } from 'react-native'
 import FormStyle from '@styles/FormStyle'
 
 export default function TextInput2({ onChange, onBlur, value, placeholder }) {
-
-    return(
+    return (
         <TextInput
             style={FormStyle.input}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
             placeholder={placeholder}
-          />
+        />
     )
 }
