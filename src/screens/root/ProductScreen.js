@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     Text,
     ScrollView,
@@ -6,12 +6,16 @@ import {
     StyleSheet,
     TouchableOpacity,
 } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 
 import Flag from '@components/Flag'
 import Slider from '@components/Slider'
 import AppButton from '@components/AppButton'
+
+import { addProduct } from '@slices/cart'
+import { clearMessage } from '@slices/message'
 
 import StoreIcon from '@icons/store.svg'
 import YellowStarIcon from '@icons/yellow-star.svg'
@@ -23,6 +27,17 @@ export default function ProductHomeScreen({ route }) {
     const { t } = useTranslation()
     const { id } = route.params
     const navigation = useNavigation()
+    const dispatch = useDispatch()
+
+    const cart = useSelector((state) => state.cart)
+    useEffect(() => {
+        console.log('cart', cart)
+    }, [cart])
+
+    const { message, messageType } = useSelector((state) => state.message)
+    useEffect(() => {
+        dispatch(clearMessage())
+    }, [dispatch])
 
     const product = require('../../test_data/product.json')
 
@@ -37,12 +52,15 @@ export default function ProductHomeScreen({ route }) {
     }
 
     const addToCart = () => {
-        // create cart store & add product
         console.log('add to cart')
+        dispatch(addProduct({ product, quantity: 5 }))
     }
 
     return (
         <View style={styles.container}>
+            <View style={styles.popup}>
+                <Text>coucou</Text>
+            </View>
             <ScrollView style={HomeStyle.container}>
                 <Slider items={product.images} />
 
@@ -120,6 +138,12 @@ export default function ProductHomeScreen({ route }) {
 }
 
 const styles = StyleSheet.create({
+    popup: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 10,
+    },
     container: {
         flex: 1,
     },
