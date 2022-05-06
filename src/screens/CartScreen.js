@@ -7,7 +7,7 @@ export default function MessageScreen() {
 
     return (
         <View style={styles.container}>
-            <Text>{t('message')}!</Text>
+            <Text>{t('Cart')}!</Text>
         </View>
     )
 }
