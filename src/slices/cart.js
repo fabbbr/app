@@ -27,7 +27,6 @@ const cartSlice = createSlice({
                     quantity,
                 }
             } else {
-                displ
                 console.log('not enough quantity')
             }
         },
@@ -39,13 +38,17 @@ const cartSlice = createSlice({
                 : 0
 
             if (quantity <= 0) {
-                delete state.products[product.id]
+                // delete state.products[product.id]
             } else {
                 state.products[product.id] = {
                     ...product,
                     quantity,
                 }
             }
+        },
+        deleteProduct: (state, action) => {
+            const product = action.payload.product
+            delete state.products[product.id]
         },
         setFacturationAddress: (state, action) => {},
         setDeliveryAddress: (state, action) => {},
@@ -59,7 +62,7 @@ const cartSlice = createSlice({
 export const {
     addProduct,
     removeProduct,
-    updateProduct,
+    deleteProduct,
     setFacturationAddress,
     setDeliveryAddress,
     setPaymentMethod,

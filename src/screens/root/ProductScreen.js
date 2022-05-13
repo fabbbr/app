@@ -29,11 +29,6 @@ export default function ProductHomeScreen({ route }) {
     const navigation = useNavigation()
     const dispatch = useDispatch()
 
-    const cart = useSelector((state) => state.cart)
-    useEffect(() => {
-        console.log('cart', cart)
-    }, [cart])
-
     const { message, messageType } = useSelector((state) => state.message)
     useEffect(() => {
         dispatch(clearMessage())
@@ -53,7 +48,7 @@ export default function ProductHomeScreen({ route }) {
 
     const addToCart = () => {
         console.log('add to cart')
-        dispatch(addProduct({ product, quantity: 5 }))
+        dispatch(addProduct({ product, quantity: 1 }))
     }
 
     return (

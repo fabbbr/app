@@ -3,6 +3,7 @@ import { Text, View } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
 import Step1 from '@containers/cart/Step1'
+import Step2 from '@containers/cart/Step2'
 import AppStyle from '@styles/AppStyle'
 import GlobalStyle from '@styles/GlobalStyle'
 
@@ -16,6 +17,7 @@ export default function CartScreen() {
             </View>
             <View style={styles.container_bottom}>
                 <Step1 />
+                <Step2 />
             </View>
         </View>
     )
