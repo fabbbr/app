@@ -1,46 +1,18 @@
-import * as React from 'react'
-import { Text, View } from 'react-native'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import Step1 from '@containers/cart/Step1'
 import Step2 from '@containers/cart/Step2'
-import AppStyle from '@styles/AppStyle'
-import GlobalStyle from '@styles/GlobalStyle'
+
+import ContainerDefault from '@containers/ContainerDefault'
 
 export default function CartScreen() {
     const { t } = useTranslation()
 
     return (
-        <View style={styles.container}>
-            <View style={styles.container_top}>
-                <Text style={styles.title}>{t('Order')}</Text>
-            </View>
-            <View style={styles.container_bottom}>
-                <Step1 />
-                <Step2 />
-            </View>
-        </View>
+        <ContainerDefault title={t('Order')}>
+            <Step1 />
+            <Step2 />
+        </ContainerDefault>
     )
-}
-
-const styles = {
-    container: {
-        flex: 1,
-    },
-    container_top: {
-        backgroundColor: GlobalStyle.color.primary,
-        paddingTop: 50,
-        paddingBottom: 50,
-        paddingLeft: GlobalStyle.container.padding,
-        paddingRight: GlobalStyle.container.padding,
-    },
-    container_bottom: {
-        paddingLeft: GlobalStyle.container.padding,
-        paddingRight: GlobalStyle.container.padding,
-        marginTop: -40,
-    },
-    title: {
-        ...AppStyle.h2,
-        color: GlobalStyle.color.light,
-    },
 }

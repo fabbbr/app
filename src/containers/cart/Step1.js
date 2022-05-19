@@ -2,40 +2,34 @@ import * as React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { Link } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
 
 import AppStyle from '@styles/AppStyle'
 import GlobalStyle from '@styles/GlobalStyle'
 
 export default function CartStep1() {
     const { t } = useTranslation()
-
-    const delivery_address = {
-        id: 1,
-        name: 'Domicile',
-        street: '17 avenue de la belle-fleur',
-        zipcode: '33130',
-        city: 'Bègles',
-    }
+    const cart = useSelector((state) => state.cart)
 
     return (
         <View style={styles.container}>
             <View>
                 <Text style={AppStyle.h3}>{t('Delivery Address')}</Text>
-                {delivery_address ? (
+                {cart.delivery_address ? (
                     <View>
                         <View style={styles.info_container}>
                             <Text style={styles.info}>
-                                {delivery_address.name}
+                                {cart.delivery_address.name}
                             </Text>
                             <Text style={styles.info}>
-                                {delivery_address.street},{' '}
-                                {delivery_address.zipcode},{' '}
-                                {delivery_address.city}
+                                {cart.delivery_address.street},{' '}
+                                {cart.delivery_address.zipcode},{' '}
+                                {cart.delivery_address.city}
                             </Text>
                         </View>
                         <Link
                             style={AppStyle.link}
-                            to={{ screen: 'CartAddressScreen' }}
+                            to={{ screen: 'AddressCartScreen' }}
                         >
                             {t('Change address')}
                         </Link>
@@ -44,7 +38,7 @@ export default function CartStep1() {
                     <View>
                         <Link
                             style={AppStyle.link}
-                            to={{ screen: 'CartAddressScreen' }}
+                            to={{ screen: 'AddressCartScreen' }}
                         >
                             {t('+ Add delivery address')}
                         </Link>

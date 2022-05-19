@@ -51,7 +51,9 @@ const cartSlice = createSlice({
             delete state.products[product.id]
         },
         setFacturationAddress: (state, action) => {},
-        setDeliveryAddress: (state, action) => {},
+        setDeliveryAddress: (state, action) => {
+            state.delivery_address = action.payload.address
+        },
         setPaymentMethod: (state, action) => {},
         clearCart: (state, action) => {
             state = initialState
