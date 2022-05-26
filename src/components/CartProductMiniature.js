@@ -4,13 +4,14 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import Flag from '@components/Flag'
 import { addProduct, removeProduct, deleteProduct } from '@slices/cart'
-
+import { fNumber } from '@utils/Tools'
+import { useTranslation } from 'react-i18next'
 import AppStyle from '@styles/AppStyle'
 import GlobalStyle from '@styles/GlobalStyle'
-import { t } from 'i18next'
 
 export default function CartProduct({ product_id }) {
     const dispatch = useDispatch()
+    const { t } = useTranslation()
 
     const product = useSelector((state) => state.cart.products[product_id])
 
@@ -33,7 +34,7 @@ export default function CartProduct({ product_id }) {
             <View style={styles.container_right}>
                 <View style={styles.container_product_info}>
                     <Text>{product.name}</Text>
-                    <Text style={styles.price}>{product.price} €</Text>
+                    <Text style={styles.price}>{fNumber(product.price)} €</Text>
                 </View>
                 <View style={styles.container_store_info}>
                     <Flag code={product.country} />

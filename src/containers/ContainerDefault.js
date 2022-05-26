@@ -1,17 +1,17 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 
 import AppStyle from '@styles/AppStyle'
 import GlobalStyle from '@styles/GlobalStyle'
 
 export default function ContainerDefault({ children, title }) {
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View style={styles.container_top}>
                 <Text style={styles.title}>{title}</Text>
             </View>
             <View style={styles.container_bottom}>{children}</View>
-        </View>
+        </ScrollView>
     )
 }
 
