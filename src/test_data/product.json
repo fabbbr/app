@@ -16,6 +16,8 @@
         "id": 1,
         "name": "store 1",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquam eros nisi euismod. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquam eros nisi euismod."
-    }
+    },
+    "quantity_available": 12,
+    "quantity": 0
 }
 

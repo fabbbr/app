@@ -6,7 +6,7 @@ import GlobalStyle from '@styles/GlobalStyle'
 import RootScreen from '@screens/RootScreen'
 import SearchScreen from '@screens/SearchScreen'
 import SellScreen from '@screens/SellScreen'
-import MessageScreen from '@screens/MessageScreen'
+import CartScreen from '@screens/CartScreen'
 import ProfileScreen from '@screens/ProfileScreen'
 
 const Tab = createBottomTabNavigator()
@@ -41,10 +41,10 @@ export default function BottomNavigation() {
                                     color={color}
                                 />
                             )
-                        case 'Message':
+                        case 'Cart':
                             return (
                                 <AntDesign
-                                    name="mail"
+                                    name="shoppingcart"
                                     size={size}
                                     color={color}
                                 />
@@ -67,7 +67,7 @@ export default function BottomNavigation() {
             <Tab.Screen name="Root" component={RootScreen} />
             <Tab.Screen name="Search" component={SearchScreen} />
             <Tab.Screen name="Sell" component={SellScreen} />
-            <Tab.Screen name="Message" component={MessageScreen} />
+            <Tab.Screen name="Cart" component={CartScreen} />
             <Tab.Screen name="Profile" component={ProfileScreen} />
         </Tab.Navigator>
     )

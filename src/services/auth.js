@@ -3,11 +3,13 @@ import { API_URL } from '@constants'
 import * as LS from '@utils/LocalStorage'
 
 const register = async (username, email, password, country) => {
-    const response = await axios.post(API_URL + 'register', {
+    console.log(API_URL + 'api/register')
+    const response = await axios.post(API_URL + 'api/register', {
         username,
         email,
         password,
         country,
+        is_store: 1,
     })
 
     if (response.data.user) LS.set('user', JSON.stringify(response.data.user))
@@ -15,7 +17,7 @@ const register = async (username, email, password, country) => {
 }
 
 const login = async (username, password) => {
-    const response = await axios.post(API_URL + 'login', {
+    const response = await axios.post(API_URL + 'api/login', {
         username,
         password,
     })

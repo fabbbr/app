@@ -5,7 +5,6 @@ import axios from 'axios'
 
 import CategoryService from '@services/category'
 import AppTitle from '@components/AppTitle'
-import ProductsSlider from '@containers/ProductsSlider'
 import CategoryProducts from '@containers/CategoryProducts'
 
 import HomeStyle from '@styles/HomeStyle'
@@ -13,7 +12,16 @@ import HomeStyle from '@styles/HomeStyle'
 export default function HomeScreen() {
     const { t } = useTranslation()
 
-    const data = require('../../test_data/home_category_products.json')
+    const getCategories = async () => {
+        try {
+            const data = await CategoryService.getCategories()
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    getCategories()
+
     const categories = require('../../test_data/home_categories.json')
 
     const categoriesItems = []
@@ -29,14 +37,6 @@ export default function HomeScreen() {
 
     return (
         <ScrollView style={HomeStyle.container}>
-            <View style={HomeStyle.trends}>
-                <AppTitle text={t('trends')} icon="3lines" dash />
-                <Text style={HomeStyle.sub_title}>
-                    {t('creation_recommendation')}
-                </Text>
-                <ProductsSlider products={data} />
-            </View>
-
             <View style={HomeStyle.community}>
                 <AppTitle text={t('community')} icon="3lines" dash />
                 <Text style={HomeStyle.sub_title}>

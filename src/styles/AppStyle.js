@@ -28,4 +28,8 @@ export default StyleSheet.create({
         fontSize: 14,
         color: GlobalStyle.color.text,
     },
+    link: {
+        color: GlobalStyle.color.primary,
+        fontFamily: 'RiposteRegular',
+    },
 })

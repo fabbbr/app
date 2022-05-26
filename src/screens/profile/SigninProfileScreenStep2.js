@@ -88,7 +88,7 @@ export default function SigninProfileScreenStep2({ route, navigation }) {
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
             <Text>
-                {message} {messageType}
+                {message} #{messageType}
             </Text>
             <AppTitle text={t('signin')} align="center" icon="3lines" />
 

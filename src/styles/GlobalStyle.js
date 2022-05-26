@@ -11,6 +11,7 @@ export default {
         gray: '#A3A3A3',
         lightgray: '#DDDDDD',
         lightgray2: '#BDBDBD',
+        lightgray3: '#F3F5F7',
     },
     container: {
         padding: 20,

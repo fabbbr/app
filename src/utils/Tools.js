@@ -21,3 +21,7 @@ export const ucFirst = (str) => {
         return str
     }
 }
+
+export const fNumber = (number, decimals = 2) => {
+    return parseFloat(number).toFixed(decimals)
+}
