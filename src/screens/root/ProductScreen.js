@@ -13,12 +13,14 @@ import { useTranslation } from 'react-i18next'
 import Flag from '@components/Flag'
 import Slider from '@components/Slider'
 import AppButton from '@components/AppButton'
+import DropdownContent from '@containers/DropdownContent'
 
 import { addProduct } from '@slices/cart'
 import { clearMessage } from '@slices/message'
 
 import StoreIcon from '@icons/store.svg'
 import YellowStarIcon from '@icons/yellow-star.svg'
+import BoxIcon from '@icons/box.svg'
 import GlobalStyle from '@styles/GlobalStyle'
 import AppStyle from '@styles/AppStyle'
 import HomeStyle from '@styles/HomeStyle'
@@ -53,9 +55,6 @@ export default function ProductHomeScreen({ route }) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.popup}>
-                <Text>coucou</Text>
-            </View>
             <ScrollView style={HomeStyle.container}>
                 <Slider items={product.images} />
 
@@ -98,13 +97,14 @@ export default function ProductHomeScreen({ route }) {
                         </Text>
                         <Text>{product.description}</Text>
                     </View>
-                    <View style={styles.block_desc}>
-                        <Text style={styles.page_title}>
-                            {t('store_information')}
-                        </Text>
-                        <Text>{product.store.description}</Text>
-                    </View>
                 </View>
+                <DropdownContent
+                    title={t('store_information')}
+                    icon={<BoxIcon />}
+                >
+                    <Text>{product.store.description}</Text>
+                </DropdownContent>
+                <View style={{ marginBottom: 300 }}></View>
             </ScrollView>
 
             <View style={styles.container_footer}>
@@ -133,12 +133,6 @@ export default function ProductHomeScreen({ route }) {
 }
 
 const styles = StyleSheet.create({
-    popup: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        zIndex: 10,
-    },
     container: {
         flex: 1,
     },
