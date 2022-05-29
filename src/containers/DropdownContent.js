@@ -44,7 +44,7 @@ export default function DropdownContent({ children, title, icon }) {
     })
 
     return (
-        <View>
+        <View style={styles.container}>
             <Pressable style={styles.header_container} onPress={toggleOpen}>
                 <View style={styles.header_left}>
                     {icon}
@@ -57,7 +57,7 @@ export default function DropdownContent({ children, title, icon }) {
             <Animated.View
                 style={{
                     ...styles.content,
-                    height: heightAnim,
+                    maxHeight: heightAnim,
                 }}
             >
                 {children}

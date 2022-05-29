@@ -40,7 +40,7 @@ export default function ProductHomeScreen({ route }) {
 
     const navigateTostore = () => {
         console.log('navigate to store')
-        // navigation.navigate('storeScreen', { id: product.store.id })
+        navigation.navigate('StoreScreen', { id: product.store.id })
     }
 
     const sendMessage = () => {
@@ -104,6 +104,7 @@ export default function ProductHomeScreen({ route }) {
                 >
                     <Text>{product.store.description}</Text>
                 </DropdownContent>
+                <View style={styles.horizontal_lign_bottom}></View>
                 <View style={{ marginBottom: 300 }}></View>
             </ScrollView>
 
