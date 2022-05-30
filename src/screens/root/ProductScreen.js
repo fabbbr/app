@@ -40,7 +40,7 @@ export default function ProductHomeScreen({ route }) {
 
     const navigateTostore = () => {
         console.log('navigate to store')
-        navigation.navigate('StoreScreen', { id: product.store.id })
+        navigation.navigate('StoreScreen', { screen: 'ProductStoreScreen', id: 123 })
     }
 
     const sendMessage = () => {

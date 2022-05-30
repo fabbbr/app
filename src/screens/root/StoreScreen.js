@@ -1,10 +1,7 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import StoreNavigation from '@navigations/StoreNavigation'
 
-export default function StoreScreen({ params }) {
-    return (
-        <View>
-            <Text>Store Screen</Text>
-        </View>
-    )
+export default function StoreScreen({ route }) {
+    const { id } = route.params
+    return <StoreNavigation id={id} />
 }

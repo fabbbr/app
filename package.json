@@ -13,6 +13,7 @@
     "@commitlint/config-conventional": "^16.0.0",
     "@react-native-community/datetimepicker": "^4.0.0",
     "@react-navigation/bottom-tabs": "^6.0.9",
+    "@react-navigation/material-top-tabs": "^6.2.1",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "@reduxjs/toolkit": "^1.7.1",
