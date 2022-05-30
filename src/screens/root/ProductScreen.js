@@ -14,12 +14,12 @@ import Flag from '@components/Flag'
 import Slider from '@components/Slider'
 import AppButton from '@components/AppButton'
 import DropdownContent from '@containers/DropdownContent'
+import RatingReview from '@components/RatingReview'
 
 import { addProduct } from '@slices/cart'
 import { clearMessage } from '@slices/message'
 
 import StoreIcon from '@icons/store.svg'
-import YellowStarIcon from '@icons/yellow-star.svg'
 import BoxIcon from '@icons/box.svg'
 import GlobalStyle from '@styles/GlobalStyle'
 import AppStyle from '@styles/AppStyle'
@@ -40,7 +40,10 @@ export default function ProductHomeScreen({ route }) {
 
     const navigateTostore = () => {
         console.log('navigate to store')
-        navigation.navigate('StoreScreen', { screen: 'ProductStoreScreen', id: 123 })
+        navigation.navigate('StoreScreen', {
+            screen: 'ProductStoreScreen',
+            id: 123,
+        })
     }
 
     const sendMessage = () => {
@@ -63,12 +66,14 @@ export default function ProductHomeScreen({ route }) {
                         <Text style={AppStyle.h2}>{product.name}</Text>
                         <Text style={styles.price}>{product.price} €</Text>
                     </View>
-
                     <View style={styles.container_score}>
-                        <YellowStarIcon />
-                        <Text style={styles.rating}>{product.rating}</Text>
-                        <Text style={styles.review}>({product.review})</Text>
+                        <RatingReview
+                            rating={product.rating}
+                            review={product.review}
+                            with_text={true}
+                        />
                     </View>
+
                     <View style={styles.container_store_info}>
                         <View style={styles.container_store}>
                             <Flag code={product.country} />
@@ -156,16 +161,8 @@ const styles = StyleSheet.create({
     container_score: {
         flexDirection: 'row',
         padding: 5,
+        paddingLeft: 0,
         marginTop: -5,
-    },
-    rating: {
-        ...AppStyle.text,
-        marginLeft: 5,
-    },
-    review: {
-        ...AppStyle.text,
-        marginLeft: 5,
-        color: GlobalStyle.color.lightgray2,
     },
     container_store_info: {
         flexDirection: 'row',

@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import Flag from '@components/Flag'
-import YellowStar from '@icons/yellow-star.svg'
+import RatingReview from '@components/RatingReview'
 import GlobalStyle from '@styles/GlobalStyle'
 import AppStyle from '@styles/AppStyle'
 
@@ -35,9 +35,10 @@ export default function ProductMiniature({ product }) {
 
                 <View style={styles.bottom}>
                     <View style={styles.bottom_left}>
-                        <YellowStar />
-                        <Text style={styles.rating}>{product.rating}</Text>
-                        <Text style={styles.review}>({product.review})</Text>
+                        <RatingReview
+                            rating={product.rating}
+                            review={product.review}
+                        />
                     </View>
                     <View>
                         <Text style={styles.price}>{product.price} €</Text>
@@ -92,15 +93,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 5,
         marginTop: 2,
-    },
-    rating: {
-        ...AppStyle.text,
-        marginLeft: 5,
-    },
-    review: {
-        ...AppStyle.text,
-        marginLeft: 5,
-        color: GlobalStyle.color.lightgray2,
     },
     price: {
         ...AppStyle.h3_bold,

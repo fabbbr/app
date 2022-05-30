@@ -1,9 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import Step1 from '@containers/cart/Step1'
-import Step2 from '@containers/cart/Step2'
-import Step3 from '@containers/cart/Step3'
+import CartStep1 from '@screens/parts/cart/CartStep1'
+import CartStep2 from '@screens/parts/cart/CartStep2'
+import CartStep3 from '@screens/parts/cart/CartStep3'
 
 import ContainerDefault from '@containers/ContainerDefault'
 import AppButton from '@components/AppButton'
@@ -17,9 +17,9 @@ export default function CartScreen() {
 
     return (
         <ContainerDefault title={t('Order')}>
-            <Step1 />
-            <Step2 />
-            <Step3 />
+            <CartStep1 />
+            <CartStep2 />
+            <CartStep3 />
             <AppButton
                 text={t('Submit Order')}
                 styles={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
