@@ -110,7 +110,7 @@ export default function ProductHomeScreen({ route }) {
                     <Text>{product.store.description}</Text>
                 </DropdownContent>
                 <View style={styles.horizontal_lign_bottom}></View>
-                <View style={{ marginBottom: 300 }}></View>
+                {/* <View style={{ marginBottom: 300 }}></View> */}
             </ScrollView>
 
             <View style={styles.container_footer}>

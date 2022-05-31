@@ -3,6 +3,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import ProductStoreScreen from '@screens/store/ProductStoreScreen'
 import AboutStoreScreen from '@screens/store/AboutStoreScreen'
+import GlobalStyle from '@styles/GlobalStyle'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -11,9 +12,10 @@ export default function StoreNavigation({ id }) {
         <Tab.Navigator
             screenOptions={{
                 swipeEnabled: false,
-            }}
-            tabBarOptions={{
-                labelStyle: { textTransform: 'none' },
+                tabBarLabelStyle: { textTransform: 'none' },
+                tabBarIndicatorStyle: {
+                    backgroundColor: GlobalStyle.color.primary,
+                }
             }}
         >
             <Tab.Screen

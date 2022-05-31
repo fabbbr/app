@@ -44,7 +44,7 @@ export default function ProductStoreScreen({ id }) {
                 <View>
                     <ListHeader name={'Tous les produits'} />
                     <View style={styles.categories}>
-                        {categories.map((category) => {
+                        {categories.map((category, index) => {
                             return (
                                 <TouchableOpacity
                                     activeOpacity={0.8}
@@ -52,6 +52,7 @@ export default function ProductStoreScreen({ id }) {
                                     onPress={() =>
                                         navigateToCategory(category.id_cat)
                                     }
+                                    key={index}
                                 >
                                     <View style={styles.category_img}></View>
                                     <View>
