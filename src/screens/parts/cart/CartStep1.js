@@ -14,7 +14,7 @@ export default function CartStep1() {
     return (
         <View style={styles.container}>
             <View>
-                <Text style={AppStyle.h3}>{t('Delivery Address')}</Text>
+                <Text style={AppStyle.h3}>{t('delivery_address')}</Text>
                 {cart.delivery_address ? (
                     <View>
                         <View style={styles.info_container}>
@@ -31,7 +31,7 @@ export default function CartStep1() {
                             style={AppStyle.link}
                             to={{ screen: 'AddressCartScreen' }}
                         >
-                            {t('Change address')}
+                            {t('change_address')}
                         </Link>
                     </View>
                 ) : (
@@ -40,7 +40,7 @@ export default function CartStep1() {
                             style={AppStyle.link}
                             to={{ screen: 'AddressCartScreen' }}
                         >
-                            {t('+ Add delivery address')}
+                            {t('add_delivery_address')}
                         </Link>
                     </View>
                 )}

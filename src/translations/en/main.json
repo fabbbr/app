@@ -34,5 +34,26 @@
     "send_message": "Send message",
     "buy": "Buy",
     "back": "Back",
-    "share": "Share"
+    "share": "Share",
+
+    "order": "Your order",
+    "submit_order": "Submit order",
+    "delivery_address": "Delivery Address",
+    "change_address": "Change address",
+    "add_delivery_address": "+ Add delivery address",
+    "delivery_method": "Delivery Method",
+    "delivery_cost": "Delivery cost",
+    "delivery_date_estimated": "Delivery date estimated",
+    "subtotal": "Subtotal",
+    "total": "total",
+    "tva_included": "TVA included",
+    "address": "Address",
+    "validate_address": "Validate address",
+
+    "multimedia": "Multimedia",
+    "best_sellers": "Best sellers",
+    "all_products": "All products",
+    "articles": "articles",
+    "articles2": "Articles",
+    "about": "About"
 }

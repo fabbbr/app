@@ -16,12 +16,12 @@ export default function CartScreen() {
     }
 
     return (
-        <ContainerDefault title={t('Order')}>
+        <ContainerDefault title={t('order')}>
             <CartStep1 />
             <CartStep2 />
             <CartStep3 />
             <AppButton
-                text={t('Submit Order')}
+                text={t('submit_order')}
                 styles={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
                 onPress={submit_order}
             />

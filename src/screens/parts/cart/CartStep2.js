@@ -25,17 +25,17 @@ export default function CartStep2() {
             <View>
                 <View style={styles.delivery_method_container}>
                     <Text style={styles.delivery_method_text}>
-                        {t('Delivery Method')}
+                        {t('delivery_method')}
                     </Text>
                 </View>
                 <View style={styles.delivery_cost_container}>
                     <Text style={styles.delivery_cost_text}>
-                        {t('Delivery cost')}
+                        {t('delivery_cost')}
                     </Text>
                     <Text style={styles.delivery_cost}>0.00 €</Text>
                 </View>
                 <Text style={styles.delivery_date}>
-                    {t('Delivery date estimated')}: 12-15 avril
+                    {t('delivery_date_estimated')}: 12-15 avril
                 </Text>
             </View>
         </View>

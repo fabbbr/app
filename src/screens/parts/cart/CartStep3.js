@@ -21,18 +21,18 @@ export default function CartStep3() {
     return (
         <View style={styles.container}>
             <View style={styles.row}>
-                <Text style={styles.bold}>{t('Subtotal')}</Text>
+                <Text style={styles.bold}>{t('subtotal')}</Text>
                 <Text style={AppStyle.text}>{fNumber(sub_total)}€</Text>
             </View>
             <View style={styles.row}>
-                <Text style={styles.bold}>{t('Delivery Cost')}</Text>
+                <Text style={styles.bold}>{t('delivery_cost')}</Text>
                 <Text style={AppStyle.text}>{fNumber(delivery_cost)}€</Text>
             </View>
             <View style={styles.line}></View>
             <View style={styles.row}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Text style={styles.bold}>{t('TOTAL')}</Text>
-                    <Text style={AppStyle.text}> ({t('TVA included')})</Text>
+                    <Text style={styles.total}>{t('total')}</Text>
+                    <Text style={AppStyle.text}> ({t('tva_included')})</Text>
                 </View>
                 <Text style={{ ...AppStyle.text, ...styles.bold }}>
                     {fNumber(total)}€
@@ -51,6 +51,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: 5,
+    },
+    total: {
+        fontWeight: 'bold',
+        color: GlobalStyle.color.dark,
+        textTransform: 'uppercase',
     },
     bold: {
         fontWeight: 'bold',

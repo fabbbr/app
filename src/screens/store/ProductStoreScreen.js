@@ -40,9 +40,9 @@ export default function ProductStoreScreen({ id }) {
         <ScrollView style={styles.container}>
             <StoreHeader store={store} />
             <View style={styles.content}>
-                <CategoryProducts name={'Les plus vendus'} />
+                <CategoryProducts name={t('best_sellers')} />
                 <View>
-                    <ListHeader name={'Tous les produits'} />
+                    <ListHeader name={t('all_products')} />
                     <View style={styles.categories}>
                         {categories.map((category, index) => {
                             return (

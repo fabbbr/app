@@ -63,7 +63,7 @@ export default function AddressCartScreen() {
     }))
 
     return (
-        <ContainerDefault title={t('Address')}>
+        <ContainerDefault title={t('address')}>
             <View style={styles.container}>
                 <AppRadioButton
                     data={dataForRadioButton}
@@ -72,7 +72,7 @@ export default function AddressCartScreen() {
                 />
             </View>
             <AppButton
-                text={t('Validate Address')}
+                text={t('validate_address')}
                 onPress={selectDeliveryAddress}
             />
         </ContainerDefault>

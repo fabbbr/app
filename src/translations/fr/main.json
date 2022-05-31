@@ -34,5 +34,26 @@
     "send_message": "Envoyer un message",
     "buy": "Acheter",
     "back": "Retour",
-    "share": "Partager"
+    "share": "Partager",
+
+    "order": "Votre commande",
+    "submit_order": "Passer la commande",
+    "delivery_address": "Adresse de livraison",
+    "change_address": "Modifier l'adresse",
+    "add_delivery_address": "+ Ajouter une adresse",
+    "delivery_method": "Mode de livraison",
+    "delivery_cost": "Frais de livraison",
+    "delivery_date_estimated": "Date de livraison estimée",
+    "subtotal": "Sous total",
+    "total": "total",
+    "tva_included": "TVA incluse",
+    "address": "Adresse",
+    "validate_address": "Valider adresse",
+
+    "multimedia": "Multimédias",
+    "best_sellers": "Les plus vendus",
+    "all_products": "Tous les produits",
+    "articles": "articles",
+    "articles2": "Articles",
+    "about": "A propos"
 }
