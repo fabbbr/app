@@ -6,31 +6,20 @@ import GlobalStyle from '@styles/GlobalStyle'
 import SmallArrowIcon from '@icons/small_arrow.svg'
 
 export default function DropdownContent({ children, title, icon }) {
-    const heightAnim = useRef(new Animated.Value(0)).current
-    const rotateAnim = useRef(new Animated.Value(0)).current
+    const anim = useRef(new Animated.Value(0)).current
     const [open, setOpen] = useState(false)
 
     const toggleOpen = () => {
         let curr = !open
         setOpen(curr)
         if (curr) {
-            Animated.timing(heightAnim, {
-                toValue: 1000,
-                duration: 1000,
-                useNativeDriver: false,
-            }).start()
-            Animated.timing(rotateAnim, {
+            Animated.timing(anim, {
                 toValue: 1,
                 duration: 300,
                 useNativeDriver: false,
             }).start()
         } else {
-            Animated.timing(heightAnim, {
-                toValue: 0,
-                duration: 300,
-                useNativeDriver: false,
-            }).start()
-            Animated.timing(rotateAnim, {
+            Animated.timing(anim, {
                 toValue: 0,
                 duration: 300,
                 useNativeDriver: false,
@@ -38,9 +27,13 @@ export default function DropdownContent({ children, title, icon }) {
         }
     }
 
-    const spin = rotateAnim.interpolate({
+    const spin = anim.interpolate({
         inputRange: [0, 1],
         outputRange: ['0deg', '90deg'],
+    })
+    const height = anim.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0%', '100%'],
     })
 
     return (
@@ -54,13 +47,10 @@ export default function DropdownContent({ children, title, icon }) {
                     <SmallArrowIcon />
                 </Animated.View>
             </Pressable>
-            <Animated.View
-                style={{
-                    ...styles.content,
-                    maxHeight: heightAnim,
-                }}
-            >
-                {children}
+            <Animated.View style={{ maxHeight: height }}>
+                <View style={styles.content}>
+                    {children}
+                </View>
             </Animated.View>
         </View>
     )
@@ -89,6 +79,6 @@ const styles = StyleSheet.create({
     },
     content: {
         paddingHorizontal: 15,
-        paddingBottom: 10,
+        marginBottom: 10,
     },
 })
