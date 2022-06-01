@@ -3,17 +3,15 @@ import { ScrollView, StyleSheet } from 'react-native'
 import ProductMiniature from '@components/ProductMiniature'
 
 export default function ProductsSlider({ products }) {
-    const items = products.map((item, i) => (
-        <ProductMiniature product={item} key={i} />
-    ))
-
     return (
         <ScrollView
             horizontal={true}
             style={styles.container}
             showsHorizontalScrollIndicator={false}
         >
-            {items}
+            {products.map((item, i) => {
+                return <ProductMiniature product={item} key={i} />
+            })}
         </ScrollView>
     )
 }

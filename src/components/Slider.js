@@ -11,17 +11,6 @@ export default function Slider({ items }) {
     const screenWidth = Dimensions.get('window').width
     const height = 300
 
-    const Items = items.map((item, index) => {
-        return (
-            <SliderItem
-                key={index}
-                width={screenWidth}
-                height={height}
-                url={item}
-            />
-        )
-    })
-
     const scrollHandler = (event) => {
         setPos(event.nativeEvent.contentOffset.x)
     }
@@ -36,7 +25,16 @@ export default function Slider({ items }) {
                 scrollEventThrottle={16}
                 onScroll={scrollHandler}
             >
-                {Items}
+                {items.map((item, index) => {
+                    return (
+                        <SliderItem
+                            key={index}
+                            width={screenWidth}
+                            height={height}
+                            url={item}
+                        />
+                    )
+                })}
             </ScrollView>
 
             <SliderIndicator
