@@ -9,6 +9,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
+import { useToast } from 'react-native-toast-notifications'
 
 import Flag from '@components/Flag'
 import Slider from '@components/Slider'
@@ -17,7 +18,7 @@ import DropdownContent from '@containers/DropdownContent'
 import RatingReview from '@components/RatingReview'
 
 import { addProduct } from '@slices/cart'
-import { clearMessage } from '@slices/message'
+import { clearError, clearSuccess } from '@slices/cart'
 
 import StoreIcon from '@icons/store.svg'
 import BoxIcon from '@icons/box.svg'
@@ -30,11 +31,23 @@ export default function ProductHomeScreen({ route }) {
     const { id } = route.params
     const navigation = useNavigation()
     const dispatch = useDispatch()
+    const toast = useToast()
 
-    const { message, messageType } = useSelector((state) => state.message)
+    const cartError = useSelector((state) => state.cart.error)
+    const cartSuccess = useSelector((state) => state.cart.success)
+
     useEffect(() => {
-        dispatch(clearMessage())
-    }, [dispatch])
+        if (cartError) {
+            toast.show(cartError, { type: 'danger', duration: 1000 })
+            dispatch(clearError())
+        }
+    }, [cartError])
+    useEffect(() => {
+        if (cartSuccess) {
+            toast.show(cartSuccess, { type: 'success', duration: 1000 })
+            dispatch(clearSuccess())
+        }
+    }, [cartSuccess])
 
     const product = require('../../test_data/product.json')
 
@@ -51,8 +64,7 @@ export default function ProductHomeScreen({ route }) {
     }
 
     const addToCart = () => {
-        console.log('add to cart')
-        dispatch(addProduct({ product, quantity: 1 }))
+        dispatch(addProduct({ product, quantity: 1, from_page: true }))
     }
 
     return (

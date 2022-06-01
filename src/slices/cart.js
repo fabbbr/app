@@ -7,6 +7,8 @@ const initialState = {
     delivery_address: 0,
     delivery_method: 0,
     payment_method: 0,
+    error: '',
+    success: '',
 }
 
 const cartSlice = createSlice({
@@ -16,6 +18,7 @@ const cartSlice = createSlice({
         addProduct: (state, action) => {
             const productPayload = action.payload.product
             const quantityPayload = action.payload.quantity
+            const fromPagePayload = action.payload.from_page || false
 
             let quantity = state.products[productPayload.id]
                 ? state.products[productPayload.id].quantity + quantityPayload
@@ -26,8 +29,9 @@ const cartSlice = createSlice({
                     ...productPayload,
                     quantity,
                 }
+                if (fromPagePayload) state.success = 'added_to_cart'
             } else {
-                console.log('not enough quantity')
+                state.error = 'not_enought_quantity'
             }
         },
         removeProduct: (state, action) => {
@@ -58,6 +62,12 @@ const cartSlice = createSlice({
         clearCart: (state, action) => {
             state = initialState
         },
+        clearError: (state, action) => {
+            state.error = ''
+        },
+        clearSuccess: (state, action) => {
+            state.success = ''
+        },
     },
 })
 
@@ -69,5 +79,7 @@ export const {
     setDeliveryAddress,
     setPaymentMethod,
     clearCart,
+    clearError,
+    clearSuccess,
 } = cartSlice.actions
 export default cartSlice.reducer
