@@ -7,7 +7,7 @@ import RatingReview from '@components/RatingReview'
 import GlobalStyle from '@styles/GlobalStyle'
 import AppStyle from '@styles/AppStyle'
 
-export default function ProductMiniature({ product }) {
+export default function ProductMiniature({ product, type = 'default' }) {
     const navigation = useNavigation()
 
     const onPress = () => {
@@ -16,11 +16,14 @@ export default function ProductMiniature({ product }) {
 
     return (
         <TouchableOpacity
-            style={styles.container}
+            style={type === 'default' ? styles.container : styles.alt_container}
             activeOpacity={0.8}
             onPress={onPress}
         >
-            <Image source={{ uri: product.image }} style={styles.img} />
+            <Image
+                source={{ uri: product.image }}
+                style={type === 'default' ? styles.img : styles.alt_img}
+            />
 
             <View style={styles.container2}>
                 <Text style={AppStyle.h3}>{product.name}</Text>
@@ -59,6 +62,15 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         width: 240,
     },
+    alt_container: {
+        margin: 5,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: GlobalStyle.color.lightgray,
+        backgroundColor: GlobalStyle.color.light,
+        overflow: 'hidden',
+        width: '98%',
+    },
     container2: {
         padding: 10,
         paddingTop: 15,
@@ -66,6 +78,10 @@ const styles = StyleSheet.create({
     img: {
         backgroundColor: 'lightgray',
         width: 240,
+        height: 240,
+    },
+    alt_img: {
+        backgroundColor: 'lightgray',
         height: 240,
     },
     container3: {
