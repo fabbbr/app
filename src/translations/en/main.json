@@ -1,8 +1,8 @@
 {
     "home": "Home",
-    "message": "Message",
-    "search": "Search",
-    "sell": "Sell",
+    "categories": "Categories",
+    "cart": "Cart",
+    "profile": "Profile",
 
     "signin": "Log In",
     "signin2": "Sign In",

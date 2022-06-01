@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Text, View } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
-export default function SearchScreen() {
+export default function CategoriesScreen() {
     const { t } = useTranslation()
 
     return (

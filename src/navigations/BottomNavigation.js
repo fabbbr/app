@@ -1,17 +1,20 @@
 import * as React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { AntDesign } from '@expo/vector-icons'
+import { useTranslation } from 'react-i18next'
 
 import GlobalStyle from '@styles/GlobalStyle'
+
 import RootScreen from '@screens/RootScreen'
-import SearchScreen from '@screens/SearchScreen'
-import SellScreen from '@screens/SellScreen'
+import CategoriesScreen from '@screens/CategoriesScreen'
 import CartScreen from '@screens/CartScreen'
 import ProfileScreen from '@screens/ProfileScreen'
 
 const Tab = createBottomTabNavigator()
 
 export default function BottomNavigation() {
+    const { t } = useTranslation()
+
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -25,18 +28,10 @@ export default function BottomNavigation() {
                                     color={color}
                                 />
                             )
-                        case 'Search':
+                        case 'Categories':
                             return (
                                 <AntDesign
                                     name="search1"
-                                    size={size}
-                                    color={color}
-                                />
-                            )
-                        case 'Sell':
-                            return (
-                                <AntDesign
-                                    name="pluscircleo"
                                     size={size}
                                     color={color}
                                 />
@@ -64,11 +59,26 @@ export default function BottomNavigation() {
                 headerShown: false,
             })}
         >
-            <Tab.Screen name="Root" component={RootScreen} />
-            <Tab.Screen name="Search" component={SearchScreen} />
-            <Tab.Screen name="Sell" component={SellScreen} />
-            <Tab.Screen name="Cart" component={CartScreen} />
-            <Tab.Screen name="Profile" component={ProfileScreen} />
+            <Tab.Screen
+                name="Root"
+                component={RootScreen}
+                options={{ title: t('home') }}
+            />
+            <Tab.Screen
+                name="Categories"
+                component={CategoriesScreen}
+                options={{ title: t('categories') }}
+            />
+            <Tab.Screen
+                name="Cart"
+                component={CartScreen}
+                options={{ title: t('cart') }}
+            />
+            <Tab.Screen
+                name="Profile"
+                component={ProfileScreen}
+                options={{ title: t('profile') }}
+            />
         </Tab.Navigator>
     )
 }
