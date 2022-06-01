@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
 import { useFocusEffect } from '@react-navigation/native'
+import { useToast } from 'react-native-toast-notifications'
 
 import AppInput from '@components/AppInput'
 import AppButton from '@components/AppButton'
@@ -20,10 +21,13 @@ export default function SigninProfileScreenStep2({ route, navigation }) {
     const { email } = route.params
     const { control, handleSubmit, setValue } = useForm()
     const { t } = useTranslation()
+    const toast = useToast()
+    const dispatch = useDispatch()
 
     const { isLoggedIn } = useSelector((state) => state.auth)
-    const { message, messageType } = useSelector((state) => state.message) // todo display message
-    const dispatch = useDispatch()
+    const { message, messageType, messageTime } = useSelector(
+        (state) => state.message
+    )
 
     useEffect(() => {
         setValue('email', email)
@@ -37,8 +41,11 @@ export default function SigninProfileScreenStep2({ route, navigation }) {
     }, [message])
 
     useEffect(() => {
-        dispatch(clearMessage())
-    }, [dispatch])
+        if (messageType) {
+            toast.show(message, { type: messageType, duration: 1000 })
+            dispatch(clearMessage())
+        }
+    }, [messageTime])
 
     const onSubmit = async (data) => {
         let err = {}
@@ -87,9 +94,6 @@ export default function SigninProfileScreenStep2({ route, navigation }) {
 
     return (
         <ScrollView contentContainerStyle={ProfileStyle.container}>
-            <Text>
-                {message} #{messageType}
-            </Text>
             <AppTitle text={t('signin')} align="center" icon="3lines" />
 
             <AppInput
@@ -124,12 +128,6 @@ export default function SigninProfileScreenStep2({ route, navigation }) {
                 required
                 error={errors.passwordConfirmation}
             />
-
-            {messageType && ['INVALID_PARAMETERS'].includes(message) ? (
-                <View style={{ marginVertical: 10 }}>
-                    <AppMessage message={message} messageType={messageType} />
-                </View>
-            ) : null}
 
             <View style={{ marginTop: 10 }}>
                 <AppButton

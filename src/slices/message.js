@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     message: '',
     messageType: false,
+    messageTime: 0,
 }
 /*
     messageType:
@@ -19,6 +20,7 @@ const messageSlice = createSlice({
         setMessage: (state, action) => {
             state.message = action.payload.message
             state.messageType = action.payload.messageType
+            state.messageTime = new Date().getTime()
 
             return state
         },

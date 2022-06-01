@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useDispatch, useSelector } from 'react-redux'
 import Apploading from 'expo-app-loading'
+import { ToastProvider } from 'react-native-toast-notifications'
 
 import BottomNavigation from '@navigations/BottomNavigation'
 import { setUserInit } from '@slices/auth'
@@ -22,20 +23,27 @@ export default function App() {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            {!loaded ? (
-                <Apploading
-                    startAsync={asyncStart}
-                    onFinish={() => {
-                        setLoaded(true)
-                    }}
-                    onError={console.warn}
-                />
-            ) : (
-                <NavigationContainer>
-                    <BottomNavigation />
-                </NavigationContainer>
-            )}
-        </SafeAreaView>
+        <ToastProvider
+            offsetTop={50}
+            placement="top"
+            successColor="#00ca00"
+            dangerColor="#cb0000"
+        >
+            <SafeAreaView style={{ flex: 1 }}>
+                {!loaded ? (
+                    <Apploading
+                        startAsync={asyncStart}
+                        onFinish={() => {
+                            setLoaded(true)
+                        }}
+                        onError={console.warn}
+                    />
+                ) : (
+                    <NavigationContainer>
+                        <BottomNavigation />
+                    </NavigationContainer>
+                )}
+            </SafeAreaView>
+        </ToastProvider>
     )
 }

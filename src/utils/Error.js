@@ -5,7 +5,7 @@ export const slice = (thunkAPI, error) => {
     thunkAPI.dispatch(
         setMessage({
             message: err.message,
-            messageType: 2,
+            messageType: 'danger',
         })
     )
     return thunkAPI.rejectWithValue()

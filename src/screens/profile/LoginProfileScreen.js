@@ -5,12 +5,12 @@ import { useForm } from 'react-hook-form'
 import { Link } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import { useFocusEffect } from '@react-navigation/native'
+import { useToast } from 'react-native-toast-notifications'
 
 import AppInput from '@components/AppInput'
 import TextLine from '@components/TextLine'
 import AppButton from '@components/AppButton'
 import AppTitle from '@components/AppTitle'
-import AppMessage from '@components/AppMessage'
 import * as Tools from '@utils/Tools'
 import { login } from '@slices/auth'
 import { clearMessage } from '@slices/message'
@@ -22,15 +22,20 @@ export default function LoginProfileScreen({ navigation }) {
     const [errors, setErrors] = useState({})
     const { control, handleSubmit } = useForm()
     const { t } = useTranslation()
+    const toast = useToast()
 
     const { isLoggedIn } = useSelector((state) => state.auth)
-    const { message, messageType } = useSelector((state) => state.message)
+    const { message, messageType, messageTime } = useSelector(
+        (state) => state.message
+    )
 
     const dispatch = useDispatch()
-
     useEffect(() => {
-        dispatch(clearMessage())
-    }, [dispatch])
+        if (messageType) {
+            toast.show(message, { type: messageType, duration: 1000 })
+            dispatch(clearMessage())
+        }
+    }, [messageTime])
 
     const onSubmit = async (data) => {
         let err = {}
@@ -80,12 +85,6 @@ export default function LoginProfileScreen({ navigation }) {
                 label={t('password')}
                 error={errors.password}
             />
-
-            {messageType ? (
-                <View style={{ marginVertical: 10 }}>
-                    <AppMessage message={message} messageType={messageType} />
-                </View>
-            ) : null}
 
             <View style={{ marginTop: 10 }}>
                 <AppButton
