@@ -39,7 +39,6 @@ export default function ProductHomeScreen({ route }) {
     const product = require('../../test_data/product.json')
 
     const navigateTostore = () => {
-        console.log('navigate to store')
         navigation.navigate('StoreScreen', {
             screen: 'ProductStoreScreen',
             id: 123,

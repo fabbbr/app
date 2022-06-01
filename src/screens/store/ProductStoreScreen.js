@@ -6,7 +6,6 @@ import {
     Text,
     TouchableOpacity,
 } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 
 import StoreHeader from '@screens/parts/store/StoreHeader'
@@ -15,9 +14,8 @@ import CategoryProducts from '@containers/CategoryProducts'
 import GlobalStyle from '@styles/GlobalStyle'
 import AppStyle from '@styles/AppStyle'
 
-export default function ProductStoreScreen({ id }) {
+export default function ProductStoreScreen({ id, navigation }) {
     const { t } = useTranslation()
-    const navigation = useNavigation()
 
     const store = {
         name: 'Les bijoux de Margaux',
@@ -31,18 +29,27 @@ export default function ProductStoreScreen({ id }) {
         categories.push({ name: 'Bijoux', count: 2, id_cat: 1, id_store: id })
     }
 
-    const navigateToCategory = (id_cat) => {
-        console.log('navigate to category', id_cat, ' & store', id)
-        // navigation.navigate('ProductList', { id_category : id_cat, id_store: id })
+    const navigateToProductList = () => {
+        navigation.navigate('Root', {
+            screen: 'ProductListScreen',
+            params: { id_store: id },
+        })
     }
 
     return (
         <ScrollView style={styles.container}>
             <StoreHeader store={store} />
             <View style={styles.content}>
-                <CategoryProducts name={t('best_sellers')} />
+                <CategoryProducts
+                    name={t('best_sellers')}
+                    id_store={id}
+                    bs={true}
+                />
                 <View>
-                    <ListHeader name={t('all_products')} />
+                    <ListHeader
+                        name={t('all_products')}
+                        onPress={navigateToProductList}
+                    />
                     <View style={styles.categories}>
                         {categories.map((category, index) => {
                             return (
@@ -50,7 +57,7 @@ export default function ProductStoreScreen({ id }) {
                                     activeOpacity={0.8}
                                     style={styles.category}
                                     onPress={() =>
-                                        navigateToCategory(category.id_cat)
+                                        navigateToProductList(category.id_cat)
                                     }
                                     key={index}
                                 >
