@@ -49,6 +49,7 @@
     "tva_included": "TVA included",
     "address": "Address",
     "validate_address": "Validate address",
+    "cart_connect_to_order": "Oops, you are not connected, Connect to order",
 
     "multimedia": "Multimedia",
     "best_sellers": "Best sellers",

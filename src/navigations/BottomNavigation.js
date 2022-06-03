@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useSelector } from 'react-redux'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { AntDesign } from '@expo/vector-icons'
 import { useTranslation } from 'react-i18next'
@@ -14,6 +15,7 @@ const Tab = createBottomTabNavigator()
 
 export default function BottomNavigation() {
     const { t } = useTranslation()
+    const cart = useSelector((state) => state.cart)
 
     return (
         <Tab.Navigator
@@ -73,6 +75,12 @@ export default function BottomNavigation() {
                 name="Cart"
                 component={CartScreen}
                 options={{ title: t('cart') }}
+                listeners={{
+                    tabPress: (e) => {
+                        if (Object.keys(cart.products).length === 0)
+                            e.preventDefault()
+                    },
+                }}
             />
             <Tab.Screen
                 name="Profile"
