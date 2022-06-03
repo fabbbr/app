@@ -30,6 +30,7 @@ const styles = {
         paddingLeft: GlobalStyle.container.padding,
         paddingRight: GlobalStyle.container.padding,
         marginTop: -40,
+        paddingBottom: GlobalStyle.container.padding,
     },
     title: {
         ...AppStyle.h2,

@@ -16,7 +16,6 @@ export default StyleSheet.create({
         marginBottom: 20,
     },
     community: {
-        marginTop: 30,
         backgroundColor: GlobalStyle.color.background,
         padding: GlobalStyle.container.padding,
         paddingTop: 20,
