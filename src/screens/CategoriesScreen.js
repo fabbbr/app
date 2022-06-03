@@ -88,6 +88,7 @@ const styles = {
         width: '47%',
         marginBottom: 15,
         borderRadius: 5,
+        overflow: 'hidden',
     },
     category_img: {
         backgroundColor: GlobalStyle.color.lightgray,
