@@ -3,6 +3,16 @@ import { useDispatch } from 'react-redux'
 
 const initialState = {
     products: {},
+    deliveries: {
+        1: {
+            name: 'Standard',
+            price: 9.99,
+        },
+        2: {
+            name: 'Express',
+            price: 19.99,
+        },
+    },
     facturation_address: 0,
     delivery_address: 0,
     delivery_method: 0,
@@ -60,6 +70,9 @@ const cartSlice = createSlice({
         setDeliveryAddress: (state, action) => {
             state.delivery_address = action.payload.address
         },
+        setDeliveryMethod: (state, action) => {
+            state.delivery_method = action.payload.delivery_method
+        },
         setPaymentMethod: (state, action) => {},
         clearCart: (state, action) => {
             state = initialState
@@ -79,6 +92,7 @@ export const {
     deleteProduct,
     setFacturationAddress,
     setDeliveryAddress,
+    setDeliveryMethod,
     setPaymentMethod,
     clearCart,
     clearError,

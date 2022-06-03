@@ -1,17 +1,30 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-
 import { Text, View, StyleSheet } from 'react-native'
 
+import { setDeliveryMethod } from '@slices/cart'
 import AppStyle from '@styles/AppStyle'
 import GlobalStyle from '@styles/GlobalStyle'
-
 import CartProduct from '@components/CartProductMiniature'
+import AppSelect from '@components/AppSelect'
+import { fNumber } from '@utils/Tools'
 
 export default function CartStep2() {
     const { t } = useTranslation()
+    const dispatch = useDispatch()
+
     const cart = useSelector((state) => state.cart)
+    const [dm, setDm] = useState(false)
+
+    useEffect(() => {
+        dispatch(setDeliveryMethod({ delivery_method: dm }))
+    }, [dm])
+
+    const items = []
+    for (let id in cart.deliveries) {
+        items.push({ value: id, label: cart.deliveries[id].name })
+    }
 
     const miniatures = []
     for (let id in cart.products) {
@@ -27,12 +40,25 @@ export default function CartStep2() {
                     <Text style={styles.delivery_method_text}>
                         {t('delivery_method')}
                     </Text>
+                    <AppSelect
+                        label={t('select_delivery')}
+                        value={dm}
+                        setValue={setDm}
+                        items={items}
+                    />
                 </View>
                 <View style={styles.delivery_cost_container}>
                     <Text style={styles.delivery_cost_text}>
                         {t('delivery_cost')}
                     </Text>
-                    <Text style={styles.delivery_cost}>0.00 €</Text>
+                    <Text style={styles.delivery_cost}>
+                        {fNumber(
+                            dm && cart.deliveries[dm]
+                                ? cart.deliveries[dm].price
+                                : 0
+                        )}{' '}
+                        €
+                    </Text>
                 </View>
                 <Text style={styles.delivery_date}>
                     {t('delivery_date_estimated')}: 12-15 avril
@@ -60,6 +86,7 @@ const styles = StyleSheet.create({
     },
     delivery_method_text: {
         fontWeight: 'bold',
+        marginRight: 20,
     },
     delivery_cost_container: {
         flexDirection: 'row',

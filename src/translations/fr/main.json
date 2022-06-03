@@ -50,6 +50,7 @@
     "address": "Adresse",
     "validate_address": "Valider adresse",
     "cart_connect_to_order": "Oups, vous n'êtes pas connecté, connectez vous pour passer commande",
+    "select_delivery": "Sélectionner mode de livraison",
 
     "multimedia": "Multimédias",
     "best_sellers": "Les plus vendus",
