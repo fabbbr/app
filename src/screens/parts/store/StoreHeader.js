@@ -1,7 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 
+import { formatStoreImage, formatStoreBanner } from '@utils/Tools'
 import RatingReview from '@components/RatingReview'
 import GlobalStyle from '@styles/GlobalStyle'
 import AppStyle from '@styles/AppStyle'
@@ -11,8 +12,14 @@ export default function StoreHeader({ store }) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.bg_top}></View>
-            <View style={styles.bg_img}></View>
+            <Image
+                source={{ uri: formatStoreBanner(store.banner) }}
+                style={styles.bg_top}
+            />
+            <Image
+                source={{ uri: formatStoreImage(store.image) }}
+                style={styles.bg_img}
+            />
 
             <View style={styles.content}>
                 <Text style={styles.title}>{store.name}</Text>

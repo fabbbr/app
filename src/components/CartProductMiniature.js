@@ -51,7 +51,7 @@ export default function CartProduct({ product_id }) {
                             <Text style={styles.remove_product_text}>-</Text>
                         </TouchableOpacity>
                         <Text style={styles.product_quantity}>
-                            {product.quantity}
+                            {product.quantityInCart}
                         </Text>
                         <TouchableOpacity
                             style={styles.add_product}

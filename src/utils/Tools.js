@@ -1,3 +1,5 @@
+import { API_URL } from '@constants'
+
 export const objSize = (obj) => {
     let size = 0,
         key
@@ -31,6 +33,24 @@ export const formatProduct = (product) => {
     product.country = 'fr'
     product.review = product.review || 233
     product.rating = product.rating || 4.3
+    if (!product.image.startsWith('https://'))
+        product.image = formatProductImage(product.image)
     product.images = product.images || [product.image]
     return product
+}
+
+export const formatProductImage = (image) => {
+    return `${API_URL}product_images/${image}`
+}
+
+export const formatCategoryImage = (image) => {
+    return `${API_URL}category_images/${image}`
+}
+
+export const formatStoreImage = (image) => {
+    return `${API_URL}store_images/${image}`
+}
+
+export const formatStoreBanner = (image) => {
+    return `${API_URL}store_banner_images/${image}`
 }

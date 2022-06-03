@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native'
+import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
 import CategoryService from '@services/category'
+import { formatCategoryImage } from '@utils/Tools'
 import Loading from '@containers/Loading'
 import GlobalStyle from '@styles/GlobalStyle'
 import SmallArrowIcon from '@icons/small_arrow.svg'
@@ -44,7 +45,14 @@ export default function CategoriesScreen({ navigation }) {
                                       }
                                       key={index}
                                   >
-                                      <View style={styles.category_img}></View>
+                                      <Image
+                                          source={{
+                                              uri: formatCategoryImage(
+                                                  category.image
+                                              ),
+                                          }}
+                                          style={styles.category_img}
+                                      />
                                       <View style={styles.category_bottom}>
                                           <Text style={styles.category_name}>
                                               {category.name}

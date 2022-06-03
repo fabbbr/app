@@ -13,7 +13,7 @@ export default function CartStep3() {
 
     let sub_total = 0
     for (let id in cart.products) {
-        sub_total += cart.products[id].price * cart.products[id].quantity
+        sub_total += cart.products[id].price * cart.products[id].quantityInCart
     }
     let delivery_cost = 0
     let total = sub_total + delivery_cost
