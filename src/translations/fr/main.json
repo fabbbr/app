@@ -4,6 +4,9 @@
     "cart": "Panier",
     "profile": "Compte",
 
+    "product_screen": "Page produit",
+    "store_screen": "Boutique",
+
     "signin": "Inscription",
     "signin2": "Créer un compte",
     "signin_google": "S'inscrire avec Google",

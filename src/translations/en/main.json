@@ -4,6 +4,9 @@
     "cart": "Cart",
     "profile": "Profile",
 
+    "product_screen": "Product page",
+    "store_screen": "Store",
+
     "signin": "Log In",
     "signin2": "Sign In",
     "signin_google": "Signin with Google",
