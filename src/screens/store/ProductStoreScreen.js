@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     View,
     StyleSheet,
@@ -8,6 +8,9 @@ import {
 } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
+import Loading from '@containers/Loading'
+import StoreService from '@services/store'
+
 import StoreHeader from '@screens/parts/store/StoreHeader'
 import ListHeader from '@components/ListHeader'
 import CategoryProducts from '@containers/CategoryProducts'
@@ -16,13 +19,24 @@ import AppStyle from '@styles/AppStyle'
 
 export default function ProductStoreScreen({ id, navigation }) {
     const { t } = useTranslation()
+    const [store, setStore] = useState(false)
 
-    const store = {
-        name: 'Les bijoux de Margaux',
-        location: 'Bordeaux, France',
-        rating: 4.3,
-        review: 233,
-    }
+    useEffect(() => {
+        setStore(false)
+        const getStore = async () => {
+            try {
+                const d = await StoreService.getStore(id)
+                if (d) {
+                    d.rating = 4.3
+                    d.reviews = 233
+                }
+                setStore(d)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getStore()
+    }, [id])
 
     let categories = []
     for (let i = 0; i < 8; i++) {
@@ -38,44 +52,64 @@ export default function ProductStoreScreen({ id, navigation }) {
 
     return (
         <ScrollView style={styles.container}>
-            <StoreHeader store={store} />
-            <View style={styles.content}>
-                <CategoryProducts
-                    name={t('best_sellers')}
-                    id_store={id}
-                    bs={true}
-                />
-                <View>
-                    <ListHeader
-                        name={t('all_products')}
-                        onPress={navigateToProductList}
-                    />
-                    <View style={styles.categories}>
-                        {categories.map((category, index) => {
-                            return (
-                                <TouchableOpacity
-                                    activeOpacity={0.8}
-                                    style={styles.category}
-                                    onPress={() =>
-                                        navigateToProductList(category.id_cat)
-                                    }
-                                    key={index}
-                                >
-                                    <View style={styles.category_img}></View>
-                                    <View>
-                                        <Text style={styles.category_name}>
-                                            {category.name}
-                                        </Text>
-                                        <Text style={styles.category_count}>
-                                            {category.count} {t('articles')}
-                                        </Text>
-                                    </View>
-                                </TouchableOpacity>
-                            )
-                        })}
-                    </View>
-                </View>
-            </View>
+            <Loading data={store}>
+                {store && (
+                    <>
+                        <StoreHeader store={store} />
+                        <View style={styles.content}>
+                            <CategoryProducts
+                                name={t('best_sellers')}
+                                id_store={id}
+                                bs={true}
+                                products={store.products}
+                            />
+                            <View>
+                                <ListHeader
+                                    name={t('all_products')}
+                                    onPress={navigateToProductList}
+                                />
+                                <View style={styles.categories}>
+                                    {categories.map((category, index) => {
+                                        return (
+                                            <TouchableOpacity
+                                                activeOpacity={0.8}
+                                                style={styles.category}
+                                                onPress={() =>
+                                                    navigateToProductList(
+                                                        category.id_cat
+                                                    )
+                                                }
+                                                key={index}
+                                            >
+                                                <View
+                                                    style={styles.category_img}
+                                                ></View>
+                                                <View>
+                                                    <Text
+                                                        style={
+                                                            styles.category_name
+                                                        }
+                                                    >
+                                                        {category.name}
+                                                    </Text>
+                                                    <Text
+                                                        style={
+                                                            styles.category_count
+                                                        }
+                                                    >
+                                                        {category.count}{' '}
+                                                        {t('articles')}
+                                                    </Text>
+                                                </View>
+                                            </TouchableOpacity>
+                                        )
+                                    })}
+                                </View>
+                            </View>
+                        </View>
+                    </>
+                )}
+            </Loading>
         </ScrollView>
     )
 }

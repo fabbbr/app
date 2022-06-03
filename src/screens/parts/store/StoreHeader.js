@@ -17,7 +17,7 @@ export default function StoreHeader({ store }) {
             <View style={styles.content}>
                 <Text style={styles.title}>{store.name}</Text>
                 <View style={styles.bottom_row}>
-                    <Text style={AppStyle.text}>{store.location}</Text>
+                    <Text style={AppStyle.text}>{store.city}</Text>
                     <View style={styles.vertical_lign}></View>
                     <RatingReview
                         rating={store.rating}

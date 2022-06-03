@@ -1,32 +1,56 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ScrollView, Text, View, StyleSheet } from 'react-native'
 
+import CategoryService from '@services/category'
+import ProductService from '@services/product'
 import ProductMiniature from '@components/ProductMiniature'
+import Loading from '@containers/Loading'
 import GlobalStyle from '@styles/GlobalStyle'
 
 export default function ProductListScreen({ route }) {
     const { id_category, id_store, bs } = route.params
+    const [data, setData] = useState(false)
 
-    const data = require('../../test_data/home_category_products.json')
-    console.log(data)
+    useEffect(() => {
+        setData(false)
+        const getProducts = async () => {
+            try {
+                if (id_category && !id_store) {
+                    const d = await CategoryService.getCategory(id_category)
+                    setData(d)
+                } else if (id_store && !id_category) {
+                    const d = await ProductService.getProductsBystore(id_store)
+                    setData(d)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getProducts()
+    }, [id_store, id_category, bs])
 
     return (
         <ScrollView style={styles.container}>
-            <View style={styles.container2}>
-                <Text>
-                    Id category: {id_category}, Id store: {id_store}, Best
-                    seller: {bs ? 'yes' : 'no'}
-                </Text>
-                {data.map((product, index) => {
-                    return (
-                        <ProductMiniature
-                            product={product}
-                            key={index}
-                            type="alt"
-                        />
-                    )
-                })}
-            </View>
+            <Loading data={data}>
+                <View style={styles.container2}>
+                    <Text>
+                        Id category: {id_category}, Id store: {id_store}, Best
+                        seller: {bs ? 'yes' : 'no'}
+                    </Text>
+                    {data && data.products
+                        ? data.products.map((product, index) => {
+                              return (
+                                  <ProductMiniature
+                                      product={product}
+                                      key={index}
+                                      type="alt"
+                                      format={true}
+                                  />
+                              )
+                          })
+                        : false}
+                </View>
+            </Loading>
         </ScrollView>
     )
 }

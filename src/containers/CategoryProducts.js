@@ -5,10 +5,16 @@ import { useNavigation } from '@react-navigation/native'
 
 import ProductsSlider from '@containers/ProductsSlider'
 import ListHeader from '@components/ListHeader'
-
+import { formatProduct } from '@utils/Tools'
 import GlobalStyle from '@styles/GlobalStyle'
 
-export default function CategoryProducts({ id_category, id_store, name, bs }) {
+export default function CategoryProducts({
+    id_category,
+    id_store,
+    name,
+    bs,
+    products,
+}) {
     const navigation = useNavigation()
     const { t } = useTranslation()
 
@@ -20,7 +26,14 @@ export default function CategoryProducts({ id_category, id_store, name, bs }) {
         })
     }
 
-    const data = require('../test_data/home_category_products.json')
+    let data
+    if (products) {
+        data = products.map((product) => {
+            return formatProduct(product)
+        })
+    } else {
+        data = require('../test_data/home_category_products.json')
+    }
 
     return (
         <View style={styles.container}>

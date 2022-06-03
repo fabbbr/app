@@ -11,7 +11,11 @@ export default function ImageSlider({ images }) {
             {images.map((image, index) => {
                 return (
                     <View style={styles.img_container} key={index}>
-                        <Image source={{ uri: image }} style={styles.img} />
+                        {image ? (
+                            <Image source={{ uri: image }} style={styles.img} />
+                        ) : (
+                            <View style={styles.img}></View>
+                        )}
                     </View>
                 )
             })}

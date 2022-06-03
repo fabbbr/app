@@ -16,28 +16,14 @@ export default function HomeScreen() {
     useEffect(() => {
         const getCategories = async () => {
             try {
-                const data = await CategoryService.getCategories()
-                setData(data)
-                console.log(data)
+                const d = await CategoryService.getCategoriesFull()
+                setData(d)
             } catch (error) {
                 console.log(error)
             }
         }
         getCategories()
     }, [])
-
-    const categories = require('../../test_data/home_categories.json')
-
-    const categoriesItems = []
-    for (let id_category in categories) {
-        categoriesItems.push(
-            <CategoryProducts
-                name={categories[id_category]}
-                id_category={id_category}
-                key={id_category}
-            />
-        )
-    }
 
     return (
         <ScrollView style={HomeStyle.container}>
@@ -47,7 +33,18 @@ export default function HomeScreen() {
                     <Text style={HomeStyle.sub_title}>
                         {t('discover_creation')}
                     </Text>
-                    {categoriesItems}
+                    {data && Array.isArray(data)
+                        ? data.map((category) => {
+                              return (
+                                  <CategoryProducts
+                                      name={category.name}
+                                      id_category={category.id}
+                                      key={category.id}
+                                      products={category.products}
+                                  />
+                              )
+                          })
+                        : ''}
                 </View>
             </Loading>
         </ScrollView>

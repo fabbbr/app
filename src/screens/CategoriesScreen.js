@@ -1,12 +1,15 @@
-import * as React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
+import CategoryService from '@services/category'
+import Loading from '@containers/Loading'
 import GlobalStyle from '@styles/GlobalStyle'
 import SmallArrowIcon from '@icons/small_arrow.svg'
 
 export default function CategoriesScreen({ navigation }) {
     const { t } = useTranslation()
+    const [data, setData] = useState(false)
 
     const navigateToProductList = (id_cat) => {
         navigation.navigate('ProductListScreen', {
@@ -14,35 +17,46 @@ export default function CategoriesScreen({ navigation }) {
         })
     }
 
-    let categories = []
-    for (let i = 0; i < 16; i++) {
-        categories.push({ name: 'Bijoux', id_cat: 1 })
-    }
+    useEffect(() => {
+        const getCategories = async () => {
+            try {
+                const d = await CategoryService.getCategories()
+                setData(d)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getCategories()
+    }, [])
 
     return (
         <ScrollView style={styles.container}>
-            <View style={styles.categories}>
-                {categories.map((category, index) => {
-                    return (
-                        <TouchableOpacity
-                            activeOpacity={0.8}
-                            style={styles.category}
-                            onPress={() =>
-                                navigateToProductList(category.id_cat)
-                            }
-                            key={index}
-                        >
-                            <View style={styles.category_img}></View>
-                            <View style={styles.category_bottom}>
-                                <Text style={styles.category_name}>
-                                    {category.name}
-                                </Text>
-                                <SmallArrowIcon />
-                            </View>
-                        </TouchableOpacity>
-                    )
-                })}
-            </View>
+            <Loading data={data}>
+                <View style={styles.categories}>
+                    {data
+                        ? data.map((category, index) => {
+                              return (
+                                  <TouchableOpacity
+                                      activeOpacity={0.8}
+                                      style={styles.category}
+                                      onPress={() =>
+                                          navigateToProductList(category.id)
+                                      }
+                                      key={index}
+                                  >
+                                      <View style={styles.category_img}></View>
+                                      <View style={styles.category_bottom}>
+                                          <Text style={styles.category_name}>
+                                              {category.name}
+                                          </Text>
+                                          <SmallArrowIcon />
+                                      </View>
+                                  </TouchableOpacity>
+                              )
+                          })
+                        : ''}
+                </View>
+            </Loading>
         </ScrollView>
     )
 }

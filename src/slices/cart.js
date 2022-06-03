@@ -21,13 +21,14 @@ const cartSlice = createSlice({
             const fromPagePayload = action.payload.from_page || false
 
             let quantity = state.products[productPayload.id]
-                ? state.products[productPayload.id].quantity + quantityPayload
+                ? state.products[productPayload.id].quantityInCart +
+                  quantityPayload
                 : quantityPayload
 
-            if (productPayload.quantity_available >= quantity) {
+            if (productPayload.quantity >= quantity) {
                 state.products[productPayload.id] = {
                     ...productPayload,
-                    quantity,
+                    quantityInCart: quantity,
                 }
                 if (fromPagePayload) state.success = 'added_to_cart'
             } else {
@@ -38,7 +39,8 @@ const cartSlice = createSlice({
             const product = action.payload.product
 
             let quantity = state.products[product.id]
-                ? state.products[product.id].quantity - action.payload.quantity
+                ? state.products[product.id].quantityInCart -
+                  action.payload.quantity
                 : 0
 
             if (quantity <= 0) {
@@ -46,7 +48,7 @@ const cartSlice = createSlice({
             } else {
                 state.products[product.id] = {
                     ...product,
-                    quantity,
+                    quantityInCart: quantity,
                 }
             }
         },

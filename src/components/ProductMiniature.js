@@ -6,9 +6,15 @@ import Flag from '@components/Flag'
 import RatingReview from '@components/RatingReview'
 import GlobalStyle from '@styles/GlobalStyle'
 import AppStyle from '@styles/AppStyle'
+import { formatProduct } from '@utils/Tools'
 
-export default function ProductMiniature({ product, type = 'default' }) {
+export default function ProductMiniature({
+    product,
+    type = 'default',
+    format = false,
+}) {
     const navigation = useNavigation()
+    if (format) product = formatProduct(product)
 
     const onPress = () => {
         navigation.navigate('ProductScreen', { id: product.id })
@@ -31,7 +37,9 @@ export default function ProductMiniature({ product, type = 'default' }) {
                 <View style={styles.container3}>
                     <Flag code={product.country} />
                     <View style={styles.vertical_lign}></View>
-                    <Text style={AppStyle.text}>{product.seller_name}</Text>
+                    <Text style={AppStyle.text}>
+                        {product.store ? product.store.name : ''}
+                    </Text>
                 </View>
 
                 <View style={styles.horizontal_lign}></View>
