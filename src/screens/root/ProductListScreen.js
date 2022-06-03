@@ -33,10 +33,10 @@ export default function ProductListScreen({ route }) {
         <ScrollView style={styles.container}>
             <Loading data={data}>
                 <View style={styles.container2}>
-                    <Text>
+                    {/* <Text>
                         Id category: {id_category}, Id store: {id_store}, Best
                         seller: {bs ? 'yes' : 'no'}
-                    </Text>
+                    </Text> */}
                     {data && data.products
                         ? data.products.map((product, index) => {
                               return (

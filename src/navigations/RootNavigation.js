@@ -33,6 +33,7 @@ export default function HomeNavigation() {
             <Stack.Screen
                 name="ProductListScreen"
                 component={ProductListScreen}
+                options={{ ...config, title: t('productlist_screen') }}
             />
         </Stack.Navigator>
     )
