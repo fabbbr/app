@@ -51,11 +51,15 @@
     "validate_address": "Validate address",
     "cart_connect_to_order": "Oops, you are not connected, Connect to order",
     "select_delivery": "Select delivery method",
+    "delete": "Delete",
 
     "multimedia": "Multimedia",
     "best_sellers": "Best sellers",
     "all_products": "All products",
     "articles": "articles",
     "articles2": "Articles",
-    "about": "About"
+    "about": "About",
+
+    "added_to_cart": "Product added to cart",
+    "not_enought_quantity": "Product not available"
 }

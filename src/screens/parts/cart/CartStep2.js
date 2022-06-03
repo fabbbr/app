@@ -10,7 +10,7 @@ import CartProduct from '@components/CartProductMiniature'
 import AppSelect from '@components/AppSelect'
 import { fNumber } from '@utils/Tools'
 
-export default function CartStep2() {
+export default function CartStep2({ isLoggedIn }) {
     const { t } = useTranslation()
     const dispatch = useDispatch()
 
@@ -34,36 +34,40 @@ export default function CartStep2() {
     return (
         <View style={styles.container}>
             <View>{miniatures}</View>
-            <View style={styles.horizontal_lign}></View>
-            <View>
-                <View style={styles.delivery_method_container}>
-                    <Text style={styles.delivery_method_text}>
-                        {t('delivery_method')}
-                    </Text>
-                    <AppSelect
-                        label={t('select_delivery')}
-                        value={dm}
-                        setValue={setDm}
-                        items={items}
-                    />
-                </View>
-                <View style={styles.delivery_cost_container}>
-                    <Text style={styles.delivery_cost_text}>
-                        {t('delivery_cost')}
-                    </Text>
-                    <Text style={styles.delivery_cost}>
-                        {fNumber(
-                            dm && cart.deliveries[dm]
-                                ? cart.deliveries[dm].price
-                                : 0
-                        )}{' '}
-                        €
-                    </Text>
-                </View>
-                <Text style={styles.delivery_date}>
-                    {t('delivery_date_estimated')}: 12-15 avril
-                </Text>
-            </View>
+            {isLoggedIn && (
+                <>
+                    <View style={styles.horizontal_lign}></View>
+                    <View>
+                        <View style={styles.delivery_method_container}>
+                            <Text style={styles.delivery_method_text}>
+                                {t('delivery_method')}
+                            </Text>
+                            <AppSelect
+                                label={t('select_delivery')}
+                                value={dm}
+                                setValue={setDm}
+                                items={items}
+                            />
+                        </View>
+                        <View style={styles.delivery_cost_container}>
+                            <Text style={styles.delivery_cost_text}>
+                                {t('delivery_cost')}
+                            </Text>
+                            <Text style={styles.delivery_cost}>
+                                {fNumber(
+                                    dm && cart.deliveries[dm]
+                                        ? cart.deliveries[dm].price
+                                        : 0
+                                )}{' '}
+                                €
+                            </Text>
+                        </View>
+                        <Text style={styles.delivery_date}>
+                            {t('delivery_date_estimated')}: 12-15 avril
+                        </Text>
+                    </View>
+                </>
+            )}
         </View>
     )
 }

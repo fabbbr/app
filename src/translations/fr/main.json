@@ -51,11 +51,15 @@
     "validate_address": "Valider adresse",
     "cart_connect_to_order": "Oups, vous n'êtes pas connecté, connectez vous pour passer commande",
     "select_delivery": "Sélectionner mode de livraison",
+    "delete": "Supprimer",
 
     "multimedia": "Multimédias",
     "best_sellers": "Les plus vendus",
     "all_products": "Tous les produits",
     "articles": "articles",
     "articles2": "Articles",
-    "about": "A propos"
+    "about": "A propos",
+
+    "added_to_cart": "Produit ajouté au panier",
+    "not_enought_quantity": "Produit non disponible"
 }

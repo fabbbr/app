@@ -55,13 +55,13 @@ export default function ProductHomeScreen({ route }) {
 
     useEffect(() => {
         if (cartError) {
-            toast.show(cartError, { type: 'danger', duration: 1000 })
+            toast.show(t(cartError), { type: 'danger', duration: 1000 })
             dispatch(clearError())
         }
     }, [cartError])
     useEffect(() => {
         if (cartSuccess) {
-            toast.show(cartSuccess, { type: 'success', duration: 1000 })
+            toast.show(t(cartSuccess), { type: 'success', duration: 1000 })
             dispatch(clearSuccess())
         }
     }, [cartSuccess])
