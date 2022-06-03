@@ -84,10 +84,10 @@ export default function ProductHomeScreen({ route }) {
 
     return (
         <View style={styles.container}>
-            <ScrollView style={HomeStyle.container}>
-                <Loading data={product}>
-                    {product && (
-                        <>
+            <Loading data={product}>
+                {product && (
+                    <>
+                        <ScrollView style={HomeStyle.container}>
                             <Slider items={product.images} />
                             <View style={styles.container_bottom}>
                                 <View style={styles.container_title}>
@@ -145,32 +145,32 @@ export default function ProductHomeScreen({ route }) {
                             </DropdownContent>
                             <View style={styles.horizontal_lign_bottom}></View>
                             {/* <View style={{ marginBottom: 300 }}></View> */}
-                        </>
-                    )}
-                </Loading>
-            </ScrollView>
+                        </ScrollView>
 
-            <View style={styles.container_footer}>
-                <View style={styles.horizontal_lign_bottom}></View>
-                <View style={styles.container_action}>
-                    <View style={styles.button_action}>
-                        <AppButton
-                            text={t('send_message')}
-                            type="outlined_medium"
-                            uppercase
-                            onPress={sendMessage}
-                        />
-                    </View>
-                    <View style={styles.button_action}>
-                        <AppButton
-                            text={t('buy')}
-                            type="default_medium"
-                            uppercase
-                            onPress={addToCart}
-                        />
-                    </View>
-                </View>
-            </View>
+                        <View style={styles.container_footer}>
+                            <View style={styles.horizontal_lign_bottom}></View>
+                            <View style={styles.container_action}>
+                                <View style={styles.button_action}>
+                                    <AppButton
+                                        text={t('send_message')}
+                                        type="outlined_medium"
+                                        uppercase
+                                        onPress={sendMessage}
+                                    />
+                                </View>
+                                <View style={styles.button_action}>
+                                    <AppButton
+                                        text={t('buy')}
+                                        type="default_medium"
+                                        uppercase
+                                        onPress={addToCart}
+                                    />
+                                </View>
+                            </View>
+                        </View>
+                    </>
+                )}
+            </Loading>
         </View>
     )
 }
