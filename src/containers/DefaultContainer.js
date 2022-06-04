@@ -4,7 +4,7 @@ import { View, Text, ScrollView } from 'react-native'
 import AppStyle from '@styles/AppStyle'
 import GlobalStyle from '@styles/GlobalStyle'
 
-export default function ContainerDefault({ children, title }) {
+export default function DefaultContainer({ children, title }) {
     return (
         <ScrollView style={styles.container}>
             <View style={styles.container_top}>

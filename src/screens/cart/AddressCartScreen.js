@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { setDeliveryAddress } from '@slices/cart'
-import ContainerDefault from '@containers/ContainerDefault'
+import DefaultContainer from '@containers/DefaultContainer'
 import AppRadioButton from '@components/AppRadioButton'
 import AppButton from '@components/AppButton'
 import GlobalStyle from '@styles/GlobalStyle'
@@ -63,7 +63,7 @@ export default function AddressCartScreen() {
     }))
 
     return (
-        <ContainerDefault title={t('address')}>
+        <DefaultContainer title={t('address')}>
             <View style={styles.container}>
                 <AppRadioButton
                     data={dataForRadioButton}
@@ -75,7 +75,7 @@ export default function AddressCartScreen() {
                 text={t('validate_address')}
                 onPress={selectDeliveryAddress}
             />
-        </ContainerDefault>
+        </DefaultContainer>
     )
 }
 

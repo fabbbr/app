@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import CartStep1 from '@screens/parts/cart/CartStep1'
 import CartStep2 from '@screens/parts/cart/CartStep2'
 import CartStep3 from '@screens/parts/cart/CartStep3'
-import ContainerDefault from '@containers/ContainerDefault'
+import DefaultContainer from '@containers/DefaultContainer'
 import AppButton from '@components/AppButton'
 import AppStyle from '@styles/AppStyle'
 
@@ -16,6 +16,7 @@ export default function CartScreen({ navigation }) {
 
     const submit_order = () => {
         console.log('submit_order')
+        navigation.navigate('CheckoutCartScreen')
     }
 
     const login = () => {
@@ -23,7 +24,7 @@ export default function CartScreen({ navigation }) {
     }
 
     return (
-        <ContainerDefault title={t('order')}>
+        <DefaultContainer title={t('order')}>
             {isLoggedIn ? <CartStep1 /> : false}
             <CartStep2 isLoggedIn={isLoggedIn} />
             {isLoggedIn ? <CartStep3 /> : false}
@@ -41,7 +42,7 @@ export default function CartScreen({ navigation }) {
                     <AppButton text={t('login')} onPress={login} />
                 </>
             )}
-        </ContainerDefault>
+        </DefaultContainer>
     )
 }
 
