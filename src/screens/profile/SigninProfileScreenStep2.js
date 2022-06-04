@@ -35,14 +35,14 @@ export default function SigninProfileScreenStep2({ route, navigation }) {
 
     useEffect(() => {
         if (message === 'EMAIL_ALREADY_USED')
-            setErrors({ ...errors, email: message })
+            setErrors({ ...errors, email: 'errors:'.message })
         if (message === 'USERNAME_ALREADY_USED')
-            setErrors({ ...errors, username: message })
+            setErrors({ ...errors, username: 'errors:'.message })
     }, [message])
 
     useEffect(() => {
         if (messageType) {
-            toast.show(message, { type: messageType, duration: 1000 })
+            toast.show(t(message), { type: messageType, duration: 2000 })
             dispatch(clearMessage())
         }
     }, [messageTime])

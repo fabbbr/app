@@ -32,7 +32,7 @@ export default function LoginProfileScreen({ navigation }) {
     const dispatch = useDispatch()
     useEffect(() => {
         if (messageType) {
-            toast.show(message, { type: messageType, duration: 1000 })
+            toast.show(t(message), { type: messageType, duration: 2000 })
             dispatch(clearMessage())
         }
     }, [messageTime])

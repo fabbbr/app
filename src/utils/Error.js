@@ -4,7 +4,7 @@ export const slice = (thunkAPI, error) => {
     const err = standard(error)
     thunkAPI.dispatch(
         setMessage({
-            message: err.message,
+            message: 'errors:' + (err.message ? err.message : 'UNKNOWN_ERROR'),
             messageType: 'danger',
         })
     )

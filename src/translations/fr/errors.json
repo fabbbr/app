@@ -5,5 +5,8 @@
             "email": "Email non valide",
             "password": "Les mots de passe ne sont pas identique"
         }
-    }
+    },
+    "UNKNOWN_ERROR": "Une erreur inconnue s'est produite. Veuillez réessayer plus tard",
+    "EMAIL_ALREADY_USED": "Email déjà utilisé",
+    "USERNAME_ALREADY_USED": "Nom d'utilisateur déjà utilisé"
 }
