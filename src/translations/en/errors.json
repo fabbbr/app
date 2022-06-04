@@ -6,7 +6,9 @@
             "password": "Passwords doesn't match"
         }
     },
-    "UNKNOWN_ERROR": "Unknown error occured. Try again later",
+    "UNKNOWN_ERROR1": "Unknown error occured",
+    "UNKNOWN_ERROR2": "Try again later",
     "EMAIL_ALREADY_USED": "Email is already used",
-    "USERNAME_ALREADY_USED": "Username is already used"
+    "USERNAME_ALREADY_USED": "Username is already used",
+    "AUTHENTICATION_FAILURE": "Authentication failed"
 }

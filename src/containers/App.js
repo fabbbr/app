@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useDispatch, useSelector } from 'react-redux'
-import { ToastProvider } from 'react-native-toast-notifications'
+import Toast from 'react-native-toast-message'
 
 import Loading from '@containers/Loading'
 import BottomNavigation from '@navigations/BottomNavigation'
@@ -26,12 +26,7 @@ export default function App() {
     }, [])
 
     return (
-        <ToastProvider
-            offsetTop={50}
-            placement="top"
-            successColor="#00ca00"
-            dangerColor="#cb0000"
-        >
+        <>
             <Loading data={loaded}>
                 <SafeAreaView style={{ flex: 1 }}>
                     {loaded ? (
@@ -43,6 +38,7 @@ export default function App() {
                     )}
                 </SafeAreaView>
             </Loading>
-        </ToastProvider>
+            <Toast />
+        </>
     )
 }

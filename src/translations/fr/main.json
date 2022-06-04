@@ -66,5 +66,6 @@
     "about": "A propos",
 
     "added_to_cart": "Produit ajouté au panier",
-    "not_enought_quantity": "Produit non disponible"
+    "not_enough_stock": "Produit non disponible",
+    "in_cart": "dans le panier"
 }

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { useDispatch } from 'react-redux'
+import i18n from '@constants/IMLocalize'
+import * as Message from '@utils/Message'
 
 const initialState = {
     products: {},
@@ -40,9 +41,27 @@ const cartSlice = createSlice({
                     ...productPayload,
                     quantityInCart: quantity,
                 }
-                if (fromPagePayload) state.success = 'added_to_cart'
+                if (fromPagePayload) {
+                    Message.success({
+                        text1: 'added_to_cart',
+                        text2:
+                            'x' +
+                            state.products[productPayload.id].quantityInCart +
+                            ' ' +
+                            i18n.t('in_cart'),
+                    })
+                }
             } else {
-                state.error = 'not_enought_quantity'
+                Message.error({
+                    text1: 'not_enough_stock',
+                    text2:
+                        state.products[productPayload.id].quantityInCart > 0
+                            ? 'x' +
+                              state.products[productPayload.id].quantityInCart +
+                              ' ' +
+                              i18n.t('in_cart')
+                            : null,
+                })
             }
         },
         removeProduct: (state, action) => {

@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 import { Link } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import { useFocusEffect } from '@react-navigation/native'
-import { useToast } from 'react-native-toast-notifications'
 
 import AppInput from '@components/AppInput'
 import TextLine from '@components/TextLine'
@@ -13,7 +12,6 @@ import AppButton from '@components/AppButton'
 import AppTitle from '@components/AppTitle'
 import * as Tools from '@utils/Tools'
 import { login } from '@slices/auth'
-import { clearMessage } from '@slices/message'
 import GlobalStyle from '@styles/GlobalStyle'
 import ProfileStyle from '@styles/ProfileStyle'
 
@@ -22,20 +20,9 @@ export default function LoginProfileScreen({ navigation }) {
     const [errors, setErrors] = useState({})
     const { control, handleSubmit } = useForm()
     const { t } = useTranslation()
-    const toast = useToast()
+    const dispatch = useDispatch()
 
     const { isLoggedIn } = useSelector((state) => state.auth)
-    const { message, messageType, messageTime } = useSelector(
-        (state) => state.message
-    )
-
-    const dispatch = useDispatch()
-    useEffect(() => {
-        if (messageType) {
-            toast.show(t(message), { type: messageType, duration: 2000 })
-            dispatch(clearMessage())
-        }
-    }, [messageTime])
 
     const onSubmit = async (data) => {
         let err = {}

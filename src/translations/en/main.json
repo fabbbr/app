@@ -66,5 +66,6 @@
     "about": "About",
 
     "added_to_cart": "Product added to cart",
-    "not_enought_quantity": "Product not available"
+    "not_enough_stock": "Product not available",
+    "in_cart": "in cart"
 }

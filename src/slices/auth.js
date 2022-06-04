@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import AuthService from '@services/auth'
-import * as ErrorUtils from '@utils/Error'
+import * as Message from '@utils/Message'
 
 export const register = createAsyncThunk(
     'auth/register',
@@ -14,7 +14,7 @@ export const register = createAsyncThunk(
             )
             return { user: data }
         } catch (error) {
-            return ErrorUtils.slice(thunkAPI, error)
+            return Message.error({ text1: error, thunkAPI, dispatch: true })
         }
     }
 )
@@ -26,7 +26,7 @@ export const login = createAsyncThunk(
             const data = await AuthService.login(username, password)
             return { user: data }
         } catch (error) {
-            return ErrorUtils.slice(thunkAPI, error)
+            return Message.error({ text1: error, thunkAPI })
         }
     }
 )

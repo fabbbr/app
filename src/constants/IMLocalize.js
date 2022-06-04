@@ -53,3 +53,5 @@ i18n.use(LANGUAGE_DETECTOR)
         defaultNS: 'main',
         compatibilityJSON: 'v3',
     })
+
+export default i18n

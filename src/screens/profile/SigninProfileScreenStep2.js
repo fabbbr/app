@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { ScrollView, View, Text } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
 import { useFocusEffect } from '@react-navigation/native'
-import { useToast } from 'react-native-toast-notifications'
+import * as Message from '@utils/Message'
 
 import AppInput from '@components/AppInput'
 import AppButton from '@components/AppButton'
@@ -21,7 +21,6 @@ export default function SigninProfileScreenStep2({ route, navigation }) {
     const { email } = route.params
     const { control, handleSubmit, setValue } = useForm()
     const { t } = useTranslation()
-    const toast = useToast()
     const dispatch = useDispatch()
 
     const { isLoggedIn } = useSelector((state) => state.auth)
@@ -42,7 +41,7 @@ export default function SigninProfileScreenStep2({ route, navigation }) {
 
     useEffect(() => {
         if (messageType) {
-            toast.show(t(message), { type: messageType, duration: 2000 })
+            Message.error({ text1: message })
             dispatch(clearMessage())
         }
     }, [messageTime])
