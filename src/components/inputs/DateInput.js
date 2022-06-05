@@ -1,41 +1,58 @@
 import React, { useState } from 'react'
-import { View, TextInput, TouchableWithoutFeedback } from 'react-native'
-import DateTimePicker from '@react-native-community/datetimepicker'
+import { TextInput } from 'react-native'
 import FormStyle from '@styles/FormStyle'
+import { useEffect } from 'react'
 
-export default function DateInput({ onChange, onBlur, value, placeholder }) {
-    const [date, setDate] = useState(new Date(1598051730000));
-    const [show, setShow] = useState(false);
+export default function DateInput({
+    onChange,
+    onBlur,
+    value,
+    placeholder,
+    setValue,
+    name,
+}) {
+    const [update, setUpdate] = useState(true)
 
-    const showDate = () => {
-        console.log('show');
-        setShow(true)
+    if (update && value) {
+        let newValue = ''
+        if (value.length !== 3 && value.length !== 4) {
+            value = value.replace(/[^0-9 /]/g, '')
+
+            let valueArray = value.split('')
+            // console.log(valueArray)
+            valueArray.forEach((element, index) => {
+                if (
+                    !(
+                        (index === 0 && parseInt(element) > 1) ||
+                        (index === 1 &&
+                            ((parseInt(valueArray[0]) === 1 &&
+                                parseInt(element) > 2) ||
+                                (parseInt(valueArray[0]) === 0 &&
+                                    parseInt(element) === 0)))
+                    )
+                ) {
+                    newValue += element
+                }
+            })
+            if (newValue.length === 2) newValue += ' / '
+        } else {
+            newValue = value.substring(0, 2)
+            setUpdate(false)
+        }
+        if (newValue !== value) setValue(name, newValue)
+    } else {
+        // setUpdate(true)
     }
 
-    const onChange2 = (value) => {
-        console.log('onchange 2', value);
-    }
-
-    return(
-        <View>
-            <View onPress={showDate}>
-                <TextInput
-                    style={FormStyle.input}
-                    onBlur={onBlur}
-                    value={value}
-                    placeholder={placeholder}
-                    editable={false}
-                />
-            </View>
-            {show && (
-            <DateTimePicker
-                testID="dateTimePicker"
-                value={date}
-                mode='date'
-                display="default"
-                onChange={onChange2}
-            />
-        )}
-        </View>
+    return (
+        <TextInput
+            style={FormStyle.input}
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            placeholder={placeholder}
+            keyboardType="phone-pad"
+            maxLength={7}
+        />
     )
 }

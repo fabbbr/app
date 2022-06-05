@@ -17,6 +17,8 @@ export default function AppInput({
     placeholder,
     required,
     error,
+    maxLength,
+    setValue,
 }) {
     let Type
     switch (type) {
@@ -42,7 +44,14 @@ export default function AppInput({
                 <Text style={FormStyle.label}>{label}</Text>
                 <Controller
                     render={({ field }) => (
-                        <Type {...field} ref={null} placeholder={placeholder} />
+                        <Type
+                            {...field}
+                            ref={null}
+                            placeholder={placeholder}
+                            maxLength={maxLength}
+                            setValue={setValue}
+                            name={name}
+                        />
                     )}
                     name={name}
                     control={control}
