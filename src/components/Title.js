@@ -6,7 +6,7 @@ import GlobalStyle from '@styles/GlobalStyle'
 export default function Title({ icon, title }) {
     return (
         <View style={styles.container}>
-            {icon ? icon : ''}
+            {icon ? icon : null}
             <Text style={styles.title}>{title}</Text>
         </View>
     )
