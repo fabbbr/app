@@ -10,5 +10,10 @@
     "UNKNOWN_ERROR2": "Veuillez réessayer plus tard",
     "EMAIL_ALREADY_USED": "Email déjà utilisé",
     "USERNAME_ALREADY_USED": "Nom d'utilisateur déjà utilisé",
-    "AUTHENTICATION_FAILURE": "Échec de l'authentification"
+    "AUTHENTICATION_FAILURE": "Échec de l'authentification",
+
+    "cart": {
+        "delivery_address_required": "Veuillez sélectionner une adresse de livraison",
+        "delivery_method_required": "Veuillez sélectionner un mode de livraison"
+    }
 }

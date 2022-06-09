@@ -10,5 +10,9 @@
     "UNKNOWN_ERROR2": "Try again later",
     "EMAIL_ALREADY_USED": "Email is already used",
     "USERNAME_ALREADY_USED": "Username is already used",
-    "AUTHENTICATION_FAILURE": "Authentication failed"
+    "AUTHENTICATION_FAILURE": "Authentication failed",
+    "cart": {
+        "delivery_address_required": "Delivery address is required",
+        "delivery_method_required": "Delivery method is required"
+    }
 }
