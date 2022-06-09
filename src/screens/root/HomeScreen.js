@@ -35,16 +35,17 @@ export default function HomeScreen() {
                     </Text>
                     {data && Array.isArray(data)
                         ? data.map((category) => {
-                              return (
+                              return category.products &&
+                                  category.products.length ? (
                                   <CategoryProducts
                                       name={category.name}
                                       id_category={category.id}
                                       key={category.id}
                                       products={category.products}
                                   />
-                              )
+                              ) : null
                           })
-                        : ''}
+                        : null}
                 </View>
             </Loading>
         </ScrollView>
