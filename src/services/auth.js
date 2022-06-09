@@ -33,11 +33,33 @@ const getUser = async () => {
     return await LS.get('user')
 }
 
+const getOrders = async (id) => {
+    console.log(API_URL + 'pip/user/' + id)
+    const response = await axios.get(API_URL + 'user/' + id)
+    return response.data.orders
+}
+const getOrder = async (id) => {
+    const response = await axios.get(API_URL + 'pip/orders/' + id + '.json')
+    return response.data
+}
+const getAddresses = async (id) => {
+    const response = await axios.get(API_URL + 'user/' + id)
+    return response.data.addresses
+}
+const getAddress = async (id) => {
+    const response = await axios.get(API_URL + 'pip/addresses/' + id + '.json')
+    return response.data
+}
+
 const authService = {
     register,
     login,
     logout,
     getUser,
+    getOrders,
+    getOrder,
+    getAddresses,
+    getAddress,
 }
 
 export default authService

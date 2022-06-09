@@ -25,6 +25,12 @@ export default function HomeProfileScreen({ navigation }) {
         await dispatch(logout())
         navigation.navigate('LoginProfileScreen')
     }
+    const navigateToOrderHistory = () => {
+        navigation.navigate('OrderHistoryProfileScreen')
+    }
+    const navigateToAddresses = () => {
+        navigation.navigate('AddressesProfileScreen')
+    }
 
     return (
         <ScrollView style={styles.container}>
@@ -45,10 +51,22 @@ export default function HomeProfileScreen({ navigation }) {
                         <TouchableOpacity
                             style={styles.row}
                             activeOpacity={0.6}
+                            onPress={navigateToOrderHistory}
                         >
                             <Title
                                 icon={<HistoryIcon />}
                                 title={t('order_history')}
+                            />
+                        </TouchableOpacity>
+                        <View style={styles.line}></View>
+                        <TouchableOpacity
+                            style={styles.row}
+                            activeOpacity={0.6}
+                            onPress={navigateToAddresses}
+                        >
+                            <Title
+                                icon={<HistoryIcon />}
+                                title={t('addresses')}
                             />
                         </TouchableOpacity>
                         <View style={styles.line}></View>
