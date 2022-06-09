@@ -141,7 +141,7 @@ export default function ProductHomeScreen({ route }) {
                                 </View>
                                 <View style={styles.button_action}>
                                     <AppButton
-                                        text={t('buy')}
+                                        text={t('add_to_cart')}
                                         type="default_medium"
                                         uppercase
                                         onPress={addToCart}

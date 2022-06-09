@@ -38,6 +38,7 @@
     "store_information": "Store information",
     "send_message": "Send message",
     "buy": "Buy",
+    "add_to_cart": "Add to cart",
     "back": "Back",
     "share": "Share",
 
@@ -67,5 +68,14 @@
 
     "added_to_cart": "Product added to cart",
     "not_enough_stock": "Product not available",
-    "in_cart": "in cart"
+    "in_cart": "in cart",
+
+    "cart_empty": "Your cart is empty",
+    "no_product_found": "No product found",
+    "no_address": "You don't have any address",
+    "no_order": "You don't have any order",
+    "order_history": "Orders history",
+    "addresses": "Addresses",
+    "settings": "Settings",
+    "logout": "Logout"
 }

@@ -38,6 +38,7 @@
     "store_information": "Informations sur la boutique",
     "send_message": "Envoyer un message",
     "buy": "Acheter",
+    "add_to_cart": "Ajouter au panier",
     "back": "Retour",
     "share": "Partager",
 
@@ -67,5 +68,14 @@
 
     "added_to_cart": "Produit ajouté au panier",
     "not_enough_stock": "Produit non disponible",
-    "in_cart": "dans le panier"
+    "in_cart": "dans le panier",
+
+    "cart_empty": "Votre panier est vide",
+    "no_product_found": "Aucun produit trouvé",
+    "no_address": "Vous n'avez pas d'adresse",
+    "no_order": "Vous n'avez pas de commande",
+    "order_history": "Historique de commandes",
+    "addresses": "Adresses",
+    "settings": "Paramètres",
+    "logout": "Déconnexion"
 }
