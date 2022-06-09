@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import {
-    Text,
-    View,
-    StyleSheet,
-    ScrollView,
-    TouchableOpacity,
-} from 'react-native'
+import { Text, StyleSheet, ScrollView } from 'react-native'
 
 import AuthService from '@services/auth'
 import Loading from '@containers/Loading'
@@ -31,9 +24,7 @@ export default function OrderProfileScreen({ route }) {
 
     return (
         <ScrollView style={styles.container}>
-            <Loading data={order}>
-                <Text>coucou</Text>
-            </Loading>
+            <Loading data={order}></Loading>
         </ScrollView>
     )
 }

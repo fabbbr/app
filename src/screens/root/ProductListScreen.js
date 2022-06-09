@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, View, StyleSheet } from 'react-native'
+import { ScrollView, View, StyleSheet, Text } from 'react-native'
+import { useTranslation } from 'react-i18next'
 
 import CategoryService from '@services/category'
 import ProductService from '@services/product'
@@ -9,6 +10,7 @@ import * as Message from '@utils/Message'
 import GlobalStyle from '@styles/GlobalStyle'
 
 export default function ProductListScreen({ route }) {
+    const { t } = useTranslation()
     const { id_category, id_store, bs } = route.params
     const [data, setData] = useState(false)
 
@@ -38,18 +40,20 @@ export default function ProductListScreen({ route }) {
                         Id category: {id_category}, Id store: {id_store}, Best
                         seller: {bs ? 'yes' : 'no'}
                     </Text> */}
-                    {data && data.products
-                        ? data.products.map((product, index) => {
-                              return (
-                                  <ProductMiniature
-                                      product={product}
-                                      key={index}
-                                      type="alt"
-                                      format={true}
-                                  />
-                              )
-                          })
-                        : false}
+                    {data && data.products && data.products.length ? (
+                        data.products.map((product, index) => {
+                            return (
+                                <ProductMiniature
+                                    product={product}
+                                    key={index}
+                                    type="alt"
+                                    format={true}
+                                />
+                            )
+                        })
+                    ) : (
+                        <Text>{t('no_product_found')}</Text>
+                    )}
                 </View>
             </Loading>
         </ScrollView>
