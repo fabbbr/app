@@ -20,7 +20,7 @@ import { formatProduct } from '@utils/Tools'
 
 import ProductService from '@services/product'
 import { addProduct } from '@slices/cart'
-
+import * as Message from '@utils/Message'
 import StoreIcon from '@icons/store.svg'
 import BoxIcon from '@icons/box.svg'
 import GlobalStyle from '@styles/GlobalStyle'
@@ -41,7 +41,7 @@ export default function ProductHomeScreen({ route }) {
                 const d = await ProductService.getProduct(id)
                 setProduct(formatProduct(d))
             } catch (error) {
-                console.log(error)
+                Message.error({ text1: error })
             }
         }
         getProduct()

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, Text, View, StyleSheet } from 'react-native'
+import { ScrollView, View, StyleSheet } from 'react-native'
 
 import CategoryService from '@services/category'
 import ProductService from '@services/product'
 import ProductMiniature from '@components/ProductMiniature'
 import Loading from '@containers/Loading'
+import * as Message from '@utils/Message'
 import GlobalStyle from '@styles/GlobalStyle'
 
 export default function ProductListScreen({ route }) {
@@ -23,7 +24,7 @@ export default function ProductListScreen({ route }) {
                     setData(d)
                 }
             } catch (error) {
-                console.log(error)
+                Message.error({ text1: error })
             }
         }
         getProducts()

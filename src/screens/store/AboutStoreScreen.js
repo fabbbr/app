@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 import Loading from '@containers/Loading'
 import StoreService from '@services/store'
-
+import * as Message from '@utils/Message'
 import StoreHeader from '@screens/parts/store/StoreHeader'
 import ImageSlider from '@containers/ImageSlider'
 import Title from '@components/Title'
@@ -28,7 +28,7 @@ export default function AboutStoreScreen({ id }) {
                 }
                 setStore(d)
             } catch (error) {
-                console.log(error)
+                Message.error({ text1: error })
             }
         }
         getStore()

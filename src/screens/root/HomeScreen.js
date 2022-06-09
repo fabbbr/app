@@ -6,7 +6,7 @@ import CategoryService from '@services/category'
 import AppTitle from '@components/AppTitle'
 import CategoryProducts from '@containers/CategoryProducts'
 import Loading from '@containers/Loading'
-
+import * as Message from '@utils/Message'
 import HomeStyle from '@styles/HomeStyle'
 
 export default function HomeScreen() {
@@ -19,7 +19,7 @@ export default function HomeScreen() {
                 const d = await CategoryService.getCategoriesFull()
                 setData(d)
             } catch (error) {
-                console.log(error)
+                Message.error({ text1: error })
             }
         }
         getCategories()

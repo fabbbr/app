@@ -14,6 +14,7 @@ import StoreService from '@services/store'
 import StoreHeader from '@screens/parts/store/StoreHeader'
 import ListHeader from '@components/ListHeader'
 import CategoryProducts from '@containers/CategoryProducts'
+import * as Message from '@utils/Message'
 import GlobalStyle from '@styles/GlobalStyle'
 import AppStyle from '@styles/AppStyle'
 
@@ -32,7 +33,7 @@ export default function ProductStoreScreen({ id, navigation }) {
                 }
                 setStore(d)
             } catch (error) {
-                console.log(error)
+                Message.error({ text1: error })
             }
         }
         getStore()

@@ -6,6 +6,7 @@ import CategoryService from '@services/category'
 import { formatCategoryImage } from '@utils/Tools'
 import AppTitle from '@components/AppTitle'
 import Loading from '@containers/Loading'
+import * as Message from '@utils/Message'
 import SmallArrowIcon from '@icons/small_arrow.svg'
 import GlobalStyle from '@styles/GlobalStyle'
 import HomeStyle from '@styles/HomeStyle'
@@ -26,7 +27,7 @@ export default function CategoriesScreen({ navigation }) {
                 const d = await CategoryService.getCategories()
                 setData(d)
             } catch (error) {
-                console.log(error)
+                Message.error({ text1: error })
             }
         }
         getCategories()
