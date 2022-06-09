@@ -14,6 +14,7 @@ export default function CartProduct({ product_id }) {
     const { t } = useTranslation()
 
     const product = useSelector((state) => state.cart.products[product_id])
+    console.log(product)
 
     const removeProductCart = () => {
         dispatch(removeProduct({ product, quantity: 1 }))
@@ -30,11 +31,13 @@ export default function CartProduct({ product_id }) {
             <Image source={{ uri: product.images[0] }} style={styles.img} />
             <View style={styles.container_right}>
                 <View style={styles.container_product_info}>
-                    <Text>{product.name}</Text>
+                    <Text style={styles.product_name} numberOfLines={1}>
+                        {product.name}
+                    </Text>
                     <Text style={styles.price}>{fNumber(product.price)} €</Text>
                 </View>
                 <View style={styles.container_store_info}>
-                    <Flag code={product.country} />
+                    <Flag code={product.store.lang} />
                     <View style={styles.vertical_lign}></View>
                     <Text style={AppStyle.text}>{product.store.name}</Text>
                 </View>
@@ -82,6 +85,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
+    product_name: {
+        width: 120,
+    },
+    price: {
+        fontWeight: 'bold',
+        width: 64,
+        textAlign: 'right',
+    },
     container_store_info: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -98,9 +109,6 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         marginRight: 10,
-    },
-    price: {
-        fontWeight: 'bold',
     },
     vertical_lign: {
         backgroundColor: GlobalStyle.color.lightgray,

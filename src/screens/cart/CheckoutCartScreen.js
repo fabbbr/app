@@ -1,110 +1,130 @@
 import React, { useState } from 'react'
-import { Pressable, Text, View, StyleSheet } from 'react-native'
 import {
-    StripeProvider,
-    CardField,
-    useStripe,
-} from '@stripe/stripe-react-native'
-import { useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+    Alert,
+    ScrollView,
+    StyleSheet,
+    TextInput,
+    Text,
+    Button,
+} from 'react-native'
+import { CardField, useConfirmPayment } from '@stripe/stripe-react-native'
 
-import * as Tools from '@utils/Tools'
-import AppInput from '@components/AppInput'
-import AppButton from '@components/AppButton'
-import DefaultContainer from '@containers/DefaultContainer'
 import GlobalStyle from '@styles/GlobalStyle'
+import { API_URL } from '@constants'
 
-export default function CheckoutCartScreen() {
-    const { confirmPayment } = useStripe()
-    const { t } = useTranslation()
-    const { control, handleSubmit, setValue } = useForm()
-    const [errors, setErrors] = useState({})
-    const [loading, setLoading] = useState(false)
+export default function Card() {
+    const [name, setName] = useState('')
+    const { confirmPayment, loading } = useConfirmPayment()
 
-    const checkout = async (data) => {
-        console.log(data)
-        let err = {}
-        if (!data.cardNumber) err.cardNumber = t('errors:form.input.empty')
-        else if (data.cardNumber.length < 16)
-            err.cardNumber = t('errors:form.input.cardNumber')
-        if (!data.cardExpiry) err.cardExpiry = t('errors:form.input.empty')
-        else if (data.cardExpiry.length < 7)
-            err.cardExpiry = t('errors:form.input.cardExpiry')
-        if (!data.cardCvc) err.cardCvc = t('errors:form.input.empty')
-        else if (data.cardCvc.length < 3)
-            err.cardCvc = t('errors:form.input.cardCvc')
+    const fetchPaymentIntentClientSecret = async () => {
+        const response = await fetch(`${API_URL}/create-payment-intent`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                paymentMethodType: 'card',
+                currency: 'eur',
+                amount: 1000,
+            }),
+        })
+        const { clientSecret } = await response.json()
 
-        setErrors(err)
-        if (Tools.objSize(err) === 0) {
-            setLoading(true)
+        return clientSecret
+    }
 
-            const { error } = await stripe.createTokenWithCard({
-                number: data.cardNumber,
-                expMonth: data.cardExpiry.split('/')[0],
-                expYear: data.cardExpiry.split('/')[1],
-                cvc: data.cardCvc,
-            })
-            console.log(error)
+    const handlePayPress = async () => {
+        // 1. fetch Intent Client Secret from backend
+        const clientSecret = await fetchPaymentIntentClientSecret()
 
-            // try {
-            // } catch {
-            //     setLoading(false)
-            // }
+        // 2. Gather customer billing information (ex. email)
+        const billingDetails = {
+            name,
+        }
+
+        const { error, paymentIntent } = await confirmPayment(clientSecret, {
+            type: 'Card',
+            billingDetails,
+        })
+
+        if (error) {
+            Alert.alert(`Error code: ${error.code}`, error.message)
+            console.log('Payment confirmation error', error.message)
+        } else if (paymentIntent) {
+            Alert.alert(
+                'Success',
+                `The payment was confirmed successfully! currency: ${paymentIntent.currency}`
+            )
+            console.log('Success from promise', paymentIntent)
         }
     }
 
     return (
-        <StripeProvider
-            publishableKey="pk_test_51L6zQuClNXpWtYYW37Us7n8s2oXgSO8eazXqCYXdXkeTIOC3Knq79509oo0ocPNA3W2O6ALHUBxMpLpBNEiDU3uN00LesRsxkZ"
-            merchantIdentifier="acct_1L6zQuClNXpWtYYW"
-        >
-            <DefaultContainer title={t('pay_by_card')}>
-                <View style={styles.container}>
-                    <AppInput
-                        control={control}
-                        name="cardNumber"
-                        type="number"
-                        label={t('card_number')}
-                        error={errors.cardNumber}
-                        maxLength={16}
-                        required
-                    />
-                    <View>
-                        <AppInput
-                            control={control}
-                            name="cardExpiry"
-                            type="date"
-                            label={t('expiry_date')}
-                            error={errors.cardExpiry}
-                            required
-                            setValue={setValue}
-                        />
-                        <AppInput
-                            control={control}
-                            name="cardCvc"
-                            type="number"
-                            label={t('cvc')}
-                            error={errors.cardCvc}
-                            maxLength={3}
-                            required
-                        />
-                    </View>
-                </View>
-                <AppButton
-                    text={t('pay')}
-                    onPress={handleSubmit(checkout)}
-                    loading={loading}
-                />
-            </DefaultContainer>
-        </StripeProvider>
+        <ScrollView style={styles.container}>
+            <Text>Try a test card:</Text>
+            <Text>4242424242424242 (Visa)</Text>
+            <Text>5555555555554444 (Mastercard)</Text>
+            <Text>4000002500003155 (Requires 3DSecure)</Text>
+            <Text>
+                Use any future expiration, any 3 digit CVC, and any postal code.
+            </Text>
+            <TextInput
+                autoCapitalize="none"
+                placeholder="Name"
+                keyboardType="name-phone-pad"
+                onChange={(value) => setName(value.nativeEvent.text)}
+                style={styles.input}
+            />
+            <CardField
+                placeholder={{
+                    number: '4242 4242 4242 4242',
+                }}
+                onCardChange={(cardDetails) => {
+                    console.log('cardDetails', cardDetails)
+                }}
+                onFocus={(focusedField) => {
+                    console.log('focusField', focusedField)
+                }}
+                cardStyle={inputStyles}
+                style={styles.cardField}
+            />
+            <Button onPress={handlePayPress} title="Pay" disabled={loading} />
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         backgroundColor: GlobalStyle.color.light,
-        padding: 10,
-        borderRadius: 8,
-        marginBottom: 10,
+        paddingTop: 20,
+        paddingHorizontal: 16,
+    },
+    cardField: {
+        width: '100%',
+        height: 50,
+        marginVertical: 30,
+    },
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    text: {
+        marginLeft: 12,
+    },
+    input: {
+        height: 44,
+        borderBottomColor: GlobalStyle.color.light,
+        borderBottomWidth: 1.5,
     },
 })
+
+const inputStyles = {
+    borderWidth: 1,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#000000',
+    borderRadius: 8,
+    fontSize: 14,
+    placeholderColor: '#999999',
+}

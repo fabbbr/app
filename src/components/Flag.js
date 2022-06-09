@@ -13,7 +13,7 @@ const it = It
 export default function Flag({ code, width }) {
     if (!width) width = 25
 
-    let Code = eval(code.toLowerCase())
+    let Code = code ? eval(code.toLowerCase()) : Fr
 
     return (
         <View

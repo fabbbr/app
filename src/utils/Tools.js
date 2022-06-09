@@ -32,9 +32,20 @@ export const formatProduct = (product) => {
     product.quantityInCart = product.quantityInCart || 0
     product.review = product.review || 233
     product.rating = product.rating || 4.3
-    if (!product.image.startsWith('https://'))
-        product.image = formatProductImage(product.image)
-    product.images = product.images || [product.image]
+
+    if (Array.isArray(product.image) && product.image.length > 0) {
+        product.images = product.image
+    } else {
+        product.images = [product.image]
+    }
+
+    product.images = product.images.map((image) => {
+        return product.image.startsWith('https://')
+            ? image
+            : formatProductImage(image)
+    })
+    if (product.images.length > 0) product.image = product.images[0]
+
     return product
 }
 
