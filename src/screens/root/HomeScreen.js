@@ -28,7 +28,6 @@ export default function HomeScreen() {
                             image: formatCategoryImage(category.image),
                         }
                     })
-                    console.log(cats)
                     setCategories(cats)
                 }
                 setData(d)

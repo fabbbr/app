@@ -22,7 +22,6 @@ const Tab = createBottomTabNavigator()
 export default function BottomNavigation() {
     const { t } = useTranslation()
     const cart = useSelector((state) => state.cart)
-    console.log(cart)
 
     let cartTotalQuantity = 0
     for (let id in cart.products) {
@@ -33,7 +32,6 @@ export default function BottomNavigation() {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
-                    console.log(size)
                     switch (route.name) {
                         case 'Root':
                             return (

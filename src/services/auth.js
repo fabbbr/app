@@ -34,7 +34,6 @@ const getUser = async () => {
 }
 
 const getOrders = async (id) => {
-    console.log(API_URL + 'pip/user/' + id)
     const response = await axios.get(API_URL + 'user/' + id)
     return response.data.orders
 }

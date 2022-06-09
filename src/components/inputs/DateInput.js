@@ -19,7 +19,6 @@ export default function DateInput({
             value = value.replace(/[^0-9 /]/g, '')
 
             let valueArray = value.split('')
-            // console.log(valueArray)
             valueArray.forEach((element, index) => {
                 if (
                     !(

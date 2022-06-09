@@ -14,7 +14,6 @@ export default function CartProduct({ product_id }) {
     const { t } = useTranslation()
 
     const product = useSelector((state) => state.cart.products[product_id])
-    console.log(product)
 
     const removeProductCart = () => {
         dispatch(removeProduct({ product, quantity: 1 }))

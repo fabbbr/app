@@ -15,7 +15,6 @@ export default function CartScreen({ navigation }) {
     const { isLoggedIn } = useSelector((state) => state.auth)
 
     const submit_order = () => {
-        console.log('submit_order')
         navigation.navigate('CheckoutCartScreen')
     }
 

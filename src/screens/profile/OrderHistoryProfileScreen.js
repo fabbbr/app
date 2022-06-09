@@ -21,7 +21,6 @@ export default function OrderHistoryProfileScreen() {
         const getOrders = async () => {
             try {
                 const d = await AuthService.getOrders(user.id)
-                console.log(d)
                 setOrders(d)
             } catch (error) {
                 Message.error({ text1: error })
