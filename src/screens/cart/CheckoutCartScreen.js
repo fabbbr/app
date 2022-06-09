@@ -1,20 +1,33 @@
 import React, { useState } from 'react'
-import {
-    Alert,
-    ScrollView,
-    StyleSheet,
-    TextInput,
-    Text,
-    Button,
-} from 'react-native'
+import { Alert, ScrollView, StyleSheet, View } from 'react-native'
 import { CardField, useConfirmPayment } from '@stripe/stripe-react-native'
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
 import GlobalStyle from '@styles/GlobalStyle'
 import { API_URL } from '@constants'
+import * as Tools from '@utils/Tools'
+import DefaultContainer from '@containers/DefaultContainer'
+import AppButton from '@components/AppButton'
+import AppInput from '@components/AppInput'
 
 export default function Card() {
-    const [name, setName] = useState('')
+    const { t } = useTranslation()
+    const cart = useSelector((state) => state.cart)
+    const [errors, setErrors] = useState({})
     const { confirmPayment, loading } = useConfirmPayment()
+    const { control, handleSubmit } = useForm()
+
+    let sub_total = 0
+    for (let id in cart.products) {
+        sub_total += cart.products[id].price * cart.products[id].quantityInCart
+    }
+    let delivery_cost =
+        cart.delivery_method && cart.deliveries[cart.delivery_method]
+            ? cart.deliveries[cart.delivery_method].price
+            : 0
+    let total = sub_total + delivery_cost
 
     const fetchPaymentIntentClientSecret = async () => {
         const response = await fetch(`${API_URL}/create-payment-intent`, {
@@ -33,7 +46,17 @@ export default function Card() {
         return clientSecret
     }
 
-    const handlePayPress = async () => {
+    const handlePress = (data) => {
+        let err = {}
+        if (!data.name) err.name = t('errors:form.input.empty')
+        setErrors(err)
+
+        if (Tools.objSize(err) === 0) {
+            // handlePay()
+        }
+    }
+
+    const handlePay = async (data) => {
         // 1. fetch Intent Client Secret from backend
         const clientSecret = await fetchPaymentIntentClientSecret()
 
@@ -61,34 +84,30 @@ export default function Card() {
 
     return (
         <ScrollView style={styles.container}>
-            <Text>Try a test card:</Text>
-            <Text>4242424242424242 (Visa)</Text>
-            <Text>5555555555554444 (Mastercard)</Text>
-            <Text>4000002500003155 (Requires 3DSecure)</Text>
-            <Text>
-                Use any future expiration, any 3 digit CVC, and any postal code.
-            </Text>
-            <TextInput
-                autoCapitalize="none"
-                placeholder="Name"
-                keyboardType="name-phone-pad"
-                onChange={(value) => setName(value.nativeEvent.text)}
-                style={styles.input}
-            />
-            <CardField
-                placeholder={{
-                    number: '4242 4242 4242 4242',
-                }}
-                onCardChange={(cardDetails) => {
-                    console.log('cardDetails', cardDetails)
-                }}
-                onFocus={(focusedField) => {
-                    console.log('focusField', focusedField)
-                }}
-                cardStyle={inputStyles}
-                style={styles.cardField}
-            />
-            <Button onPress={handlePayPress} title="Pay" disabled={loading} />
+            <DefaultContainer title={t('payment')}>
+                <View style={styles.content_container}>
+                    <AppInput
+                        control={control}
+                        name="name"
+                        type="text"
+                        label={t('name')}
+                        error={errors.name}
+                    />
+                    <CardField
+                        placeholder={{
+                            number: '4242 4242 4242 4242',
+                        }}
+                        cardStyle={inputStyles}
+                        style={styles.cardField}
+                    />
+                </View>
+                <AppButton
+                    onPress={handleSubmit(handlePress)}
+                    text={t('pay') + ' ' + total + '€'}
+                    styles={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
+                    loading={loading}
+                />
+            </DefaultContainer>
         </ScrollView>
     )
 }
@@ -96,9 +115,12 @@ export default function Card() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    content_container: {
         backgroundColor: GlobalStyle.color.light,
-        paddingTop: 20,
-        paddingHorizontal: 16,
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
+        padding: 20,
     },
     cardField: {
         width: '100%',

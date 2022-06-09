@@ -69,6 +69,9 @@
     "added_to_cart": "Product added to cart",
     "not_enough_stock": "Product not available",
     "in_cart": "in cart",
+    "payment": "Payment",
+    "pay": "Pay",
+    "name": "Name",
 
     "cart_empty": "Your cart is empty",
     "no_product_found": "No product found",

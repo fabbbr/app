@@ -69,6 +69,9 @@
     "added_to_cart": "Produit ajouté au panier",
     "not_enough_stock": "Produit non disponible",
     "in_cart": "dans le panier",
+    "payment": "Paiement",
+    "pay": "Payer",
+    "name": "Nom",
 
     "cart_empty": "Votre panier est vide",
     "no_product_found": "Aucun produit trouvé",
