@@ -9,7 +9,7 @@ import {
 
 import AuthService from '@services/auth'
 import Loading from '@containers/Loading'
-import Message from '@utils/Message'
+import * as Message from '@utils/Message'
 import GlobalStyle from '@styles/GlobalStyle'
 
 export default function OrderProfileScreen({ route }) {
