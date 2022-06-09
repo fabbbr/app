@@ -89,7 +89,7 @@ export default function ProductHomeScreen({ route }) {
 
                                 <View style={styles.container_store_info}>
                                     <View style={styles.container_store}>
-                                        <Flag code={product.country} />
+                                        <Flag code={product.store.lang} />
                                         <View
                                             style={styles.vertical_lign}
                                         ></View>

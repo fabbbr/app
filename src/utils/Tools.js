@@ -30,7 +30,6 @@ export const fNumber = (number, decimals = 2) => {
 
 export const formatProduct = (product) => {
     product.quantityInCart = product.quantityInCart || 0
-    product.country = 'fr'
     product.review = product.review || 233
     product.rating = product.rating || 4.3
     if (!product.image.startsWith('https://'))

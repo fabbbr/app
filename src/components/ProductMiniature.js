@@ -35,7 +35,7 @@ export default function ProductMiniature({
                 <Text style={AppStyle.h3}>{product.name}</Text>
 
                 <View style={styles.container3}>
-                    <Flag code={product.country} />
+                    <Flag code={product.store.lang} />
                     <View style={styles.vertical_lign}></View>
                     <Text style={AppStyle.text}>
                         {product.store ? product.store.name : ''}
