@@ -30,6 +30,12 @@ export default function ProductStoreScreen({ id, navigation }) {
                 if (d) {
                     d.rating = 4.3
                     d.reviews = 233
+                    d.products = d.products.map((product) => {
+                        return {
+                            ...product,
+                            store: { lang: d.lang, name: d.name },
+                        }
+                    })
                 }
                 setStore(d)
             } catch (error) {
