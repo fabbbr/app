@@ -25,8 +25,8 @@ export default function CartScreen({ navigation }) {
 
     return (
         <DefaultContainer title={t('order')}>
-            {isLoggedIn ? <CartStep1 /> : false}
             <CartStep2 isLoggedIn={isLoggedIn} />
+            {isLoggedIn ? <CartStep1 /> : false}
             {isLoggedIn ? <CartStep3 /> : false}
             {isLoggedIn ? (
                 <AppButton

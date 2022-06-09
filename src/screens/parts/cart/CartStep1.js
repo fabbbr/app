@@ -53,8 +53,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: GlobalStyle.color.light,
         padding: 20,
-        borderTopLeftRadius: 8,
-        borderTopRightRadius: 8,
         marginBottom: 10,
     },
     info: {

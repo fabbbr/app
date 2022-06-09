@@ -77,6 +77,8 @@ const styles = StyleSheet.create({
         backgroundColor: GlobalStyle.color.light,
         padding: 20,
         marginBottom: 10,
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
     },
     horizontal_lign: {
         backgroundColor: GlobalStyle.color.lightgray,
