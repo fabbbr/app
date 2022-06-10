@@ -13,6 +13,7 @@ import OrderHistoryProfileScreen from '@screens/profile/OrderHistoryProfileScree
 import OrderProfileScreen from '@screens/profile/OrderProfileScreen'
 import AddressesProfileScreen from '@screens/profile/AddressesProfileScreen'
 import AddressProfileScreen from '@screens/profile/AddressProfileScreen'
+import SettingsProfileScreen from '@screens/profile/SettingsProfileScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -56,6 +57,11 @@ export default function ProfileNavigation() {
                 name="AddressProfileScreen"
                 component={AddressProfileScreen}
                 options={{ ...config, title: t('address') }}
+            />
+            <Stack.Screen
+                name="SettingsProfileScreen"
+                component={SettingsProfileScreen}
+                options={{ ...config, title: t('settings') }}
             />
         </Stack.Navigator>
     )

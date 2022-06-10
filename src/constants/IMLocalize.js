@@ -11,14 +11,13 @@ const LANGUAGES = {
     fr,
 }
 
-const LANG_CODES = Object.keys(LANGUAGES)
+export const LANG_CODES = Object.keys(LANGUAGES)
 const DEFAULT = 'en'
 
 const LANGUAGE_DETECTOR = {
     type: 'languageDetector',
     async: true,
     detect: (callback) => {
-        LS.remove('user-language')
         LS.get('user-language').then((language) => {
             if (!language) {
                 let localeLanguageTag = Localization?.locale

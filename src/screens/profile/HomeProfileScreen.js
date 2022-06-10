@@ -31,6 +31,9 @@ export default function HomeProfileScreen({ navigation }) {
     const navigateToAddresses = () => {
         navigation.navigate('AddressesProfileScreen')
     }
+    const navigateToSettings = () => {
+        navigation.navigate('SettingsProfileScreen')
+    }
 
     return (
         <ScrollView style={styles.container}>
@@ -73,6 +76,7 @@ export default function HomeProfileScreen({ navigation }) {
                         <TouchableOpacity
                             style={styles.row}
                             activeOpacity={0.6}
+                            onPress={navigateToSettings}
                         >
                             <Title
                                 icon={<SettingsIcon />}
