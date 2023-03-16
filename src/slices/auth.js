@@ -49,34 +49,35 @@ const initialState = {
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    extraReducers: {
-        [setUserInit.fulfilled]: (state, action) => {
-            if (action.payload.user) {
+    extraReducers: builder => {
+        builder
+            .addCase(setUserInit.fulfilled, (state, action) => {
+                if (action.payload.user) {
+                    state.isLoggedIn = true
+                    state.user = action.payload.user
+                }
+                state.init = false
+            })
+            .addCase(register.fulfilled, (state, action) => {
                 state.isLoggedIn = true
                 state.user = action.payload.user
-            }
-            state.init = false
-        },
-        [register.fulfilled]: (state, action) => {
-            state.isLoggedIn = true
-            state.user = action.payload.user
-        },
-        [register.rejected]: (state, action) => {
-            state.isLoggedIn = false
-        },
-        [login.fulfilled]: (state, action) => {
-            state.isLoggedIn = true
-            state.user = action.payload.user
-        },
-        [login.rejected]: (state, action) => {
-            state.isLoggedIn = false
-            state.user = null
-        },
-        [logout.fulfilled]: (state, action) => {
-            state.isLoggedIn = false
-            state.user = null
-        },
-    },
+            })
+            .addCase(register.rejected, (state, action) => {
+                state.isLoggedIn = false
+            })
+            .addCase(login.fulfilled, (state, action) => {
+                state.isLoggedIn = true
+                state.user = action.payload.user
+            })
+            .addCase(login.rejected, (state, action) => {
+                state.isLoggedIn = false
+                state.user = null
+            })
+            .addCase(logout.fulfilled, (state, action) => {
+                state.isLoggedIn = false
+                state.user = null
+            })
+    }
 })
 
 export default authSlice.reducer
