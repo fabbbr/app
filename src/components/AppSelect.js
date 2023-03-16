@@ -7,12 +7,12 @@ import GlobalStyle from '@styles/GlobalStyle'
 export default function AppSelect({ label, items, value, setValue }) {
     return (
         <View style={styles.container}>
-            <RNPickerSelect
+            {/* <RNPickerSelect
                 placeholder={{ label: label, value: value }}
                 onValueChange={(val) => setValue(val)}
                 items={items}
                 style={pickerSelectStyles}
-            />
+            /> */}
         </View>
     )
 }

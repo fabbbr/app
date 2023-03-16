@@ -6,14 +6,17 @@ import Fr from '@icons/flags/fr.svg'
 import Pl from '@icons/flags/pl.svg'
 import It from '@icons/flags/it.svg'
 
-const fr = Fr
-const pl = Pl
-const it = It
+const flags = {
+    fr: Fr,
+    it: It,
+    pl: Pl
+}
 
 export default function Flag({ code, width }) {
     if (!width) width = 25
 
-    let Code = code ? eval(code.toLowerCase()) : Fr
+    let lowerCase = code.toLowerCase()
+    let Code = code ? flags[lowerCase] : Fr
 
     return (
         <View
