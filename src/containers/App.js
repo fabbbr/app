@@ -10,6 +10,7 @@ import Loading from '@containers/Loading'
 import BottomNavigation from '@navigations/BottomNavigation'
 import { setUserInit } from '@slices/auth'
 import { getFonts } from '@constants/fonts'
+import GlobalStyle from '@styles/GlobalStyle'
 
 export default function App() {
     const [appIsReady, setAppIsReady] = useState(false)
@@ -45,7 +46,7 @@ export default function App() {
         <>
             <Loading data={appIsReady} onLayout={onLayoutRootView}>
                 <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always', bottom: 'always' }}>
-                    <StatusBar barStyle="light-content" />
+                    <StatusBar barStyle="dark-content" backgroundColor={ GlobalStyle.color.background } />
                     {appIsReady ? (
                         <NavigationContainer>
                             <BottomNavigation />
