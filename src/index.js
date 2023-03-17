@@ -2,6 +2,7 @@ import { registerRootComponent } from 'expo'
 import React, { useState, useEffect } from 'react'
 import { Provider } from 'react-redux'
 import { StripeProvider } from '@stripe/stripe-react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import '@constants/IMLocalize'
 import store from './store'
@@ -56,7 +57,9 @@ function index() {
                 // urlScheme={Linking.createURL('') + '/--/'}
                 // setUrlSchemeOnAndroid={true}
             >
-                <App />
+                <SafeAreaProvider>
+                    <App />
+                </SafeAreaProvider>
             </StripeProvider>
         </Provider>
     )

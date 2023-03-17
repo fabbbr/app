@@ -43,7 +43,7 @@ export default function App() {
     return (
         <>
             <Loading data={appIsReady} onLayout={onLayoutRootView}>
-                <SafeAreaView style={{ flex: 1 }}>
+                <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always', bottom: 'always' }}>
                     {appIsReady ? (
                         <NavigationContainer>
                             <BottomNavigation />
