@@ -32,6 +32,7 @@ export default function App() {
         asyncStart()
 
         StatusBar.setBarStyle('dark-content')
+        StatusBar.setBackgroundColor(GlobalStyle.color.background)
     }, [])
 
     const onLayoutRootView = useCallback(async () => {
@@ -48,7 +49,7 @@ export default function App() {
         <>
             <Loading data={appIsReady} onLayout={onLayoutRootView}>
                 <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always', bottom: 'always' }}>
-                    <StatusBar backgroundColor={ GlobalStyle.color.background } />
+                    <StatusBar />
                     {appIsReady ? (
                         <NavigationContainer>
                             <BottomNavigation />
