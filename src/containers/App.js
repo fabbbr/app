@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { StatusBar } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useDispatch, useSelector } from 'react-redux'
@@ -44,6 +45,7 @@ export default function App() {
         <>
             <Loading data={appIsReady} onLayout={onLayoutRootView}>
                 <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always', bottom: 'always' }}>
+                    <StatusBar barStyle="light-content" />
                     {appIsReady ? (
                         <NavigationContainer>
                             <BottomNavigation />
